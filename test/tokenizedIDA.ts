@@ -16,6 +16,7 @@ let admin: any
 let alice: any
 let bob: any
 const subscriptionSupply = 100
+const decimals = 10 ** 6
 
 // Constants
 const expecationDiffLimit = 10 // sometimes the IDA distributes a little less wei than expected. Accounting for potential discrepency with 10 wei margin
@@ -109,7 +110,7 @@ describe("TokenSpreader Test Sequence", async () => {
         // ACTIONS
 
         // Alice claims distribution unit
-        await spreader.transfer(alice.address, 1);
+        await spreader.transfer(alice.address, 1 * decimals);
 
         // EXPECTATIONS
 
@@ -121,7 +122,7 @@ describe("TokenSpreader Test Sequence", async () => {
             providerOrSigner: alice
         })
 
-        await expect(aliceSubscription.units).to.equal("1")
+        await expect(aliceSubscription.units).to.equal((1 * decimals).toString())
 
         // distribution SHOULD NOT REVERT if there are outstanding units issued
         await expect(spreader.connect(alice).distribute()).to.be.not.reverted
@@ -131,7 +132,7 @@ describe("TokenSpreader Test Sequence", async () => {
         // ACTIONS
 
         // Bob claims distribution unit
-        await spreader.transfer(bob.address, 1);
+        await spreader.transfer(bob.address, 1 * decimals);
 
         // EXPECTATIONS
 
@@ -143,7 +144,7 @@ describe("TokenSpreader Test Sequence", async () => {
             providerOrSigner: alice
         })
 
-        await expect(aliceSubscription.units).to.equal("1")
+        await expect(aliceSubscription.units).to.equal((1 * decimals).toString())
 
         // expect bob to have 1 distribution unit
         let bobSubscription = await daix.getSubscription({
@@ -153,7 +154,7 @@ describe("TokenSpreader Test Sequence", async () => {
             providerOrSigner: bob
         })
 
-        await expect(bobSubscription.units).to.equal("1")
+        await expect(bobSubscription.units).to.equal((1 * decimals).toString())
 
         // distribution SHOULD NOT REVERT if there are outstanding units issued
         await expect(spreader.connect(alice).distribute()).to.be.not.reverted
@@ -226,7 +227,7 @@ describe("TokenSpreader Test Sequence", async () => {
         // ACTIONS
 
         // Bob claims another distribution unit
-        await spreader.transfer(bob.address, 1)
+        await spreader.transfer(bob.address, 1 * decimals)
 
         // Admin gives spreader 100 DAIx
         await daix
@@ -259,9 +260,8 @@ describe("TokenSpreader Test Sequence", async () => {
             providerOrSigner: bob
         })
 
-        await expect(bobSubscription.units).to.equal("2")
+        await expect(bobSubscription.units).to.equal((2 * decimals).toString())
 
-        // expect alice to receive 1/3 of distribution
         await expect(
             await daix.balanceOf({
                 account: alice.address,
@@ -281,7 +281,7 @@ describe("TokenSpreader Test Sequence", async () => {
             })
         ).to.closeTo(
             ethers.BigNumber.from(bobInitialBlance).add(
-                distributionAmount.div(subscriptionSupply).mul("2")
+                distributionAmount.div(subscriptionSupply).mul('2')
             ),
             expecationDiffLimit
         )
@@ -303,7 +303,7 @@ describe("TokenSpreader Test Sequence", async () => {
         // ACTIONS
 
         // Bob deletes one of his two units
-        await spreader.connect(bob).transfer(admin.address, 1)
+        await spreader.connect(bob).transfer(admin.address, 1 * decimals)
 
         // Admin gives spreader 100 DAIx
         await daix
@@ -336,7 +336,7 @@ describe("TokenSpreader Test Sequence", async () => {
             providerOrSigner: bob
         })
 
-        await expect(bobSubscription.units).to.equal("1")
+        await expect(bobSubscription.units).to.equal((1 * decimals).toString())
 
         await expect(
             await daix.balanceOf({
@@ -373,7 +373,7 @@ describe("TokenSpreader Test Sequence", async () => {
         const shareDistributionAmount = distributionAmount.div(subscriptionSupply)
 
         // Bob deletes his last unit
-        await spreader.connect(bob).transfer(admin.address, 1)
+        await spreader.connect(bob).transfer(admin.address, 1 * decimals)
 
         // Admin gives spreader 100 DAIx
         await daix

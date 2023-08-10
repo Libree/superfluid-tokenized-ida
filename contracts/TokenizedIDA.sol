@@ -25,7 +25,11 @@ contract TokenizedIDA is ERC20 {
         _mint(msg.sender, _initialSupply * 10 ** decimals());
         spreaderToken = _spreaderToken;
         _spreaderToken.createIndex(INDEX_ID);
-        _gainShare(msg.sender, _initialSupply);
+        _gainShare(msg.sender, _initialSupply * 10 ** decimals());
+    }
+
+    function decimals() public view virtual override returns (uint8) {
+        return 6;
     }
 
     function distribute() public {
@@ -81,5 +85,15 @@ contract TokenizedIDA is ERC20 {
         if (from == address(0) || to == address(0)) return;
         _gainShare(to, amount);
         _loseShare(from, amount);
+    }
+
+    function getUnitsHeld(address subscriber) external view returns (uint256) {
+        (, , uint256 currentUnitsHeld, ) = spreaderToken.getSubscription(
+            address(this),
+            INDEX_ID,
+            subscriber
+        );
+
+        return currentUnitsHeld;
     }
 }
