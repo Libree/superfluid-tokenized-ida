@@ -1,5 +1,6 @@
 import SideBarLayout from "@/layouts/sidebarLayout";
 import { Box, Container, Typography } from "@mui/material";
+import SuscriptionTable from "@/components/suscriptionTable";
 
 function Dashboard() {
     return (
@@ -17,6 +18,7 @@ function Dashboard() {
             </Box>
 
             {/* table */}
+            <SuscriptionTable />
 
         </Container>
     )
