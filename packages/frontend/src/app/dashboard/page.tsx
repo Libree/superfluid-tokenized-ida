@@ -1,6 +1,7 @@
+import SideBarLayout from "@/layouts/sidebarLayout";
 import { Box, Container, Typography } from "@mui/material";
 
-export default function Dashboard() {
+function Dashboard() {
     return (
         <Container
             sx={{
@@ -16,7 +17,13 @@ export default function Dashboard() {
             </Box>
 
             {/* table */}
-            
+
         </Container>
     )
 };
+
+Dashboard.getLayout = (page: any) => (
+    <SideBarLayout>{page}</SideBarLayout>
+);
+
+export default Dashboard;

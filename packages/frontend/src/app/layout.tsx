@@ -1,8 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import SideBarLayout from '@/layouts/sidebarLayout'
 
 export const metadata: Metadata = {
   title: 'Superfluid App',
@@ -16,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <SideBarLayout children={children} />
     </html>
   )
 }
