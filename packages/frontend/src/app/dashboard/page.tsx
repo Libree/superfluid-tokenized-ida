@@ -14,6 +14,9 @@ export default function Dashboard() {
                     Dashboard
                 </Typography>
             </Box>
+
+            {/* table */}
+            
         </Container>
     )
 };
