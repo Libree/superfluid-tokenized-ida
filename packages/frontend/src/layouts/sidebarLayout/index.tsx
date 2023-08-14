@@ -19,6 +19,7 @@ const SideBarLayout: FC<SideBarLayoutProps> = ({ children }) => {
                     display: 'block',
                     flex: 1,
                     marginLeft: '240px',
+                    padding: '1rem'
                 }}
             >
                 {children}
