@@ -3,7 +3,6 @@ import { mockedSuscriptions } from '../utils/suscriptions';
 import CriptoCell from './criptoCell';
 import {
  Box,
- Grid,
  Typography,
  Table,
  TableHead,

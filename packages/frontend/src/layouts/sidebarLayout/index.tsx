@@ -3,25 +3,32 @@ import { Box } from "@mui/material";
 import PropTypes from "prop-types";
 
 import Sidebar from "./sidebar";
+import useSidebar from "@/hooks/useSidebar";
 
 interface SideBarLayoutProps {
     children?: ReactNode;
 }
 
 const SideBarLayout: FC<SideBarLayoutProps> = ({ children }) => {
+    const { sidebarToggle } = useSidebar();
     return (
         <>
             <Sidebar />
             <Box
                 sx={{
                     position: 'relative',
-                    minHeight: '100vh',
+                    zIndex: 5,
                     display: 'block',
                     flex: 1,
-                    marginLeft: '240px',
+                    marginLeft: {
+                        xs: sidebarToggle ? '240px' : 0,
+                        lg: '240px',
+                    },
                 }}
             >
-                {children}
+                <Box display={'block'}>
+                    {children}
+                </Box>
             </Box>
         </>
     )
