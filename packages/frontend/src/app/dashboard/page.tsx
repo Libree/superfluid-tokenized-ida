@@ -1,5 +1,5 @@
 import { Box, Container, Typography } from '@mui/material';
-import SuscriptionTable from '@/components/suscriptionTable';
+import SuscriptionTable from '@/components/subscriptionTable';
 
 export default function Dashboard() {
  return (
