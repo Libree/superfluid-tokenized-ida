@@ -1,10 +1,11 @@
 'use client'
 
-import useSidebar from "@/hooks/useSidebar";
 import { Box, IconButton, Tooltip, styled } from "@mui/material"
 
 import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
 import CloseTwoToneIcon from '@mui/icons-material/CloseTwoTone';
+import { useContext } from "react";
+import { SidebarContext } from "@/contexts/sidebarContext";
 
 const HeaderWrapper = styled(Box)(
     () => `
@@ -24,8 +25,7 @@ const HeaderWrapper = styled(Box)(
 );
 
 function Header() {
-    const { sidebarToggle, toggleSidebar } = useSidebar();
-
+    const { sidebarToggle, toggleSidebar } = useContext(SidebarContext);
     return (
         <HeaderWrapper
             display={'flex'}

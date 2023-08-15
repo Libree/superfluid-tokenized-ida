@@ -1,19 +1,17 @@
 'use client'
 
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useContext } from "react";
 import { Box } from "@mui/material";
 import PropTypes from "prop-types";
 
-import useSidebar from "@/hooks/useSidebar";
 import Sidebar from "./sidebar";
 import Header from "./header";
+import { SidebarContext } from "@/contexts/sidebarContext";
 
-interface SideBarLayoutProps {
-    children?: ReactNode;
-}
+interface SideBarLayoutProps { children?: ReactNode };
 
 const SideBarLayout: FC<SideBarLayoutProps> = ({ children }) => {
-    const { sidebarToggle } = useSidebar();
+    const { sidebarToggle } = useContext(SidebarContext);
     return (
         <>
             <Header />

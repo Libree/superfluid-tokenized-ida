@@ -1,11 +1,12 @@
 'use client'
 
-import useSidebar from "@/hooks/useSidebar";
 import { Box, Button, Divider, Drawer, styled } from "@mui/material";
 
 import SidebarMenu from "./sidebarMenu";
 
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
+import { useContext } from "react";
+import { SidebarContext } from "@/contexts/sidebarContext";
 
 const SidebarWrapper = styled(Box)(
     () => `
@@ -18,7 +19,7 @@ const SidebarWrapper = styled(Box)(
 );
 
 function Sidebar() {
-    const { sidebarToggle, closeSidebar } = useSidebar();
+    const { sidebarToggle, closeSidebar } = useContext(SidebarContext);
     return (
         <>
             <SidebarWrapper
