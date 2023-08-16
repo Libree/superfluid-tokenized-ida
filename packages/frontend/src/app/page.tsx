@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import styles from './page.module.css';
 
-import SuscriptionTable from '@/components/subscriptionTable';
-
 export default function Home() {
  return (
   <main>
