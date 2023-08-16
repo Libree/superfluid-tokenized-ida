@@ -1,5 +1,5 @@
 import React from 'react';
-import { mockedSuscriptions } from '../utils/suscriptions';
+import { mockedSuscriptions } from '@/utils/mocks';
 import CriptoCell from './criptoCell';
 import {
  Box,
