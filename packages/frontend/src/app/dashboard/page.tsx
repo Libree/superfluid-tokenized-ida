@@ -1,23 +1,11 @@
 import SideBarLayout from "@/layouts/sidebarLayout";
-import { Box, Container, Typography } from "@mui/material";
+import { Container } from "@mui/material";
+import SuscriptionTable from "@/components/subscriptionTable";
 
 function Dashboard() {
     return (
-        <Container
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-            }}
-        >
-            <Box>
-                <Typography variant="h4" component="h4" gutterBottom>
-                    Dashboard
-                </Typography>
-            </Box>
-
-            {/* table */}
-
+        <Container>
+            <SuscriptionTable />
         </Container>
     )
 };
