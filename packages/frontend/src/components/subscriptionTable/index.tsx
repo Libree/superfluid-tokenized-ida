@@ -11,7 +11,7 @@ import {
  TableCell,
 } from '@mui/material';
 
-const SuscriptionTable = () => {
+const SubscriptionTable = () => {
  return (
   <Box sx={{ margin: '2em', minWidth: '50rem' }}>
    <Typography
@@ -67,4 +67,4 @@ const SuscriptionTable = () => {
  );
 };
 
-export default SuscriptionTable;
+export default SubscriptionTable;
