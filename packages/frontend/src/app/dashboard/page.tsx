@@ -1,6 +1,6 @@
 import SideBarLayout from "@/layouts/sidebarLayout";
 import { Container } from "@mui/material";
-import SuscriptionTable from "@/components/suscriptionTable";
+import SuscriptionTable from "@/components/subscriptionTable";
 
 function Dashboard() {
     return (
