@@ -31,6 +31,7 @@ function Sidebar() {
                     position: 'fixed',
                     left: 0,
                     top: 0,
+                    backgroundColor: 'white',
                 }}
             >
                 <Box
