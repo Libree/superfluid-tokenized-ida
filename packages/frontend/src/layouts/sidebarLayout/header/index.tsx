@@ -34,7 +34,7 @@ function Header() {
             alignItems={'center'}
             justifyContent={'space-between'}
         >
-            <Box component={'span'}>
+            <Box>
                 <Tooltip
                     arrow
                     title="Toggle Menu"
@@ -43,10 +43,11 @@ function Header() {
                             xs: 'inline-flex',
                             lg: 'none',
                         }
-                    }}>
+                    }}
+                >
                     <IconButton
                         color="primary"
-                        onClick={toggleSidebar}
+                        onClick={() => toggleSidebar()}
                     >
                         {!sidebarToggle ? (
                             <MenuTwoToneIcon fontSize="medium" />

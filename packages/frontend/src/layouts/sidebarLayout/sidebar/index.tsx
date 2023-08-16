@@ -19,7 +19,8 @@ const SidebarWrapper = styled(Box)(
 );
 
 function Sidebar() {
-    const { sidebarToggle, closeSidebar } = useContext(SidebarContext);
+    const { sidebarToggle, toggleSidebar } = useContext(SidebarContext);
+    const closeSidebar = () => toggleSidebar();
     return (
         <>
             <SidebarWrapper
@@ -75,7 +76,6 @@ function Sidebar() {
                 </Box>
             </SidebarWrapper>
             <Drawer
-                anchor={'left'}
                 open={sidebarToggle}
                 onClose={closeSidebar}
                 variant="temporary"

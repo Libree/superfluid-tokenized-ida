@@ -1,26 +1,23 @@
 import { ReactNode, createContext, useState } from "react";
 
 type SidebarContext = {
-    sidebarToggle: any;
+    sidebarToggle: boolean;
     toggleSidebar: () => void;
     closeSidebar: () => void;
 };
 
-export const SidebarContext = createContext<SidebarContext>(
-    {} as SidebarContext
-);
+export const SidebarContext = createContext<SidebarContext>({
+    sidebarToggle: false,
+    toggleSidebar: () => { },
+    closeSidebar: () => { },
+});
 
 type Props = { children: ReactNode };
 
 export function SidebarProvider({ children }: Props) {
     const [sidebarToggle, setSidebarToggle] = useState(false);
-    const toggleSidebar = () => {
-        setSidebarToggle(!sidebarToggle);
-    };
-
-    const closeSidebar = () => {
-        setSidebarToggle(false);
-    };
+    const toggleSidebar = () => setSidebarToggle(!sidebarToggle);
+    const closeSidebar = () => setSidebarToggle(false);
 
     return (
         <SidebarContext.Provider
