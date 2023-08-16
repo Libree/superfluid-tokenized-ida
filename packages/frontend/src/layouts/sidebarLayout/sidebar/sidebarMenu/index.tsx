@@ -11,14 +11,9 @@ import Link from "next/link";
 
 function SidebarMenu() {
     const pathname = usePathname();
-
     return (
         <>
-            <Box
-                sx={{
-                    padding: '1rem 0.5rem',
-                }}
-            >
+            <Box sx={{ padding: '1rem 0' }}>
                 <List component={'div'}>
                     <ListItem component={'div'}>
                         <Link href={'/dashboard'}>

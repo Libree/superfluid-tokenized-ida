@@ -36,16 +36,16 @@ function Sidebar() {
                 <Box
                     sx={{
                         height: '100%',
-                        padding: '68px 0',
+                        padding: '68px 1rem',
                         position: 'fixed',
                         left: 0,
                         top: 0,
                         width: '240px',
-                        borderRight: '1px solid gray',
+                        borderRight: '2px solid lightgray',
                     }}
                 >
                     {/* connect wallet */}
-                    <Box p={2}>
+                    <Box sx={{ margin: '1rem 0' }}>
                         <Button
                             LinkComponent={"a"}
                             startIcon={<AccountBalanceWalletOutlinedIcon />}
@@ -60,6 +60,7 @@ function Sidebar() {
                                 borderRadius: '5rem',
                                 '&:hover': {
                                     border: '1px solid green',
+                                    color: 'green',
                                 },
                             }}
                         >
@@ -83,16 +84,16 @@ function Sidebar() {
                     <Box
                         sx={{
                             height: '100%',
-                            padding: '68px 0',
+                            padding: '68px 1rem',
                             position: 'fixed',
                             left: 0,
                             top: 0,
                             width: '240px',
-                            borderRight: '1px solid gray',
+                            borderRight: '2px solid lightgray',
                         }}
                     >
                         {/* connect wallet */}
-                        <Box p={2}>
+                        <Box sx={{ margin: '1rem 0' }}>
                             <Button
                                 LinkComponent={"a"}
                                 startIcon={<AccountBalanceWalletOutlinedIcon />}
@@ -107,6 +108,7 @@ function Sidebar() {
                                     borderRadius: '5rem',
                                     '&:hover': {
                                         border: '1px solid green',
+                                        color: 'green',
                                     },
                                 }}
                             >
