@@ -1,10 +1,10 @@
 import { Container } from "@mui/material";
-import SuscriptionTable from "@/components/subscriptionTable";
+import SubscriptionTable from "@/components/subscriptionTable";
 
 export default function Home() {
   return (
     <Container>
-      <SuscriptionTable />
+      <SubscriptionTable />
     </Container>
   );
 }
