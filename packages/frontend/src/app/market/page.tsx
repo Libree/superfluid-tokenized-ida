@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Box } from '@mui/material';
+import { Container } from '@mui/material';
 import MarketComponent from '@/components/marketComponent'; // Should be a better name
 
 const Market = () => {
