@@ -47,7 +47,7 @@ function SidebarMenu() {
                                     textTransform: 'capitalize',
                                     color: 'gray',
                                     fontWeight: 'bold',
-                                    textDecoration: pathname === '/' ? 'underline' : 'none',
+                                    textDecoration: pathname === '/tokenize-subscription' ? 'underline' : 'none',
                                 }}
                             >
                                 Create & tokenize subscriptions
@@ -64,7 +64,7 @@ function SidebarMenu() {
                                     textTransform: 'capitalize',
                                     color: 'gray',
                                     fontWeight: 'bold',
-                                    textDecoration: pathname === '/' ? 'underline' : 'none',
+                                    textDecoration: pathname === '/market' ? 'underline' : 'none',
                                 }}
                             >
                                 Market
@@ -81,7 +81,7 @@ function SidebarMenu() {
                                     textTransform: 'capitalize',
                                     color: 'gray',
                                     fontWeight: 'bold',
-                                    textDecoration: pathname === '/' ? 'underline' : 'none',
+                                    textDecoration: pathname === '/analitycs' ? 'underline' : 'none',
                                 }}
                             >
                                 Analitycs
