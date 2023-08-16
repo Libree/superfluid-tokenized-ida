@@ -1,17 +1,10 @@
 import React from 'react';
-import { Box, Container } from '@mui/material';
-import dynamic from 'next/dynamic';
+import { Container } from '@mui/material';
 import SubscriptionForm from '@/components/subscriptionForm';
 
 export default function TokenizedSuscription() {
  return (
-  <Container
-   sx={{
-    backgroundColor: 'white',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-   }}>
+  <Container>
    <SubscriptionForm />
   </Container>
  );

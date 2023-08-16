@@ -33,7 +33,7 @@ function SidebarMenu() {
                         </Link>
                     </ListItem>
                     <ListItem component={'div'}>
-                        <Link href={'/tokenize-subscription'}>
+                        <Link href={'/tokenized-subscription'}>
                             <Button
                                 LinkComponent={"a"}
                                 startIcon={<EditIcon />}
