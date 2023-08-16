@@ -7,7 +7,6 @@ export default function TokenizedSuscription() {
  return (
   <Container
    sx={{
-    backgroundColor: 'white',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
