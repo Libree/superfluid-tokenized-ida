@@ -4,7 +4,12 @@ import SubscriptionForm from '@/components/subscriptionForm';
 
 export default function TokenizedSuscription() {
  return (
-  <Container>
+  <Container
+   sx={{
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+   }}>
    <SubscriptionForm />
   </Container>
  );

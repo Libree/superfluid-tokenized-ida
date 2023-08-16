@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useState, ChangeEvent } from 'react';
 import {
  Box,
@@ -61,7 +62,7 @@ const SubscriptionForm = () => {
       item
       xs={6}
       md={4}>
-      {/* Debería ser un select */}
+      {/* Should be a select */}
       <TextField
        label='Select a token'
        fullWidth

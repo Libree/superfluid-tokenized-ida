@@ -1,11 +1,10 @@
 import React from 'react';
 import Image, { StaticImageData } from 'next/image';
 import { Box, Typography } from '@mui/material';
-import { Height } from '@mui/icons-material';
 
 interface CriptoCellProps {
-    cripto: string;
-    logo: StaticImageData;
+ cripto: string;
+ logo: StaticImageData;
 }
 
 const CriptoCell: React.FC<CriptoCellProps> = ({ cripto, logo }) => {
