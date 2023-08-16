@@ -11,6 +11,7 @@ const HeaderWrapper = styled(Box)(
     () => `
         height: 80px;
         padding: 0 1rem;
+        top: 0;
         right: 0;
         z-index: 6;
         backdrop-filter: blur(3px);
@@ -41,7 +42,7 @@ function Header() {
                     }
                 }}
             >
-                <Tooltip arrow title="Toggle Menu" children={undefined}>
+                <Tooltip arrow title="Toggle Menu">
                     <IconButton
                         color="primary"
                         onClick={toggleSidebar}
