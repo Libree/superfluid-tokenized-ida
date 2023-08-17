@@ -1,11 +1,10 @@
 import React from 'react';
 import Image, { StaticImageData } from 'next/image';
 import { Box, Typography } from '@mui/material';
-import { Height } from '@mui/icons-material';
 
 interface CriptoCellProps {
-    cripto: string;
-    logo: StaticImageData;
+ cripto: string;
+ logo: StaticImageData;
 }
 
 const CriptoCell: React.FC<CriptoCellProps> = ({ cripto, logo }) => {
@@ -17,8 +16,8 @@ const CriptoCell: React.FC<CriptoCellProps> = ({ cripto, logo }) => {
    <Image
     src={logo.src}
     alt={`${cripto} logo`}
-    width={30}
-    height={30}
+    width='100'
+    height='100'
     style={{ width: '2rem', height: '2rem', borderRadius: '3rem' }}
    />
    <Typography sx={{ margin: '0.4em', marginLeft: '0.8em' }}>

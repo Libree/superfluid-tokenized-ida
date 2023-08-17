@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, IconButton, Tooltip, styled } from "@mui/material"
+import { Box, IconButton, Select, Tooltip, styled } from "@mui/material"
 
 import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
 import CloseTwoToneIcon from '@mui/icons-material/CloseTwoTone';
@@ -18,6 +18,7 @@ const HeaderWrapper = styled(Box)(
         position: fixed;
         justify-content: space-between;
         width: 100%;
+        border-bottom: 1px solid lightgray;
         @media (min-width:1280px) {
             left: 240px;
             width: auto;
@@ -33,16 +34,16 @@ function Header() {
             alignItems={'center'}
             justifyContent={'space-between'}
         >
-            <Box
-                component={'span'}
-                sx={{
-                    display: {
-                        xs: 'inline-flex',
-                        lg: 'none',
-                    }
-                }}
-            >
-                <Tooltip arrow title="Toggle Menu">
+            <Box component={'span'}>
+                <Tooltip
+                    arrow
+                    title="Toggle Menu"
+                    sx={{
+                        display: {
+                            xs: 'inline-flex',
+                            lg: 'none',
+                        }
+                    }}>
                     <IconButton
                         color="primary"
                         onClick={toggleSidebar}
@@ -55,7 +56,9 @@ function Header() {
                     </IconButton>
                 </Tooltip>
             </Box>
-            <Box />
+            <Box>
+                <Select></Select>
+            </Box>
         </HeaderWrapper>
     )
 };

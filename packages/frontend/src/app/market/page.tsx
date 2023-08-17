@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container } from '@mui/material';
-import SubscriptionForm from '@/components/subscriptionForm';
+import MarketComponent from '@/components/marketComponent';
 
-export default function TokenizedSuscription() {
+const Market = () => {
  return (
   <Container
    sx={{
@@ -10,7 +10,9 @@ export default function TokenizedSuscription() {
     flexDirection: 'column',
     alignItems: 'center',
    }}>
-   <SubscriptionForm />
+   <MarketComponent />
   </Container>
  );
-}
+};
+
+export default Market;

@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useState, ChangeEvent } from 'react';
 import {
  Box,
@@ -28,7 +29,7 @@ const SubscriptionForm = () => {
  };
 
  return (
-  <Box sx={{ margin: '2em', minWidth: '40rem' }}>
+  <Box sx={{ margin: '2em', minWidth: '20rem', height: '100%' }}>
    <Typography
     sx={{
      backgroundColor: 'rgba(105, 255, 102, 0.3)',
@@ -47,9 +48,9 @@ const SubscriptionForm = () => {
      Product Description
     </FormLabel>
     <TextField
-     label='Your product description'
      multiline
      rows={4}
+     label='Your product description'
     />
     <FormLabel sx={{ marginTop: '1.2em', marginBottom: '0.5em' }}>
      Payment options
@@ -61,7 +62,7 @@ const SubscriptionForm = () => {
       item
       xs={6}
       md={4}>
-      {/* Debería ser un select */}
+      {/* Should be a select */}
       <TextField
        label='Select a token'
        fullWidth
@@ -79,7 +80,13 @@ const SubscriptionForm = () => {
        InputProps={{
         endAdornment: (
          <InputAdornment
-          sx={{ marginRight: '4em' }}
+          sx={{
+           marginRight: '4em',
+           '@media (max-width:600px)': {
+            // Breakpoint 'xs' (smallest)
+            marginRight: '0.5em',
+           },
+          }}
           position='end'>
           / month
          </InputAdornment>
