@@ -15,7 +15,12 @@ const SubscriptionTable = () => {
  return (
   <Box sx={{ margin: '2em', minWidth: '50rem' }}>
    <Typography
-    sx={{ textAlign: 'left', marginBottom: '0.5em', fontSize: '1.8rem' }}>
+    sx={{
+     textAlign: 'left',
+     marginBottom: '0.5em',
+     fontSize: '1.8rem',
+     color: '#333',
+    }}>
     Active Suscriptions
    </Typography>
    <Table
@@ -40,11 +45,11 @@ const SubscriptionTable = () => {
      },
     }}>
     <TableHead>
-     <TableCell>Cripto</TableCell>
+     <TableCell>Assets</TableCell>
      <TableCell>Balance</TableCell>
-     <TableCell>Dato 1</TableCell>
-     <TableCell>Dato 2</TableCell>
-     <TableCell>Total</TableCell>
+     <TableCell>Net Flow</TableCell>
+     <TableCell>Inflow / Outflow</TableCell>
+     <TableCell>Current Subscriptors</TableCell>
     </TableHead>
     <TableBody>
      {mockedSuscriptions.map((suscription) => (
@@ -55,7 +60,7 @@ const SubscriptionTable = () => {
          logo={suscription.logo}
         />
        </TableCell>
-       <TableCell sx={{ color: 'green' }}>{suscription.balance}</TableCell>
+       <TableCell>{suscription.balance}</TableCell>
        <TableCell>{suscription.dato1}</TableCell>
        <TableCell>{suscription.dato2}</TableCell>
        <TableCell>{suscription.total}</TableCell>
