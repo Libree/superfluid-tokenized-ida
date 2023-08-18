@@ -1,26 +1,22 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import SideBarLayout from '@/layouts/sidebarLayout'
-import { WagmiConfig } from 'wagmi'
-import { wagmiConfig } from '../../wagmi.config'
+import './globals.css';
+import type { Metadata } from 'next';
+import SideBarLayout from '@/layouts/sidebarLayout';
 
 export const metadata: Metadata = {
-  title: 'Superfluid App',
-  description: 'Superfluid tokenized app',
-}
+ title: 'Superfluid App',
+ description: 'Superfluid tokenized app',
+};
 
 export default function RootLayout({
-  children,
+ children,
 }: {
-  children: React.ReactNode
+ children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <WagmiConfig config={wagmiConfig}>
-        <SideBarLayout>
-          {children}
-        </SideBarLayout>
-      </WagmiConfig>
-    </html>
-  )
+ return (
+  <html lang='en'>
+   <body>
+    <SideBarLayout>{children}</SideBarLayout>
+   </body>
+  </html>
+ );
 }
