@@ -1,11 +1,12 @@
-import { Container } from "@mui/material";
+import { Container } from '@mui/material';
+import AnalitycChart from '@/components/analitycChart';
 
 function Analitycs() {
-    return (
-        <Container>
-            {/* analitycs chart */}
-        </Container>
-    )
-};
+ return (
+  <Container>
+   <AnalitycChart />
+  </Container>
+ );
+}
 
 export default Analitycs;
