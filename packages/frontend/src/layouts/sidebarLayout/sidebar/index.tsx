@@ -3,12 +3,8 @@
 import { Box, Divider, Drawer, styled } from "@mui/material";
 
 import SidebarMenu from "./sidebarMenu";
-
-import { useContext } from "react";
-import { SidebarContext } from "@/contexts/sidebarContext";
-import { useAccount, useConnect, useEnsName } from "wagmi";
-import { InjectedConnector } from "wagmi/connectors/injected";
 import { ConnectWallet } from "@/components/connectWallet";
+import useSidebar from "@/hooks/useSidebar";
 
 const SidebarWrapper = styled(Box)(
     () => `
@@ -21,7 +17,7 @@ const SidebarWrapper = styled(Box)(
 );
 
 function Sidebar() {
-    const { sidebarToggle, closeSidebar } = useContext(SidebarContext);
+    const { sidebarToggle, closeSidebar } = useSidebar();
 
     return (
         <>

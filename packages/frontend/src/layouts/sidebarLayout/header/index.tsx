@@ -4,8 +4,7 @@ import { Box, IconButton, Select, Tooltip, styled } from "@mui/material"
 
 import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
 import CloseTwoToneIcon from '@mui/icons-material/CloseTwoTone';
-import { useContext } from "react";
-import { SidebarContext } from "@/contexts/sidebarContext";
+import useSidebar from "../../../hooks/useSidebar";
 
 const HeaderWrapper = styled(Box)(
     () => `
@@ -27,7 +26,7 @@ const HeaderWrapper = styled(Box)(
 );
 
 function Header() {
-    const { sidebarToggle, toggleSidebar } = useContext(SidebarContext);
+    const { sidebarToggle, toggleSidebar } = useSidebar();
     return (
         <HeaderWrapper
             display={'flex'}
