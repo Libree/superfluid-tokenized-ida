@@ -1,6 +1,8 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import SideBarLayout from '@/layouts/sidebarLayout';
+import { WagmiConfig } from 'wagmi';
+import { wagmiConfig } from '../../wagmi.config';
 
 export const metadata: Metadata = {
  title: 'Superfluid App',
@@ -15,7 +17,9 @@ export default function RootLayout({
  return (
   <html lang='en'>
    <body>
-    <SideBarLayout>{children}</SideBarLayout>
+    <WagmiConfig config={wagmiConfig}>
+      <SideBarLayout>{children}</SideBarLayout>
+    </WagmiConfig>
    </body>
   </html>
  );

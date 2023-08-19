@@ -1,12 +1,14 @@
 'use client'
 
-import { Box, Button, Divider, Drawer, styled } from "@mui/material";
+import { Box, Divider, Drawer, styled } from "@mui/material";
 
 import SidebarMenu from "./sidebarMenu";
 
-import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import { useContext } from "react";
 import { SidebarContext } from "@/contexts/sidebarContext";
+import { useAccount, useConnect, useEnsName } from "wagmi";
+import { InjectedConnector } from "wagmi/connectors/injected";
+import { ConnectWallet } from "@/components/connectWallet";
 
 const SidebarWrapper = styled(Box)(
     () => `
@@ -20,6 +22,7 @@ const SidebarWrapper = styled(Box)(
 
 function Sidebar() {
     const { sidebarToggle, closeSidebar } = useContext(SidebarContext);
+
     return (
         <>
             <SidebarWrapper
@@ -45,29 +48,7 @@ function Sidebar() {
                         borderRight: '2px solid lightgray',
                     }}
                 >
-                    {/* connect wallet */}
-                    <Box sx={{ margin: '1rem 0' }}>
-                        <Button
-                            LinkComponent={"a"}
-                            startIcon={<AccountBalanceWalletOutlinedIcon />}
-                            sx={{
-                                alignItems: 'left',
-                                fontWeight: 'bold',
-                                textTransform: 'capitalize',
-                                width: '100%',
-                                backgroundColor: 'green',
-                                color: 'white',
-                                border: '1px solid transparent',
-                                borderRadius: '5rem',
-                                '&:hover': {
-                                    border: '1px solid green',
-                                    color: 'green',
-                                },
-                            }}
-                        >
-                            Connect Wallet
-                        </Button>
-                    </Box>
+                    <ConnectWallet />
 
                     <Divider />
 
@@ -93,29 +74,7 @@ function Sidebar() {
                             borderRight: '2px solid lightgray',
                         }}
                     >
-                        {/* connect wallet */}
-                        <Box sx={{ margin: '1rem 0' }}>
-                            <Button
-                                LinkComponent={"a"}
-                                startIcon={<AccountBalanceWalletOutlinedIcon />}
-                                sx={{
-                                    alignItems: 'left',
-                                    fontWeight: 'bold',
-                                    textTransform: 'capitalize',
-                                    width: '100%',
-                                    backgroundColor: 'green',
-                                    color: 'white',
-                                    border: '1px solid transparent',
-                                    borderRadius: '5rem',
-                                    '&:hover': {
-                                        border: '1px solid green',
-                                        color: 'green',
-                                    },
-                                }}
-                            >
-                                Connect Wallet
-                            </Button>
-                        </Box>
+                        <ConnectWallet />
 
                         <Divider />
 
