@@ -45,11 +45,13 @@ const SubscriptionTable = () => {
      },
     }}>
     <TableHead>
-     <TableCell>Assets</TableCell>
-     <TableCell>Balance</TableCell>
-     <TableCell>Net Flow</TableCell>
-     <TableCell>Inflow / Outflow</TableCell>
-     <TableCell>Current Subscriptors</TableCell>
+     <TableRow>
+      <TableCell>Assets</TableCell>
+      <TableCell>Balance</TableCell>
+      <TableCell>Net Flow</TableCell>
+      <TableCell>Inflow / Outflow</TableCell>
+      <TableCell>Current Subscriptors</TableCell>
+     </TableRow>
     </TableHead>
     <TableBody>
      {mockedSuscriptions.map((suscription) => (
