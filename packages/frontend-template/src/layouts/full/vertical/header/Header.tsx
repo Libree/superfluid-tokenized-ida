@@ -1,15 +1,14 @@
-import { IconButton, Box, AppBar, useMediaQuery, Toolbar, styled, Stack } from '@mui/material';
+import { IconButton, Box, AppBar, useMediaQuery, Toolbar, styled, Stack, Button } from '@mui/material';
 import { useSelector, useDispatch } from '../../../../store/Store';
 import { toggleSidebar, toggleMobileSidebar } from '../../../../store/customizer/CustomizerSlice';
 import { IconMenu2 } from '@tabler/icons-react';
-import Notifications from './Notification';
 import Profile from './Profile';
-import Cart from './Cart';
 import Search from './Search';
-import Language from './Language';
 import { AppState } from '../../../../store/Store';
 import Navigation from './Navigation';
 import MobileRightSidebar from './MobileRightSidebar';
+import { useWeb3Modal } from '@web3modal/react';
+import { useAccount } from 'wagmi';
 
 const Header = () => {
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
@@ -18,6 +17,9 @@ const Header = () => {
   // drawer
   const customizer = useSelector((state: AppState) => state.customizer);
   const dispatch = useDispatch();
+
+  const { open } = useWeb3Modal();
+  const { isConnected } = useAccount();
 
   const AppBarStyled = styled(AppBar)(({ theme }) => ({
     boxShadow: 'none',
@@ -59,20 +61,17 @@ const Header = () => {
 
         <Box flexGrow={1} />
         <Stack spacing={1} direction="row" alignItems="center">
-          <Language />
-          {/* ------------------------------------------- */}
-          {/* Ecommerce Dropdown */}
-          {/* ------------------------------------------- */}
-          <Cart />
-          {/* ------------------------------------------- */}
-          {/* End Ecommerce Dropdown */}
-          {/* ------------------------------------------- */}
-          <Notifications />
+          {isConnected ? (
+            <Profile />
+          ) : (
+            <Button color='secondary' onClick={() => open()}>
+              Connect wallet
+            </Button>
+          )}
           {/* ------------------------------------------- */}
           {/* Toggle Right Sidebar for mobile */}
           {/* ------------------------------------------- */}
           {lgDown ? <MobileRightSidebar /> : null}
-          <Profile />
         </Stack>
       </ToolbarStyled>
     </AppBarStyled>
