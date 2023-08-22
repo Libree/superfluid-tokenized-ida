@@ -22,8 +22,6 @@ import '../src/utils/i18n';
 
 // CSS FILES
 import 'react-quill/dist/quill.snow.css';
-import './forms/form-quill/Quill.css';
-import './apps/calendar/Calendar.css';
 import '../src/components/landingpage/testimonial/testimonial.css';
 import '../src/components/landingpage/demo-slider/demo-slider.css';
 import 'slick-carousel/slick/slick.css';
