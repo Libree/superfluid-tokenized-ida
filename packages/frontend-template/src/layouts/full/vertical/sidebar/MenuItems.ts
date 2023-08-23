@@ -54,14 +54,14 @@ const Menuitems: MenuitemsType[] = [
   icon: IconCurrencyDollar,
   chip: '2',
   chipColor: 'secondary',
-  href: '/buy',
+  href: '/marketplace/buy',
  },
 
  {
   id: uniqueId(),
   title: 'Sell',
   icon: IconShoppingCart,
-  href: '/shell',
+  href: '/marketplace/sell',
  },
  {
   navlabel: true,

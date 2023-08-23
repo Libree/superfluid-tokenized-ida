@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { Box, Grid, Button } from '@mui/material';
-import { useSelector, useDispatch } from '../../../store/Store';
-import { fetchBlogPosts } from '../../../store/apps/blog/BlogSlice';
-import BlogCard from '../blog/BlogCard';
+import { useSelector, useDispatch } from '../../store/Store';
+import { fetchBlogPosts } from '../../store/apps/blog/BlogSlice';
+import BlogCard from '../apps/blog/BlogCard';
 
 const SubscriptionsComponent = () => {
  const dispatch = useDispatch();
- const router = useRouter();
 
  useEffect(() => {
   dispatch(fetchBlogPosts());
@@ -15,23 +14,20 @@ const SubscriptionsComponent = () => {
 
  const blogPosts = useSelector((state) => state.blogReducer.blogposts);
 
- const handleButtonClick = () => {
-  router.push('/subscriptions/createSubscription');
- };
-
  return (
   <Box>
-   <Button
-    fullWidth
-    onClick={handleButtonClick}
-    sx={{
-     height: '5rem',
-     marginBottom: '2rem',
-     borderRadius: 2,
-     fontSize: '1.5em',
-    }}>
-    Create new subscription
-   </Button>
+   <Link href='/subscriptions/createSubscription'>
+    <Button
+     fullWidth
+     sx={{
+      height: '5rem',
+      marginBottom: '2rem',
+      borderRadius: 2,
+      fontSize: '1.5em',
+     }}>
+     Create new subscription
+    </Button>
+   </Link>
    <Grid
     container
     spacing={3}>
