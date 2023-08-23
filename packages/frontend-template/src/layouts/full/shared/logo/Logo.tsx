@@ -5,7 +5,7 @@ import { styled } from '@mui/material';
 import { AppState } from '../../../../store/Store';
 import Image from 'next/image';
 
-// Should put here the Superfluid Logo
+// TODO: Should put here the Superfluid Logo
 const Logo = () => {
  const customizer = useSelector((state: AppState) => state.customizer);
  const LinkStyled = styled(Link)(() => ({

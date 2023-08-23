@@ -56,9 +56,7 @@ const SubscriptionForm = () => {
      sm={3}
      display='flex'
      alignItems='center'>
-     <CustomFormLabel
-      htmlFor='fs-uname'
-      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+     <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
       Product Name
      </CustomFormLabel>
     </Grid>
@@ -67,7 +65,6 @@ const SubscriptionForm = () => {
      xs={12}
      sm={9}>
      <CustomTextField
-      id='fs-uname'
       placeholder='Your product name'
       fullWidth
      />
@@ -79,9 +76,7 @@ const SubscriptionForm = () => {
      sm={3}
      display='flex'
      alignItems='center'>
-     <CustomFormLabel
-      htmlFor='fs-email'
-      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+     <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
       Product Description
      </CustomFormLabel>
     </Grid>
@@ -90,7 +85,6 @@ const SubscriptionForm = () => {
      xs={12}
      sm={9}>
      <CustomOutlinedInput
-      id='fs-email'
       placeholder='Your product description'
       fullWidth
       multiline
@@ -116,9 +110,7 @@ const SubscriptionForm = () => {
      sm={3}
      display='flex'
      alignItems='center'>
-     <CustomFormLabel
-      htmlFor='fs-fname'
-      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+     <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
       Super Token
      </CustomFormLabel>
     </Grid>
@@ -127,7 +119,6 @@ const SubscriptionForm = () => {
      xs={12}
      sm={9}>
      <CustomSelect
-      id='standard-select-currency'
       value={token}
       onChange={handleChange}
       fullWidth
@@ -148,9 +139,7 @@ const SubscriptionForm = () => {
      sm={3}
      display='flex'
      alignItems='center'>
-     <CustomFormLabel
-      htmlFor='fs-country'
-      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+     <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
       Flow Rate
      </CustomFormLabel>
     </Grid>
@@ -159,7 +148,6 @@ const SubscriptionForm = () => {
      xs={12}
      sm={9}>
      <CustomTextField
-      id='fs-fname'
       placeholder='0.0'
       fullWidth
       InputProps={{
@@ -192,9 +180,7 @@ const SubscriptionForm = () => {
      sm={3}
      display='flex'
      alignItems='center'>
-     <CustomFormLabel
-      htmlFor='fs-country'
-      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+     <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
       Token Name
      </CustomFormLabel>
     </Grid>
@@ -215,9 +201,7 @@ const SubscriptionForm = () => {
      sm={3}
      display='flex'
      alignItems='center'>
-     <CustomFormLabel
-      htmlFor='fs-country'
-      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+     <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
       Token Symbol
      </CustomFormLabel>
     </Grid>
@@ -226,7 +210,6 @@ const SubscriptionForm = () => {
      xs={12}
      sm={9}>
      <CustomTextField
-      id='fs-fname'
       placeholder='Your token symbol'
       fullWidth
      />
@@ -237,9 +220,7 @@ const SubscriptionForm = () => {
      sm={3}
      display='flex'
      alignItems='center'>
-     <CustomFormLabel
-      htmlFor='fs-country'
-      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+     <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
       Token Supply
      </CustomFormLabel>
     </Grid>
@@ -248,7 +229,6 @@ const SubscriptionForm = () => {
      xs={12}
      sm={9}>
      <CustomTextField
-      id='fs-fname'
       placeholder='1000'
       fullWidth
      />
