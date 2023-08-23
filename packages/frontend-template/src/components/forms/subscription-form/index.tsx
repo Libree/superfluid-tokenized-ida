@@ -17,25 +17,25 @@ import { IconEye, IconEyeOff } from '@tabler/icons-react';
 
 const countries = [
  {
-  value: 'india',
-  label: 'India',
+  value: 'btc',
+  label: 'Bitcoin',
  },
  {
-  value: 'uk',
-  label: 'United Kingdom',
+  value: 'eth',
+  label: 'Ethereum',
  },
  {
-  value: 'srilanka',
-  label: 'Srilanka',
+  value: 'usdt',
+  label: 'USDT Standard Coin',
  },
 ];
 
 const SubscriptionForm = () => {
- // country
- const [country, setCountry] = React.useState('');
+ // Tokens
+ const [token, setToken] = React.useState('');
 
  const handleChange = (event: any) => {
-  setCountry(event.target.value);
+  setToken(event.target.value);
  };
 
  //   password
@@ -142,7 +142,7 @@ const SubscriptionForm = () => {
      sm={9}>
      <CustomSelect
       id='standard-select-currency'
-      value={country}
+      value={token}
       onChange={handleChange}
       fullWidth
       variant='outlined'>
