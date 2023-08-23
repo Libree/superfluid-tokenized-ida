@@ -34,7 +34,7 @@ const Menuitems: MenuitemsType[] = [
   id: uniqueId(),
   title: 'Subscriptions',
   icon: IconApps,
-  href: '/',
+  href: '/subscriptions',
   chip: 'New',
   chipColor: 'secondary',
  },
@@ -42,7 +42,7 @@ const Menuitems: MenuitemsType[] = [
   id: uniqueId(),
   title: 'Analytics',
   icon: IconChartAreaLine,
-  href: '/dashboards/ecommerce',
+  href: '/analytics',
  },
  {
   navlabel: true,
@@ -54,14 +54,14 @@ const Menuitems: MenuitemsType[] = [
   icon: IconCurrencyDollar,
   chip: '2',
   chipColor: 'secondary',
-  href: '/apps/contacts',
+  href: '/buy',
  },
 
  {
   id: uniqueId(),
   title: 'Sell',
   icon: IconShoppingCart,
-  href: '/apps/blog/',
+  href: '/shell',
  },
  {
   navlabel: true,
@@ -72,13 +72,13 @@ const Menuitems: MenuitemsType[] = [
   id: uniqueId(),
   title: 'Lend',
   icon: IconTrolley,
-  href: '/theme-pages/treeview',
+  href: '/lend',
  },
  {
   id: uniqueId(),
   title: 'Borrow',
   icon: IconChartDonut3,
-  href: '/theme-pages/pricing',
+  href: '/borrow',
  },
  {
   navlabel: true,
@@ -88,7 +88,7 @@ const Menuitems: MenuitemsType[] = [
   id: uniqueId(),
   title: 'Subscriptions',
   icon: IconUserHeart,
-  href: '/forms/form-elements/autocomplete',
+  href: '/subscriptions',
  },
 ];
 
