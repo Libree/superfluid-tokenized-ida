@@ -2,10 +2,12 @@ import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
 import { configureChains, createConfig } from 'wagmi';
 import { arbitrum, mainnet, polygon } from 'wagmi/chains';
 
-const chains = [arbitrum, mainnet, polygon];
+export const chains = [mainnet, polygon];
 export const projectId = 'e8d78819297868e755670c9906eb6012';
 
-const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);
+export const provider: any = w3mProvider({ projectId });
+
+const { publicClient } = configureChains(chains, [provider]);
 
 export const wagmiConfig = createConfig({
     autoConnect: true,
