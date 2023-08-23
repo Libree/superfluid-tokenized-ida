@@ -5,7 +5,6 @@ import {
  Typography,
  Divider,
  MenuItem,
- IconButton,
 } from '@mui/material';
 import React from 'react';
 import CustomFormLabel from '../theme-elements/CustomFormLabel';
@@ -13,7 +12,6 @@ import CustomTextField from '../theme-elements/CustomTextField';
 import CustomOutlinedInput from '../theme-elements/CustomOutlinedInput';
 import CustomSelect from '../theme-elements/CustomSelect';
 import { Stack } from '@mui/system';
-import { IconEye, IconEyeOff } from '@tabler/icons-react';
 
 const countries = [
  {
@@ -36,18 +34,6 @@ const SubscriptionForm = () => {
 
  const handleChange = (event: any) => {
   setToken(event.target.value);
- };
-
- //   password
- //
- const [showPassword, setShowPassword] = React.useState(false);
-
- const handleClickShowPassword = () => setShowPassword((show) => !show);
-
- const handleMouseDownPassword = (
-  event: React.MouseEvent<HTMLButtonElement>,
- ) => {
-  event.preventDefault();
  };
 
  return (
