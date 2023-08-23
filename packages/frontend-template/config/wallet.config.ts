@@ -1,16 +1,32 @@
-import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum';
+import '@rainbow-me/rainbowkit/styles.css';
+
+import {
+    getDefaultWallets,
+    RainbowKitProvider,
+} from '@rainbow-me/rainbowkit';
 import { configureChains, createConfig } from 'wagmi';
 import { arbitrum, mainnet, polygon } from 'wagmi/chains';
+import { alchemyProvider } from 'wagmi/providers/alchemy';
+import { publicProvider } from 'wagmi/providers/public';
 
-const chains = [arbitrum, mainnet, polygon];
 export const projectId = 'e8d78819297868e755670c9906eb6012';
 
-const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);
+export const { chains, publicClient } = configureChains(
+    [arbitrum, mainnet, polygon],
+    [
+        alchemyProvider({ apiKey: process.env.ALCHEMY_API_KEY as string }),
+        publicProvider(),
+    ],
+);
+
+const { connectors } = getDefaultWallets({
+    appName: 'Superfluid Tokenized',
+    projectId,
+    chains,
+});
 
 export const wagmiConfig = createConfig({
     autoConnect: true,
-    connectors: w3mConnectors({ projectId, chains }),
+    connectors,
     publicClient,
 });
-
-export const ethereumClient = new EthereumClient(wagmiConfig, chains);

@@ -7,8 +7,8 @@ import Search from './Search';
 import { AppState } from '../../../../store/Store';
 import Navigation from './Navigation';
 import MobileRightSidebar from './MobileRightSidebar';
-import { useWeb3Modal } from '@web3modal/react';
 import { useAccount } from 'wagmi';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const Header = () => {
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
@@ -18,7 +18,6 @@ const Header = () => {
   const customizer = useSelector((state: AppState) => state.customizer);
   const dispatch = useDispatch();
 
-  const { open } = useWeb3Modal();
   const { isConnected } = useAccount();
 
   const AppBarStyled = styled(AppBar)(({ theme }) => ({
@@ -64,9 +63,7 @@ const Header = () => {
           {isConnected ? (
             <Profile />
           ) : (
-            <Button color='secondary' onClick={() => open()}>
-              Connect wallet
-            </Button>
+            <ConnectButton />
           )}
           {/* ------------------------------------------- */}
           {/* Toggle Right Sidebar for mobile */}
