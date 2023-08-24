@@ -88,7 +88,7 @@ const Menuitems: MenuitemsType[] = [
   id: uniqueId(),
   title: 'Subscriptions',
   icon: IconUserHeart,
-  href: '/subscriptions',
+  href: '/subscribers/subscriptions',
  },
 ];
 
