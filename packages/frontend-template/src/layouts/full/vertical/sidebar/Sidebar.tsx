@@ -7,7 +7,6 @@ import {
  toggleMobileSidebar,
 } from '../../../../store/customizer/CustomizerSlice';
 import Scrollbar from '../../../../components/custom-scroll/Scrollbar';
-import { Profile } from './SidebarProfile/Profile';
 import { AppState } from '../../../../store/Store';
 
 const Sidebar = () => {
@@ -67,18 +66,16 @@ const Sidebar = () => {
       }}>
       {/* ------------------------------------------- */}
       {/* Logo */}
-      <Box px={2}>
+      <Box px={2.6}>
        <Logo />
       </Box>
       {/* ------------------------------------------- */}
-      <Box px={3}>{/* <Logo /> */}</Box>
-      <Scrollbar sx={{ height: 'calc(100% - 190px)' }}>
+      <Scrollbar sx={{ height: '85%' }}>
        {/* ------------------------------------------- */}
        {/* Sidebar Items */}
        {/* ------------------------------------------- */}
        <SidebarItems />
       </Scrollbar>
-      <Profile />
      </Box>
     </Drawer>
    </Box>
@@ -106,7 +103,7 @@ const Sidebar = () => {
    }}>
    {/* ------------------------------------------- */}
    {/* Logo */}
-   <Box px={3}>
+   <Box px={2.6}>
     <Logo />
    </Box>
    {/* ------------------------------------------- */}

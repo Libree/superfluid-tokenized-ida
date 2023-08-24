@@ -34,7 +34,7 @@ const Menuitems: MenuitemsType[] = [
   id: uniqueId(),
   title: 'Subscriptions',
   icon: IconApps,
-  href: '/subscriptions',
+  href: '/creators/subscriptions',
   chip: 'New',
   chipColor: 'secondary',
  },
@@ -42,7 +42,7 @@ const Menuitems: MenuitemsType[] = [
   id: uniqueId(),
   title: 'Analytics',
   icon: IconChartAreaLine,
-  href: '/analytics',
+  href: '/creators/analytics',
  },
  {
   navlabel: true,
@@ -88,7 +88,7 @@ const Menuitems: MenuitemsType[] = [
   id: uniqueId(),
   title: 'Subscriptions',
   icon: IconUserHeart,
-  href: '/subscriptions',
+  href: '/subscribers/subscriptions',
  },
 ];
 

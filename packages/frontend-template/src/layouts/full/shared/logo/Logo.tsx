@@ -10,7 +10,7 @@ const Logo = () => {
  const customizer = useSelector((state: AppState) => state.customizer);
  const LinkStyled = styled(Link)(() => ({
   height: customizer.TopbarHeight,
-  width: customizer.isCollapse ? '40px' : '180px',
+  width: customizer.isCollapse ? '45px' : '180px',
   overflow: 'hidden',
   display: 'block',
  }));
@@ -20,7 +20,7 @@ const Logo = () => {
    <LinkStyled href='/'>
     {customizer.activeMode === 'dark' ? (
      <Image
-      src='/images/logos/SuperFluidNamedSVG.svg'
+      src='/images/logos/SuperFluidNamedDark.svg'
       alt='logo'
       height={customizer.TopbarHeight}
       width={174}
@@ -28,7 +28,7 @@ const Logo = () => {
      />
     ) : (
      <Image
-      src={'/images/logos/SuperFluidNamedSVG.svg'}
+      src={'/images/logos/SuperFluidNamedLigth.svg'}
       alt='logo'
       height={customizer.TopbarHeight}
       width={174}
