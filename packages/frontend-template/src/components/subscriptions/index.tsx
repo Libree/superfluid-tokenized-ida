@@ -18,12 +18,11 @@ const SubscriptionsComponent = () => {
   <Box>
    <Link href='/subscriptions/createSubscription'>
     <Button
-     fullWidth
      sx={{
-      height: '5rem',
+      height: '3rem',
       marginBottom: '2rem',
       borderRadius: 2,
-      fontSize: '1.5em',
+      fontSize: '1rem',
      }}>
      Create new subscription
     </Button>
