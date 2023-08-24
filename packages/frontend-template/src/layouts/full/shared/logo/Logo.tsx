@@ -20,7 +20,7 @@ const Logo = () => {
    <LinkStyled href='/'>
     {customizer.activeMode === 'dark' ? (
      <Image
-      src='/images/logos/SuperFluidNamedLigth.png'
+      src='/images/logos/SuperFluidNamedSVG.svg'
       alt='logo'
       height={customizer.TopbarHeight}
       width={174}
@@ -28,7 +28,7 @@ const Logo = () => {
      />
     ) : (
      <Image
-      src={'/images/logos/SuperFluidNamed.png'}
+      src={'/images/logos/SuperFluidNamedSVG.svg'}
       alt='logo'
       height={customizer.TopbarHeight}
       width={174}
