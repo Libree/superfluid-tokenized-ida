@@ -1,5 +1,4 @@
 // third-party
-import { format } from 'date-fns';
 import NextLink  from 'next/link';
 import { useDispatch } from '../../../store/Store';
 import {
@@ -13,7 +12,7 @@ import {
   Tooltip,
   Box,
 } from '@mui/material';
-import { IconEye, IconMessage2, IconPoint } from '@tabler/icons-react';
+import { IconEye, IconPoint } from '@tabler/icons-react';
 import { fetchBlogPost } from '../../../store/apps/blog/BlogSlice';
 import BlankCard from '../../shared/BlankCard';
 import { BlogPostType } from '../../../types/apps/blog';
@@ -25,7 +24,7 @@ interface Btype {
 
 const BlogCard = ({ post }: Btype) => {
   const dispatch = useDispatch();
-  const { coverImg, title, view, comments, category, author, createdAt }: any = post;
+  const { coverImg, title, view, category, author }: any = post;
 
   const linkTo = title
     .toLowerCase()
@@ -72,13 +71,10 @@ const BlogCard = ({ post }: Btype) => {
               <Stack direction="row" gap={1} alignItems="center">
                 <IconEye size="18" /> {view}
               </Stack>
-              <Stack direction="row" gap={1} alignItems="center">
-                <IconMessage2 size="18" /> {comments?.length}
-              </Stack>
 
               <Stack direction="row" ml="auto" alignItems="center">
                 <IconPoint size="16" />
-                <small>{format(new Date(createdAt), 'E, MMM d')}</small>
+                <small>{author?.name}</small>
               </Stack>
             </Stack>
           </CardContent>
