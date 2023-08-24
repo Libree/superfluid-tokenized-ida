@@ -1,6 +1,6 @@
 // third-party
 import { format } from 'date-fns';
-import NextLink  from 'next/link';
+import NextLink from 'next/link';
 import { useDispatch } from '../../../store/Store';
 import {
   CardContent,
@@ -12,11 +12,18 @@ import {
   Grid,
   Tooltip,
   Box,
+  Button,
 } from '@mui/material';
 import { IconEye, IconMessage2, IconPoint } from '@tabler/icons-react';
 import { fetchBlogPost } from '../../../store/apps/blog/BlogSlice';
 import BlankCard from '../../shared/BlankCard';
 import { BlogPostType } from '../../../types/apps/blog';
+import productDetails from '../../superfluid-checkout/productDetails';
+import paymentDetails from '../../superfluid-checkout/paymentDetails';
+import superTokenList from '@superfluid-finance/tokenlist';
+import SuperfluidWidget, { EventListeners, WalletManager } from '@superfluid-finance/widget';
+import { useMemo } from 'react';
+import { useWeb3Modal } from '@web3modal/react';
 
 interface Btype {
   post: BlogPostType;
@@ -26,6 +33,28 @@ interface Btype {
 const BlogCard = ({ post }: Btype) => {
   const dispatch = useDispatch();
   const { coverImg, title, view, comments, category, author, createdAt }: any = post;
+
+  const { open, isOpen, setDefaultChain } = useWeb3Modal();
+  const walletManager = useMemo<WalletManager>(
+    () => ({
+      open: ({ chain }) => {
+        if (chain) {
+          setDefaultChain(chain);
+        }
+        open();
+      },
+      isOpen,
+    }),
+    [open, isOpen, setDefaultChain],
+  );
+
+  const eventListeners: EventListeners = useMemo(
+    () => ({
+      onSuccess: () => console.log("onSuccess"),
+      onSuccessButtonClick: () => console.log("onSuccessButtonClick"),
+    }),
+    [],
+  );
 
   const linkTo = title
     .toLowerCase()
@@ -39,7 +68,6 @@ const BlogCard = ({ post }: Btype) => {
           <Typography
             component={NextLink}
             href={`/apps/blog/detail/${linkTo}`}
-            onClick={() => dispatch(fetchBlogPost(linkTo))}
           >
             <CardMedia component="img" height="240" image={coverImg} alt="green iguana" />
           </Typography>
@@ -54,7 +82,24 @@ const BlogCard = ({ post }: Btype) => {
                 size="small"
               ></Chip>
             </Stack>
-            <Chip label={category} size="small" sx={{ marginTop: 2 }}></Chip>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+
+              <Chip label={category} size="small" sx={{ marginTop: 2 }}></Chip>
+              <SuperfluidWidget
+                productDetails={productDetails}
+                paymentDetails={paymentDetails}
+                tokenList={superTokenList}
+                type='dialog'
+                walletManager={walletManager}
+                eventListeners={eventListeners}
+              >
+                {({ openModal }) => (
+                  <Button onClick={() => openModal()}>
+                    Buy
+                  </Button>
+                )}
+              </SuperfluidWidget>
+            </div>
             <Box my={3}>
               <Typography
                 gutterBottom
