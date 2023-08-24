@@ -16,6 +16,7 @@ import { IconEye, IconPoint } from '@tabler/icons-react';
 import { fetchBlogPost } from '../../../store/apps/blog/BlogSlice';
 import BlankCard from '../../shared/BlankCard';
 import { BlogPostType } from '../../../types/apps/blog';
+import Image from 'next/image';
 
 interface Btype {
   post: BlogPostType;
@@ -24,7 +25,7 @@ interface Btype {
 
 const BlogCard = ({ post }: Btype) => {
   const dispatch = useDispatch();
-  const { coverImg, title, view, category, author }: any = post;
+  const { coverImg, title, price, category, author, currency }: any = post;
 
   const linkTo = title
     .toLowerCase()
@@ -69,7 +70,7 @@ const BlogCard = ({ post }: Btype) => {
             </Box>
             <Stack direction="row" gap={3} alignItems="center">
               <Stack direction="row" gap={1} alignItems="center">
-                <IconEye size="18" /> {view}
+                <Image src={''} alt='' className='rounded-full' /> {price}
               </Stack>
 
               <Stack direction="row" ml="auto" alignItems="center">

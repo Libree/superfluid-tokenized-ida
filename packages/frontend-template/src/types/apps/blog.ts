@@ -19,7 +19,7 @@ export interface BlogPostType {
   content?: string;
   coverImg?: string;
   createdAt?: Date;
-  view?: number;
+  price?: number;
   share?: number;
   category?: string;
   featured?: boolean;
