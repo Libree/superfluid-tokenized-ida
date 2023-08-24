@@ -16,7 +16,7 @@ const SubscriptionsComponent = () => {
 
  return (
   <Box>
-   <Link href='/subscriptions/createSubscription'>
+   <Link href='/creators/subscriptions/createSubscription'>
     <Button
      sx={{
       height: '3rem',
