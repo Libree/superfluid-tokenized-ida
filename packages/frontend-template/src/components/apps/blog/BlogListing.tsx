@@ -25,7 +25,7 @@ const BlogListing = () => {
       posts = orderBy(posts, ['createdAt'], ['asc']);
     }
     if (sortBy === 'popular') {
-      posts = orderBy(posts, ['view'], ['desc']);
+      posts = orderBy(posts, ['price'], ['desc']);
     }
     if (posts) {
       return (posts = posts.filter((t) => t.featured === false));

@@ -167,7 +167,7 @@ const BlogDetail = () => {
                 </Box>
                 <Stack direction="row" gap={3} alignItems="center">
                   <Stack direction="row" gap={1} alignItems="center">
-                    <IconEye size="18" /> {post?.view}
+                    <IconEye size="18" /> {post?.price}
                   </Stack>
                   <Stack direction="row" gap={1} alignItems="center">
                     <IconMessage2 size="18" /> {post?.comments.length}

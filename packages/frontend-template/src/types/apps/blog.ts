@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export type Profile = {
   id?: string | number;
   avatar?: string;
@@ -19,7 +21,8 @@ export interface BlogPostType {
   content?: string;
   coverImg?: string;
   createdAt?: Date;
-  view?: number;
+  price?: number;
+  currencyImg?: StaticImageData;
   share?: number;
   category?: string;
   featured?: boolean;
