@@ -112,46 +112,46 @@ const AnalyticsComponent = () => {
   <Box>
    <Grid
     container
-    justifyContent='space-evenly'
-    gap={6}>
+    gap={2}
+    justifyContent='space-evenly'>
     <Grid
      item
-     sm={5}
+     sm={3.5}
      xs={12}>
      <ParentCard title='Revenue'>
       <Chart
        options={optionslinechart}
        series={serieslinechart}
        type='line'
-       height='308px'
+       height='200%'
        width={'90%'}
       />
      </ParentCard>
     </Grid>
     <Grid
      item
-     sm={5}
+     sm={3.5}
      xs={12}>
      <ParentCard title='Subscribers'>
       <Chart
        options={optionslinechart}
        series={serieslinechart}
        type='line'
-       height='308px'
+       height='200%'
        width={'90%'}
       />
      </ParentCard>
     </Grid>
     <Grid
      item
-     sm={5}
+     sm={3.5}
      xs={12}>
      <ParentCard title='Token Holders'>
       <Chart
        options={optionspiechart}
        series={seriespiechart}
        type='pie'
-       height='300px'
+       height='200%'
        width={'100%'}
       />
      </ParentCard>
