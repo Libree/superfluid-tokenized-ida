@@ -1,3 +1,7 @@
+import { StaticImageData } from 'next/image';
+import BTCIcon from '../../../public/images/currencies/btc-icon.png';
+import TetherIcon from '../../../public/images/currencies/tether-icon.png';
+
 export interface TableType {
   id?: string;
   imgsrc?: string;
@@ -23,6 +27,16 @@ export interface EnTableType {
   status: string;
   weeks: string;
   budget: string;
+}
+
+export interface ActiveSubscriptionType {
+  id: string;
+  asset: string;
+  assetImg?: StaticImageData;
+  balance: string;
+  netFlow: number;
+  flowRate: number;
+  subscriptors: number;
 }
 
 const basicsTableData: TableType[] = [
@@ -322,7 +336,6 @@ const EnhancedTableData: EnTableType[] = [
     weeks: '12',
     budget: '12.8',
   },
-
   {
     id: '10',
     imgsrc: "/images/profile/user-5.jpg",
@@ -341,4 +354,26 @@ const EnhancedTableData: EnTableType[] = [
     budget: '9.3',
   },
 ];
-export { basicsTableData, EnhancedTableData };
+
+const ActiveSubscriptionsData: ActiveSubscriptionType[] = [
+  {
+    id: '1',
+    asset: 'Bitcoin',
+    assetImg: BTCIcon,
+    balance: '+1.25/mo',
+    netFlow: 10,
+    flowRate: 6.5,
+    subscriptors: 50,
+  },
+  {
+    id: '2',
+    asset: 'USDT',
+    assetImg: TetherIcon,
+    balance: '-0.75/mo',
+    netFlow: 4.52,
+    flowRate: 7,
+    subscriptors: 225,
+  },
+];
+
+export { basicsTableData, EnhancedTableData, ActiveSubscriptionsData };

@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Grid, useTheme } from '@mui/material';
 import dynamic from 'next/dynamic';
 import ParentCard from '../../../src/components/shared/ParentCard';
+import ActiveSubscriptionsTable from '../tables/activeSubscriptions';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 const AnalyticsComponent = () => {
@@ -156,6 +157,9 @@ const AnalyticsComponent = () => {
      </ParentCard>
     </Grid>
    </Grid>
+   <Box marginTop={6} >
+    <ActiveSubscriptionsTable />
+   </Box>
   </Box>
  );
 };
