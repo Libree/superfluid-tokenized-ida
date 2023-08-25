@@ -355,7 +355,7 @@ const EnhancedTableData: EnTableType[] = [
   },
 ];
 
-const ActiveSubscriptionsData: any[] = [
+const ActiveSubscriptionsData: ActiveSubscriptionType[] = [
   {
     id: '1',
     asset: 'Bitcoin',
