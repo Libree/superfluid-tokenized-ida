@@ -31,7 +31,7 @@ export function useUpload({
         getSingleUploadToken();
     }, []);
 
-    const uploadFile = async ({
+    const uploadFiles = async ({
         files,
     }: {
         files: any[]
@@ -51,5 +51,5 @@ export function useUpload({
         return uploaded;
     };
 
-    return { token, uploadFile };
+    return { token, uploadFiles };
 };
