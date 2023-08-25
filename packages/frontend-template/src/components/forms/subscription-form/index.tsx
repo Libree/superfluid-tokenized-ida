@@ -13,18 +13,18 @@ import CustomOutlinedInput from '../theme-elements/CustomOutlinedInput';
 import CustomSelect from '../theme-elements/CustomSelect';
 import { Stack } from '@mui/system';
 
-const countries = [
+const tokens = [
  {
-  value: 'btc',
-  label: 'Bitcoin',
+  value: 'fDAIx',
+  label: 'fDAIx',
  },
  {
-  value: 'eth',
-  label: 'Ethereum',
+  value: 'fUSDCx',
+  label: 'fUSDCx',
  },
  {
-  value: 'usdt',
-  label: 'USDT Standard Coin',
+  value: 'MATICx',
+  label: 'MATICx',
  },
 ];
 
@@ -123,7 +123,7 @@ const SubscriptionForm = () => {
       onChange={handleChange}
       fullWidth
       variant='outlined'>
-      {countries.map((option) => (
+      {tokens.map((option) => (
        <MenuItem
         key={option.value}
         value={option.value}>
