@@ -1279,10 +1279,29 @@
     eventsource "^2.0.2"
     p-limit "^3.0.0"
 
+"@spheron/core@1.0.9":
+  version "1.0.9"
+  resolved "https://registry.npmjs.org/@spheron/core/-/core-1.0.9.tgz"
+  integrity sha512-FUuD7mlWPUotN+lpT7XfKRBxr5geYLonDi+I66+ECpJuwUS7EYE1k0QsGEXG4tu8OLcW1wxSlarNzcejh0DZIg==
+  dependencies:
+    axios "1.1.2"
+    eventsource "^2.0.2"
+    p-limit "^3.0.0"
+
 "@spheron/encryption@1.0.0":
   version "1.0.0"
   resolved "https://registry.npmjs.org/@spheron/encryption/-/encryption-1.0.0.tgz"
   integrity sha512-Teald+lhbi1MtwZ6tbWeg4gbWCvQFuRTmCx4jhxoE48tZmHByJNu9ZBHIcsNjCWNzkwg8lA+FQO4HZoAxLF5KQ==
+
+"@spheron/storage@^1.0.19":
+  version "1.0.19"
+  resolved "https://registry.npmjs.org/@spheron/storage/-/storage-1.0.19.tgz"
+  integrity sha512-39Ao/3weWeXzGa1D8m7VRMZK2G6uw6c4HDQeguL0J/gLokYJd5tvGk/kp11UrFJyIj9OEc0tTkiL0zGNmuUELA==
+  dependencies:
+    "@spheron/core" "1.0.9"
+    "@spheron/encryption" "1.0.0"
+    form-data "^4.0.0"
+    multiformats "^9.9.0"
 
 "@stablelib/aead@^1.0.1":
   version "1.0.1"
@@ -6476,7 +6495,7 @@ multicodec@^1.0.0:
     buffer "^5.6.0"
     varint "^5.0.0"
 
-multiformats@^9.4.2:
+multiformats@^9.4.2, multiformats@^9.9.0:
   version "9.9.0"
   resolved "https://registry.npmjs.org/multiformats/-/multiformats-9.9.0.tgz"
   integrity sha512-HoMUjhH9T8DDBNT+6xzkrd9ga/XiBI4xLr58LJACwK6G3HTOPeMz4nB4KJs33L2BelrIJa7P0VuNaVF3hMYfjg==
