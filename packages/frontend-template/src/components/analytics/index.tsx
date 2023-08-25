@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Grid, useTheme } from '@mui/material';
+import { Box, Grid, Typography, useTheme } from '@mui/material';
 import dynamic from 'next/dynamic';
 import ParentCard from '../../../src/components/shared/ParentCard';
 import ActiveSubscriptionsTable from '../tables/activeSubscriptions';
@@ -157,7 +157,13 @@ const AnalyticsComponent = () => {
      </ParentCard>
     </Grid>
    </Grid>
-   <Box marginTop={6} >
+   <Box marginTop={6}>
+    <Typography
+        variant='h4'
+        marginBottom={2}
+    >
+        Active Subscriptions
+    </Typography>
     <ActiveSubscriptionsTable />
    </Box>
   </Box>
