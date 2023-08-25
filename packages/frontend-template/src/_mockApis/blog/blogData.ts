@@ -4,6 +4,7 @@ import { random } from "lodash";
 import { sub } from "date-fns";
 import { uniqueId } from "lodash";
 import { BlogType, BlogPostType } from "../../types/apps/blog";
+import USDCIcon from "../../../public/images/currencies/usdc-icon.png";
 
 const chance = new Chance();
 
@@ -62,6 +63,7 @@ const BlogPost: BlogPostType[] = [
     coverImg: "/images/blog/blog-img2.jpg",
     createdAt: sub(new Date(), { days: 8, hours: 6, minutes: 20 }),
     price: random(9999),
+    currencyImg: USDCIcon,
     share: random(9999),
     category: "Gadget",
     featured: false,
@@ -79,6 +81,7 @@ const BlogPost: BlogPostType[] = [
     coverImg: "/images/blog/blog-img1.jpg",
     createdAt: sub(new Date(), { days: 7, hours: 3, minutes: 20 }),
     price: random(9999),
+    currencyImg: USDCIcon,
     share: random(9999),
     category: "Lifestyle",
     featured: false,
@@ -97,6 +100,7 @@ const BlogPost: BlogPostType[] = [
     coverImg: "/images/blog/blog-img3.jpg",
     createdAt: sub(new Date(), { days: 5, hours: 2, minutes: 20 }),
     price: random(9999),
+    currencyImg: USDCIcon,
     share: random(9999),
     category: "Design",
     featured: false,
@@ -114,6 +118,7 @@ const BlogPost: BlogPostType[] = [
     coverImg: "/images/blog/blog-img4.jpg",
     createdAt: sub(new Date(), { days: 7, hours: 6, minutes: 20 }),
     price: random(9999),
+    currencyImg: USDCIcon,
     share: random(9999),
     category: "Design",
     featured: false,
@@ -131,6 +136,7 @@ const BlogPost: BlogPostType[] = [
     coverImg: "/images/blog/blog-img5.jpg",
     createdAt: sub(new Date(), { days: 4, hours: 6, minutes: 20 }),
     price: random(9999),
+    currencyImg: USDCIcon,
     share: random(9999),
     category: "Lifestyle",
     featured: false,
@@ -148,6 +154,7 @@ const BlogPost: BlogPostType[] = [
     coverImg: "/images/blog/blog-img6.jpg",
     createdAt: sub(new Date(), { days: 2, hours: 6, minutes: 20 }),
     price: random(9999),
+    currencyImg: USDCIcon,
     share: random(9999),
     category: "Gadget",
     featured: false,
@@ -166,6 +173,7 @@ const BlogPost: BlogPostType[] = [
     coverImg: "/images/blog/blog-img11.jpg",
     createdAt: sub(new Date(), { days: 3, hours: 6, minutes: 20 }),
     price: random(9999),
+    currencyImg: USDCIcon,
     share: random(9999),
     category: "Social",
     featured: false,
@@ -183,6 +191,7 @@ const BlogPost: BlogPostType[] = [
     coverImg: "/images/blog/blog-img8.jpg",
     createdAt: sub(new Date(), { days: 4, hours: 6, minutes: 20 }),
     price: random(9999),
+    currencyImg: USDCIcon,
     share: random(9999),
     category: "Health",
     featured: false,
@@ -200,6 +209,7 @@ const BlogPost: BlogPostType[] = [
     coverImg: "/images/blog/blog-img9.jpg",
     createdAt: sub(new Date(), { days: 5, hours: 3, minutes: 20 }),
     price: random(9999),
+    currencyImg: USDCIcon,
     share: random(9999),
     category: "Gadget",
     featured: true,
@@ -217,6 +227,7 @@ const BlogPost: BlogPostType[] = [
     coverImg: "/images/blog/blog-img10.jpg",
     createdAt: sub(new Date(), { days: 0, hours: 1, minutes: 20 }),
     price: random(9999),
+    currencyImg: USDCIcon,
     share: random(9999),
     category: "Health",
     featured: true,

@@ -25,7 +25,7 @@ interface Btype {
 
 const BlogCard = ({ post }: Btype) => {
   const dispatch = useDispatch();
-  const { coverImg, title, price, category, author, currency }: any = post;
+  const { coverImg, title, price, category, author, currencyImg }: any = post;
 
   const linkTo = title
     .toLowerCase()
@@ -70,7 +70,7 @@ const BlogCard = ({ post }: Btype) => {
             </Box>
             <Stack direction="row" gap={3} alignItems="center">
               <Stack direction="row" gap={1} alignItems="center">
-                <Image src={''} alt='' className='rounded-full' /> {price}
+                <Image src={currencyImg} alt='' width={20} height={20} style={{ borderRadius: '100%' }} /> {price}
               </Stack>
 
               <Stack direction="row" ml="auto" alignItems="center">
