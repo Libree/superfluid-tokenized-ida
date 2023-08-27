@@ -51,5 +51,5 @@ export function useUpload({
         return uploaded;
     };
 
-    return { token, uploadFiles };
+    return { uploadFiles };
 };
