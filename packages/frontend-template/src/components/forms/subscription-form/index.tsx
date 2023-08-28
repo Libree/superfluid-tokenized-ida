@@ -6,12 +6,28 @@ import {
     Divider,
     MenuItem,
 } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import CustomFormLabel from '../theme-elements/CustomFormLabel';
 import CustomTextField from '../theme-elements/CustomTextField';
 import CustomOutlinedInput from '../theme-elements/CustomOutlinedInput';
 import CustomSelect from '../theme-elements/CustomSelect';
 import { Stack } from '@mui/system';
+
+type FormData = {
+    productName: string;
+    productDescription: string;
+    productImg: any;
+    paymentSuperToken: string;
+    paymentFlowRate: string;
+};
+
+const defaultFormData = {
+    productName: '',
+    productDescription: '',
+    productImg: '',
+    paymentSuperToken: '',
+    paymentFlowRate: '',
+};
 
 const tokens = [
     {
@@ -29,11 +45,17 @@ const tokens = [
 ];
 
 const SubscriptionForm = () => {
-    // Tokens
-    const [token, setToken] = React.useState('');
+    const [input, setInput] = useState<FormData>(defaultFormData);
 
-    const handleChange = (event: any) => {
-        setToken(event.target.value);
+    const handleInputChange = (event: any) => {
+        setInput({
+            ...input,
+            [event.target.name]: event.target.value,
+        });
+    };
+
+    const handleSubmitForm = () => {
+        console.log('input values: ', input)
     };
 
     return (
@@ -65,6 +87,9 @@ const SubscriptionForm = () => {
                     xs={12}
                     sm={9}>
                     <CustomTextField
+                        name='productName'
+                        value={input?.productName}
+                        onChange={handleInputChange}
                         placeholder='Your product name'
                         fullWidth
                     />
@@ -85,6 +110,9 @@ const SubscriptionForm = () => {
                     xs={12}
                     sm={9}>
                     <CustomOutlinedInput
+                        name='productDescription'
+                        value={input?.productDescription}
+                        onChange={handleInputChange}
                         placeholder='Your product description'
                         fullWidth
                         multiline
@@ -107,6 +135,9 @@ const SubscriptionForm = () => {
                     xs={12}
                     sm={9}>
                     <CustomTextField
+                        name='productImg'
+                        value={input?.productImg}
+                        onChange={handleInputChange}
                         type='file'
                         fullWidth
                     />
@@ -139,8 +170,9 @@ const SubscriptionForm = () => {
                     xs={12}
                     sm={9}>
                     <CustomSelect
-                        value={token}
-                        onChange={handleChange}
+                        name='paymentSuperToken'
+                        value={input?.paymentSuperToken}
+                        onChange={handleInputChange}
                         fullWidth
                         variant='outlined'>
                         {tokens.map((option) => (
@@ -179,6 +211,9 @@ const SubscriptionForm = () => {
                                 </InputAdornment>
                             ),
                         }}
+                        name='paymentFlowRate'
+                        value={input?.paymentFlowRate}
+                        onChange={handleInputChange}
                     />
                 </Grid>
 
@@ -195,7 +230,9 @@ const SubscriptionForm = () => {
                         spacing={2}>
                         <Button
                             variant='contained'
-                            color='primary'>
+                            color='primary'
+                            onClick={handleSubmitForm}
+                        >
                             Submit
                         </Button>
                         <Button
