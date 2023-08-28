@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const STREAMS = gql`
+export const DATA_QUERY = gql`
   graphql query MyQuery {
     streams(where: {receiver: "YOUR_ADDRESS_HERE"}) {
       currentFlowRate
