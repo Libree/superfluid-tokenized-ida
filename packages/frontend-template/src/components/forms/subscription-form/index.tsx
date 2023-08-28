@@ -12,6 +12,8 @@ import CustomTextField from '../theme-elements/CustomTextField';
 import CustomOutlinedInput from '../theme-elements/CustomOutlinedInput';
 import CustomSelect from '../theme-elements/CustomSelect';
 import { Stack } from '@mui/system';
+import { useUpload } from '../../../../hooks/useUpload';
+import { useFileEncryption } from '../../../../hooks/useFileEncryption';
 
 type FormData = {
     productName: string;
@@ -46,6 +48,7 @@ const tokens = [
 
 const SubscriptionForm = () => {
     const [input, setInput] = useState<FormData>(defaultFormData);
+    const { encryptUploadIPFS } = useFileEncryption();
 
     const handleInputChange = (event: any) => {
         setInput({
@@ -54,8 +57,24 @@ const SubscriptionForm = () => {
         });
     };
 
-    const handleSubmitForm = () => {
-        console.log('input values: ', input)
+    const checkInputValues = (inputObject: FormData): boolean => {
+        return Object.values(inputObject).every(value => value && value !== '');
+    };
+
+    const handleSubmitForm = async () => {
+        const isValid = checkInputValues(input);
+        if (!isValid) return;
+        
+        // upload img to IPFS
+        const uploadedFile = await encryptUploadIPFS(input.productImg);
+
+        //upload json to IPFS
+        const payload = {
+            name: input.productName,
+            description: input.productDescription,
+            image: uploadedFile?.cid,
+        };
+
     };
 
     return (

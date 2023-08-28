@@ -5,15 +5,9 @@ import { useLitNodeClient } from "../context/lit";
 import * as LitJsSdk from '@lit-protocol/lit-node-client';
 import { useNetwork } from "wagmi";
 
-type UseFileEncryptionProps = {
-    bucketName?: string;
-    protocol?: ProtocolEnum;
-}
-
-export function useFileEncryption({
-    bucketName = 'example-browser-encrypt',
-    protocol = ProtocolEnum.IPFS,
-}: UseFileEncryptionProps) {
+export function useFileEncryption() {
+    const bucketName = 'example-browser-encrypt';
+    const protocol = ProtocolEnum.IPFS
     const [token, setToken] = useState<string>('');
     const { provider: spheronClient } = useSpheron();
     const { provider: litNodeClient } = useLitNodeClient();
@@ -37,7 +31,7 @@ export function useFileEncryption({
         getSingleUploadToken();
     }, []);
 
-    const encryptFile = async (file: any) => {
+    const encryptUploadIPFS = async (file: any) => {
         if (!litNodeClient) { 
             await litNodeClient.connect();
         }
@@ -53,7 +47,7 @@ export function useFileEncryption({
         return uploadRes;
     };
 
-    const decryptFile = async (cid: any) => {
+    const decryptIPFS = async (cid: any) => {
         if (!litNodeClient) {
             await litNodeClient.connect();
         }
@@ -66,5 +60,5 @@ export function useFileEncryption({
         return decryptedFile;
     };
 
-    return { encryptFile, decryptFile };
+    return { encryptUploadIPFS, decryptIPFS };
 };
