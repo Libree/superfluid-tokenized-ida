@@ -1,26 +1,23 @@
 import { useEffect, useState } from "react";
-import { ProtocolEnum, decryptUpload, encryptUpload } from "@spheron/browser-upload";
-import { useSpheron } from "../context/spheron";
-import { useLitNodeClient } from "../context/lit";
+import { decryptUpload, encryptUpload } from "@spheron/browser-upload";
 import * as LitJsSdk from '@lit-protocol/lit-node-client';
 import { useNetwork } from "wagmi";
 
 export function useFileEncryption() {
-    const bucketName = 'example-browser-encrypt';
-    const protocol = ProtocolEnum.IPFS
-    const [token, setToken] = useState<string>('');
-    const { provider: spheronClient } = useSpheron();
-    const { provider: litNodeClient } = useLitNodeClient();
+    const [token, setToken] = useState<any>();
+    const [litNodeClient, setLitNodeClient] = useState<LitJsSdk.LitNodeClient>();
     const { chain: wagmiChain } = useNetwork();
     const chain = wagmiChain?.name as string;
 
+    const configLitClient = async () => {
+        const client = new LitJsSdk.LitNodeClient({});
+        await client.connect();
+        setLitNodeClient(client)
+    };
+
     const getSingleUploadToken = async () => {
         try {
-            const { uploadToken } = await spheronClient.createSingleUploadToken({
-                name: bucketName,
-                protocol,
-            });
-
+            const uploadToken = await fetch('/api/spheron-token');
             setToken(uploadToken);
         } catch (err) {
             console.log(err);
@@ -29,11 +26,12 @@ export function useFileEncryption() {
 
     useEffect(() => {
         getSingleUploadToken();
+        configLitClient();
     }, []);
 
     const encryptUploadIPFS = async (file: any) => {
-        if (!litNodeClient) { 
-            await litNodeClient.connect();
+        if (!litNodeClient) {
+            configLitClient();
         }
         const configuration = { token };
         const authSig = await LitJsSdk.checkAndSignAuthMessage({ chain });
@@ -49,7 +47,7 @@ export function useFileEncryption() {
 
     const decryptIPFS = async (cid: any) => {
         if (!litNodeClient) {
-            await litNodeClient.connect();
+            configLitClient();
         }
         const authSig = await LitJsSdk.checkAndSignAuthMessage({ chain });
         const decryptedFile = await decryptUpload({

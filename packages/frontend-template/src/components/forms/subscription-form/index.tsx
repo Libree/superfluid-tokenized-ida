@@ -64,7 +64,7 @@ const SubscriptionForm = () => {
     const handleSubmitForm = async () => {
         const isValid = checkInputValues(input);
         if (!isValid) return;
-        
+
         // upload img to IPFS
         const uploadedFile = await encryptUploadIPFS(input.productImg);
 
@@ -74,6 +74,7 @@ const SubscriptionForm = () => {
             description: input.productDescription,
             image: uploadedFile?.cid,
         };
+        console.log('payload: ', payload);
 
     };
 
