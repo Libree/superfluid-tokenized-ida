@@ -49,7 +49,7 @@ const SubscriptionForm = () => {
    <Grid
     container
     spacing={3}>
-    {/* 1 */}
+    {/* Product Name */}
     <Grid
      item
      xs={12}
@@ -69,7 +69,7 @@ const SubscriptionForm = () => {
       fullWidth
      />
     </Grid>
-    {/* 2 */}
+    {/* Product Description */}
     <Grid
      item
      xs={12}
@@ -103,7 +103,7 @@ const SubscriptionForm = () => {
      </Typography>
     </Grid>
 
-    {/* 4 */}
+    {/* SuperToken */}
     <Grid
      item
      xs={12}
@@ -132,7 +132,7 @@ const SubscriptionForm = () => {
       ))}
      </CustomSelect>
     </Grid>
-    {/* 4 */}
+    {/* Flow Rate */}
     <Grid
      item
      xs={12}
