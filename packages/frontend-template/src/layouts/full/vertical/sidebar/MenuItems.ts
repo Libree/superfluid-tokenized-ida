@@ -35,7 +35,6 @@ const Menuitems: MenuitemsType[] = [
   title: 'Subscriptions',
   icon: IconApps,
   href: '/creators/subscriptions',
-  chip: 'New',
   chipColor: 'secondary',
  },
  {
@@ -52,7 +51,6 @@ const Menuitems: MenuitemsType[] = [
   id: uniqueId(),
   title: 'Buy',
   icon: IconCurrencyDollar,
-  chip: '2',
   chipColor: 'secondary',
   href: '/marketplace/buy',
  },
