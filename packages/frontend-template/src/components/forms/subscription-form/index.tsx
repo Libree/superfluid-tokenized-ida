@@ -161,78 +161,7 @@ const SubscriptionForm = () => {
       }}
      />
     </Grid>
-    {/* 4 */}
-
-    <Grid
-     item
-     xs={12}>
-     <Divider sx={{ mx: '-24px' }} />
-     <Typography
-      variant='h4'
-      mt={2}>
-      Tokenize
-     </Typography>
-    </Grid>
-
-    <Grid
-     item
-     xs={12}
-     sm={3}
-     display='flex'
-     alignItems='center'>
-     <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
-      Token Name
-     </CustomFormLabel>
-    </Grid>
-    <Grid
-     item
-     xs={12}
-     sm={9}>
-     <CustomTextField
-      id='fs-fname'
-      placeholder='Your token name'
-      fullWidth
-     />
-    </Grid>
-    {/* 4 */}
-    <Grid
-     item
-     xs={12}
-     sm={3}
-     display='flex'
-     alignItems='center'>
-     <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
-      Token Symbol
-     </CustomFormLabel>
-    </Grid>
-    <Grid
-     item
-     xs={12}
-     sm={9}>
-     <CustomTextField
-      placeholder='Your token symbol'
-      fullWidth
-     />
-    </Grid>
-    <Grid
-     item
-     xs={12}
-     sm={3}
-     display='flex'
-     alignItems='center'>
-     <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
-      Token Supply
-     </CustomFormLabel>
-    </Grid>
-    <Grid
-     item
-     xs={12}
-     sm={9}>
-     <CustomTextField
-      placeholder='1000'
-      fullWidth
-     />
-    </Grid>
+    
     <Grid
      item
      xs={12}
