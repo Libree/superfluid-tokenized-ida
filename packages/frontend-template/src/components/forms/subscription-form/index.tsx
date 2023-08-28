@@ -91,6 +91,26 @@ const SubscriptionForm = () => {
       rows={4}
      />
     </Grid>
+    {/* Subscription Img */}
+    <Grid
+     item
+     xs={12}
+     sm={3}
+     display='flex'
+     alignItems='center'>
+     <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+      Product Image
+     </CustomFormLabel>
+    </Grid>
+    <Grid
+     item
+     xs={12}
+     sm={9}>
+     <CustomTextField
+      type='file'
+      fullWidth
+     />
+    </Grid>
 
     <Grid
      item
