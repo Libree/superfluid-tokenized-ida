@@ -32,7 +32,7 @@ export interface EnTableType {
 export interface ActiveSubscriptionType {
   id: string;
   asset: string;
-  assetImg?: StaticImageData;
+  assetImg: StaticImageData;
   balance: string;
   netFlow: number;
   flowRate: number;

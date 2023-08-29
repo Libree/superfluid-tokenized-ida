@@ -62,8 +62,8 @@ const ActiveSubscriptionsTable = () => {
            src={basic.assetImg}
            width={30}
            height={30}
-           alt={basic.assetImg}
-           sx={{ borderRadius: '100%' }}
+           alt={`${basic.assetImg}`}
+           style={{ borderRadius: '100%' }}
           />
           <Box>
            <Typography
