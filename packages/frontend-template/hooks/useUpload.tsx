@@ -1,26 +1,12 @@
 import { useEffect, useState } from "react";
-import { ProtocolEnum, upload } from "@spheron/browser-upload";
-import { useSpheron } from "../context/spheron";
+import { upload } from "@spheron/browser-upload";
 
-type UseUploadProps = {
-    bucketName?: string;
-    protocol?: ProtocolEnum;
-}
-
-export function useUpload({
-    bucketName = 'example-browser-upload',
-    protocol = ProtocolEnum.IPFS,
-}: UseUploadProps) {
-    const [token, setToken] = useState<string>('');
-    const { provider: spheronClient } = useSpheron();
+export function useUpload() {
+    const [token, setToken] = useState<any>();
 
     const getSingleUploadToken = async () => {
         try {
-            const { uploadToken } = await spheronClient.createSingleUploadToken({
-                name: bucketName,
-                protocol,
-            });
-
+            const uploadToken = await fetch('/api/spheron-token');
             setToken(uploadToken);
         } catch (err) {
             console.log(err);

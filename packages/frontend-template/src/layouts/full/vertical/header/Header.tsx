@@ -2,13 +2,13 @@ import { IconButton, Box, AppBar, useMediaQuery, Toolbar, styled, Stack, Button 
 import { useSelector, useDispatch } from '../../../../store/Store';
 import { toggleSidebar, toggleMobileSidebar } from '../../../../store/customizer/CustomizerSlice';
 import { IconMenu2 } from '@tabler/icons-react';
-import Profile from './Profile';
 import Search from './Search';
 import { AppState } from '../../../../store/Store';
 import Navigation from './Navigation';
 import MobileRightSidebar from './MobileRightSidebar';
 import { useWeb3Modal } from '@web3modal/react';
 import { useAccount } from 'wagmi';
+import NetworkSelect from './NetworkSelect';
 
 const Header = () => {
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
@@ -62,7 +62,7 @@ const Header = () => {
         <Box flexGrow={1} />
         <Stack spacing={1} direction="row" alignItems="center">
           {isConnected ? (
-            <Profile />
+            <NetworkSelect />
           ) : (
             <Button color='secondary' onClick={() => open()}>
               Connect wallet
