@@ -1,28 +1,31 @@
 import React from 'react';
 import {
-    Box, MenuItem, Select, SelectChangeEvent,
+    Box, MenuItem, Select,
 } from '@mui/material';
 import { useNetwork, useSwitchNetwork } from 'wagmi';
 
 
 const NetworkSelect = () => {
     const { chain } = useNetwork();
-    const { chains, switchNetwork } = useSwitchNetwork();
+    const { chains } = useSwitchNetwork();
 
-    const handleNetworkSelect = (event: SelectChangeEvent<string>) => {
-        
-    };
+    const handleNetworkSelect = (event: any) => {};
 
     return (
         <Box>
             <Select
                 label='Network'
-                value={chain?.name}
+                value={chain?.id}
                 onChange={handleNetworkSelect}
-                placeholder={chain.id}
+                placeholder={chain?.name}
             >
                 {chains.map((network) => (
-                    <MenuItem value={network.id}>{network.name}</MenuItem>
+                    <MenuItem
+                        key={network.id}
+                        value={network.id}
+                    >
+                        {network.name}
+                    </MenuItem>
                 ))}
             </Select>
         </Box>
