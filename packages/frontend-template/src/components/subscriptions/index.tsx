@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Box, Grid, Button } from '@mui/material';
 import { useSelector, useDispatch } from '../../store/Store';
 import { fetchBlogPosts } from '../../store/apps/blog/BlogSlice';
-import BlogCard from '../apps/blog/BlogCard';
+import SubscriptionCard from './subscriptionCard';
 
 const SubscriptionsComponent = () => {
  const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const SubscriptionsComponent = () => {
     spacing={3}>
     {blogPosts?.map((subscription) => {
      return (
-      <BlogCard
+      <SubscriptionCard
        post={subscription}
        key={subscription.id}
       />
