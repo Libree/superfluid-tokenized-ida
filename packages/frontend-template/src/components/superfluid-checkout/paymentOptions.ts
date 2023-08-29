@@ -1,10 +1,9 @@
 import { PaymentOption } from "@superfluid-finance/widget";
-import { DEPLOYED_CONTRACTS } from "../../utils/constants/contracts";
 
 const paymentOptions: PaymentOption[] = [
     {
         chainId: 80001,
-        receiverAddress: DEPLOYED_CONTRACTS[80001].manager as `0x${string}`,
+        receiverAddress: "0x7BDa037dFdf9CD9Ad261D27f489924aebbcE71Ac",
         superToken: {
             address: "0x1ba8603da702602a8657980e825a6daa03dee93a",
         },
