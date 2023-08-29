@@ -13,15 +13,10 @@ const SuperfluidCheckout = () => {
         const { open, isOpen, setDefaultChain } = useWeb3Modal();
         const walletManager = useMemo<WalletManager>(
             () => ({
-                open: ({ chain }) => {
-                    if (chain) {
-                        setDefaultChain(chain);
-                    }
-                    open();
-                },
+                open,
                 isOpen,
             }),
-            [open, isOpen, setDefaultChain],
+            [open, isOpen],
         );
 
         const eventListeners: EventListeners = useMemo(

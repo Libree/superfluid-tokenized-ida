@@ -1,9 +1,9 @@
 import { ProductDetails } from "@superfluid-finance/widget";
 
 const productDetails: ProductDetails = {
-    name: "Superfluid Funscription",
+    name: "Superfluid Tokenized Subscription",
     description:
-        "Superfluid Funscription is a subscription-based service for continuous & perpetual fun.",
+        "Superfluid tokenized subs description",
     successText: "Success! End of demo.",
     successURL: "#",
 };
