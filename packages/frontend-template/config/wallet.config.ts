@@ -9,7 +9,7 @@ export const provider: any = w3mProvider({ projectId });
 const { publicClient } = configureChains(supportedNetworks, [provider]);
 
 export const wagmiConfig = createConfig({
-    autoConnect: true,
+    autoConnect: false,
     connectors: w3mConnectors({ projectId, chains: supportedNetworks }),
     publicClient,
 });

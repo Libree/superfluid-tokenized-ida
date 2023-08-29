@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Button } from '@mui/material';
 
 import SuperfluidWidget, { EventListeners, WalletManager } from '@superfluid-finance/widget';
@@ -10,7 +10,7 @@ import productDetails from './productDetails';
 
 
 const SuperfluidCheckout = () => {
-        const { open, isOpen, setDefaultChain } = useWeb3Modal();
+        const { open, isOpen } = useWeb3Modal();
         const walletManager = useMemo<WalletManager>(
             () => ({
                 open,
