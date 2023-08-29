@@ -1,8 +1,10 @@
 import React from 'react';
 import {
-    Box, CircularProgress, MenuItem, Select,
+    Box, CircularProgress, MenuItem, Select, Typography,
 } from '@mui/material';
 import { useNetwork, useSwitchNetwork } from 'wagmi';
+import Image from 'next/image';
+import { NetworkType, getNetworkIcon } from '../../../../../utils';
 
 
 const NetworkSelect = () => {
@@ -21,8 +23,8 @@ const NetworkSelect = () => {
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        width: 120,
-                        height: 50,
+                        width: 100,
+                        height: 30,
                     }}
                 >
                     <CircularProgress />
@@ -37,7 +39,20 @@ const NetworkSelect = () => {
                         <MenuItem
                             key={network.id}
                             value={network.id}
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'start',
+                            }}
                         >
+                            <Image
+                                src={getNetworkIcon(network.network as NetworkType)}
+                                width={20}
+                                height={20}
+                                alt=''
+                                style={{ marginRight: 10 }}
+                            />
                             {network.name}
                         </MenuItem>
                     ))}
