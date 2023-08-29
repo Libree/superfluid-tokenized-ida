@@ -17,10 +17,10 @@ interface MenuitemsType {
 import {
  IconCurrencyDollar,
  IconApps,
- IconChartDonut3,
+ IconFileText,
  IconShoppingCart,
  IconChartAreaLine,
- IconTrolley,
+ IconEyeglass2,
  IconUserHeart,
 } from '@tabler/icons-react';
 
@@ -35,7 +35,6 @@ const Menuitems: MenuitemsType[] = [
   title: 'Subscriptions',
   icon: IconApps,
   href: '/creators/subscriptions',
-  chip: 'New',
   chipColor: 'secondary',
  },
  {
@@ -52,7 +51,6 @@ const Menuitems: MenuitemsType[] = [
   id: uniqueId(),
   title: 'Buy',
   icon: IconCurrencyDollar,
-  chip: '2',
   chipColor: 'secondary',
   href: '/marketplace/buy',
  },
@@ -65,20 +63,20 @@ const Menuitems: MenuitemsType[] = [
  },
  {
   navlabel: true,
-  subheader: 'Credit',
+  subheader: 'Integrations',
  },
 
  {
   id: uniqueId(),
-  title: 'Lend',
-  icon: IconTrolley,
-  href: '/lend',
+  title: 'Lens',
+  icon: IconEyeglass2,
+  href: '/integrations/lens',
  },
  {
   id: uniqueId(),
-  title: 'Borrow',
-  icon: IconChartDonut3,
-  href: '/borrow',
+  title: 'Paragraph',
+  icon: IconFileText,
+  href: '/integrations/paragraph',
  },
  {
   navlabel: true,
