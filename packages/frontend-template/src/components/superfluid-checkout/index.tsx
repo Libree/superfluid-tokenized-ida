@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from 'react';
-import { Box, Button } from '@mui/material';
+import { Button } from '@mui/material';
 
 import SuperfluidWidget, { EventListeners, WalletManager } from '@superfluid-finance/widget';
 import superTokenList from '@superfluid-finance/tokenlist';

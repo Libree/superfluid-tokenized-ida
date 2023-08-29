@@ -1,6 +1,5 @@
 // third-party
-import { format } from 'date-fns';
-import NextLink from 'next/link';
+import NextLink  from 'next/link';
 import { useDispatch } from '../../../store/Store';
 import {
   CardContent,
@@ -12,18 +11,12 @@ import {
   Grid,
   Tooltip,
   Box,
-  Button,
 } from '@mui/material';
-import { IconEye, IconMessage2, IconPoint } from '@tabler/icons-react';
+import { IconPoint } from '@tabler/icons-react';
 import { fetchBlogPost } from '../../../store/apps/blog/BlogSlice';
 import BlankCard from '../../shared/BlankCard';
 import { BlogPostType } from '../../../types/apps/blog';
-import productDetails from '../../superfluid-checkout/productDetails';
-import paymentDetails from '../../superfluid-checkout/paymentDetails';
-import superTokenList from '@superfluid-finance/tokenlist';
-import SuperfluidWidget, { EventListeners, WalletManager } from '@superfluid-finance/widget';
-import { useMemo } from 'react';
-import { useWeb3Modal } from '@web3modal/react';
+import Image from 'next/image';
 import SuperfluidCheckout from '../../superfluid-checkout';
 
 interface Btype {
@@ -33,7 +26,7 @@ interface Btype {
 
 const BlogCard = ({ post }: Btype) => {
   const dispatch = useDispatch();
-  const { coverImg, title, view, comments, category, author, createdAt }: any = post;
+  const { coverImg, title, price, category, author, currencyImg }: any = post;
 
   const linkTo = title
     .toLowerCase()
@@ -81,15 +74,12 @@ const BlogCard = ({ post }: Btype) => {
             </Box>
             <Stack direction="row" gap={3} alignItems="center">
               <Stack direction="row" gap={1} alignItems="center">
-                <IconEye size="18" /> {view}
-              </Stack>
-              <Stack direction="row" gap={1} alignItems="center">
-                <IconMessage2 size="18" /> {comments?.length}
+                <Image src={currencyImg} alt='' width={20} height={20} style={{ borderRadius: '100%' }} /> {price}
               </Stack>
 
               <Stack direction="row" ml="auto" alignItems="center">
                 <IconPoint size="16" />
-                <small>{format(new Date(createdAt), 'E, MMM d')}</small>
+                <small>{author?.name}</small>
               </Stack>
             </Stack>
           </CardContent>

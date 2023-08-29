@@ -42,7 +42,7 @@ interface Btype {
 
 const BlogFeaturedCard = ({ post, index }: Btype) => {
   const dispatch = useDispatch();
-  const { coverImg, title, view, comments, category, author, createdAt }: any = post;
+  const { coverImg, title, price, comments, category, author, createdAt }: any = post;
   const linkTo = title
     .toLowerCase()
     .replace(/ /g, '-')
@@ -116,7 +116,7 @@ const BlogFeaturedCard = ({ post, index }: Btype) => {
                     </Box>
                     <Stack direction="row" gap={3} alignItems="center">
                       <Stack direction="row" gap={1} alignItems="center">
-                        <IconEye size="18" /> {view}
+                        <IconEye size="18" /> {price}
                       </Stack>
                       <Stack direction="row" gap={1} alignItems="center">
                         <IconMessage2 size="18" /> {comments?.length}

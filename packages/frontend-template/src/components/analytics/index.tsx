@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Grid, useTheme } from '@mui/material';
+import { Box, Grid, Typography, useTheme } from '@mui/material';
 import dynamic from 'next/dynamic';
 import ParentCard from '../../../src/components/shared/ParentCard';
+import ActiveSubscriptionsTable from '../tables/activeSubscriptions';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 const AnalyticsComponent = () => {
@@ -111,51 +112,60 @@ const AnalyticsComponent = () => {
   <Box>
    <Grid
     container
-    justifyContent='space-evenly'
-    gap={6}>
+    gap={2}
+    justifyContent='space-evenly'>
     <Grid
      item
-     sm={5}
+     sm={3.5}
      xs={12}>
      <ParentCard title='Revenue'>
       <Chart
        options={optionslinechart}
        series={serieslinechart}
        type='line'
-       height='308px'
+       height='200%'
        width={'90%'}
       />
      </ParentCard>
     </Grid>
     <Grid
      item
-     sm={5}
+     sm={3.5}
      xs={12}>
      <ParentCard title='Subscribers'>
       <Chart
        options={optionslinechart}
        series={serieslinechart}
        type='line'
-       height='308px'
+       height='200%'
        width={'90%'}
       />
      </ParentCard>
     </Grid>
     <Grid
      item
-     sm={5}
+     sm={3.5}
      xs={12}>
      <ParentCard title='Token Holders'>
       <Chart
        options={optionspiechart}
        series={seriespiechart}
        type='pie'
-       height='300px'
+       height='200%'
        width={'100%'}
       />
      </ParentCard>
     </Grid>
    </Grid>
+   <Box marginTop={6}>
+    <Typography
+        variant='h4'
+        marginBottom={2}
+    >
+        Active Subscriptions
+    </Typography>
+    <ActiveSubscriptionsTable />
+   </Box>
   </Box>
  );
 };
