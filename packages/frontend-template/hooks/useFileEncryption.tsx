@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { decryptUpload, encryptUpload } from "@spheron/browser-upload";
 import * as LitJsSdk from '@lit-protocol/lit-node-client';
-import { useNetwork } from "wagmi";
 
 export function useFileEncryption() {
     const [token, setToken] = useState<any>();
     const [litNodeClient, setLitNodeClient] = useState<LitJsSdk.LitNodeClient>();
-    const { chain: wagmiChain } = useNetwork();
-    const chain = wagmiChain?.name as string;
+    const chain = 'mumbai';
 
     const configLitClient = async () => {
         const client = new LitJsSdk.LitNodeClient({});
@@ -34,6 +32,19 @@ export function useFileEncryption() {
             configLitClient();
         }
         const configuration = { token };
+        const accessControlConditions = [
+            {
+                contractAddress: '',
+                standardContratType: '',
+                chain,
+                method: 'eth_getBalance',
+                parameters: [":userAddress", "latest"],
+                returnValueTest: {
+                    comparator: '>=',
+                    value: '0',
+                },
+            }
+        ];
         const authSig = await LitJsSdk.checkAndSignAuthMessage({ chain });
         const uploadRes = await encryptUpload({
             file,
@@ -41,6 +52,7 @@ export function useFileEncryption() {
             configuration,
             chain,
             authSig,
+            accessControlConditions,
         });
         return uploadRes;
     };

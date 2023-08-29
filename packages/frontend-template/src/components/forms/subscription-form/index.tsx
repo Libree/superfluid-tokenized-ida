@@ -12,13 +12,12 @@ import CustomTextField from '../theme-elements/CustomTextField';
 import CustomOutlinedInput from '../theme-elements/CustomOutlinedInput';
 import CustomSelect from '../theme-elements/CustomSelect';
 import { Stack } from '@mui/system';
-import { useUpload } from '../../../../hooks/useUpload';
 import { useFileEncryption } from '../../../../hooks/useFileEncryption';
+import { File } from 'buffer';
 
 type FormData = {
     productName: string;
     productDescription: string;
-    productImg: any;
     paymentSuperToken: string;
     paymentFlowRate: string;
 };
@@ -26,7 +25,6 @@ type FormData = {
 const defaultFormData = {
     productName: '',
     productDescription: '',
-    productImg: '',
     paymentSuperToken: '',
     paymentFlowRate: '',
 };
@@ -48,6 +46,7 @@ const tokens = [
 
 const SubscriptionForm = () => {
     const [input, setInput] = useState<FormData>(defaultFormData);
+    const [uploadFile, setUploadFile] = useState<File | null>(null);
     const { encryptUploadIPFS } = useFileEncryption();
 
     const handleInputChange = (event: any) => {
@@ -55,6 +54,10 @@ const SubscriptionForm = () => {
             ...input,
             [event.target.name]: event.target.value,
         });
+    };
+
+    const handleFileChange = (event: any) => {
+        setUploadFile(event.target.files[0]);
     };
 
     const checkInputValues = (inputObject: FormData): boolean => {
@@ -66,7 +69,7 @@ const SubscriptionForm = () => {
         if (!isValid) return;
 
         // upload img to IPFS
-        const uploadedFile = await encryptUploadIPFS(input.productImg);
+        const uploadedFile = await encryptUploadIPFS(uploadFile);
 
         //upload json to IPFS
         const payload = {
@@ -156,8 +159,8 @@ const SubscriptionForm = () => {
                     sm={9}>
                     <CustomTextField
                         name='productImg'
-                        value={input?.productImg}
-                        onChange={handleInputChange}
+                        value={''}
+                        onChange={handleFileChange}
                         type='file'
                         fullWidth
                     />
