@@ -24,6 +24,7 @@ import superTokenList from '@superfluid-finance/tokenlist';
 import SuperfluidWidget, { EventListeners, WalletManager } from '@superfluid-finance/widget';
 import { useMemo } from 'react';
 import { useWeb3Modal } from '@web3modal/react';
+import SuperfluidCheckout from '../../superfluid-checkout';
 
 interface Btype {
   post: BlogPostType;
@@ -33,28 +34,6 @@ interface Btype {
 const BlogCard = ({ post }: Btype) => {
   const dispatch = useDispatch();
   const { coverImg, title, view, comments, category, author, createdAt }: any = post;
-
-  const { open, isOpen, setDefaultChain } = useWeb3Modal();
-  const walletManager = useMemo<WalletManager>(
-    () => ({
-      open: ({ chain }) => {
-        if (chain) {
-          setDefaultChain(chain);
-        }
-        open();
-      },
-      isOpen,
-    }),
-    [open, isOpen, setDefaultChain],
-  );
-
-  const eventListeners: EventListeners = useMemo(
-    () => ({
-      onSuccess: () => console.log("onSuccess"),
-      onSuccessButtonClick: () => console.log("onSuccessButtonClick"),
-    }),
-    [],
-  );
 
   const linkTo = title
     .toLowerCase()
@@ -85,20 +64,7 @@ const BlogCard = ({ post }: Btype) => {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
 
               <Chip label={category} size="small" sx={{ marginTop: 2 }}></Chip>
-              <SuperfluidWidget
-                productDetails={productDetails}
-                paymentDetails={paymentDetails}
-                tokenList={superTokenList}
-                type='dialog'
-                walletManager={walletManager}
-                eventListeners={eventListeners}
-              >
-                {({ openModal }) => (
-                  <Button onClick={() => openModal()}>
-                    Buy
-                  </Button>
-                )}
-              </SuperfluidWidget>
+              <SuperfluidCheckout />
             </div>
             <Box my={3}>
               <Typography
