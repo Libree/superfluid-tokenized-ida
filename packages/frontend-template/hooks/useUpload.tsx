@@ -15,7 +15,6 @@ export function useUpload() {
 
     useEffect(() => {
         getSingleUploadToken();
-        console.log('uploadToken: ', token)
     }, []);
 
     const uploadFiles = async ({
