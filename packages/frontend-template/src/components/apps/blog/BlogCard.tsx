@@ -12,11 +12,12 @@ import {
   Tooltip,
   Box,
 } from '@mui/material';
-import { IconEye, IconPoint } from '@tabler/icons-react';
+import { IconPoint } from '@tabler/icons-react';
 import { fetchBlogPost } from '../../../store/apps/blog/BlogSlice';
 import BlankCard from '../../shared/BlankCard';
 import { BlogPostType } from '../../../types/apps/blog';
 import Image from 'next/image';
+import SuperfluidCheckout from '../../superfluid-checkout';
 
 interface Btype {
   post: BlogPostType;
@@ -39,7 +40,6 @@ const BlogCard = ({ post }: Btype) => {
           <Typography
             component={NextLink}
             href={`/apps/blog/detail/${linkTo}`}
-            onClick={() => dispatch(fetchBlogPost(linkTo))}
           >
             <CardMedia component="img" height="240" image={coverImg} alt="green iguana" />
           </Typography>
@@ -54,7 +54,11 @@ const BlogCard = ({ post }: Btype) => {
                 size="small"
               ></Chip>
             </Stack>
-            <Chip label={category} size="small" sx={{ marginTop: 2 }}></Chip>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+
+              <Chip label={category} size="small" sx={{ marginTop: 2 }}></Chip>
+              <SuperfluidCheckout />
+            </div>
             <Box my={3}>
               <Typography
                 gutterBottom

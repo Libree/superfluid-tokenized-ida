@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from '../../store/Store';
 import { fetchBlogPosts } from '../../store/apps/blog/BlogSlice';
 import SubscriptionCard from './subscriptionCard';
 import { WEB3STORAGE_TOKEN } from '../../utils/constants/api';
+import { useSubscriptionManager } from '../../../hooks/useSubscriptionManager';
 
 const SubscriptionsComponent = () => {
  const dispatch = useDispatch();
@@ -14,6 +15,8 @@ const SubscriptionsComponent = () => {
  }, [dispatch]);
 
  const blogPosts = useSelector((state) => state.blogReducer.blogposts);
+
+ const {subscriptions} = useSubscriptionManager()
 
  return (
   <Box>

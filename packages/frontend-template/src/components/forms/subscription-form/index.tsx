@@ -13,6 +13,7 @@ import CustomOutlinedInput from '../theme-elements/CustomOutlinedInput';
 import CustomSelect from '../theme-elements/CustomSelect';
 import { Stack } from '@mui/system';
 import { useWeb3Storage } from '../../../../hooks/useWeb3Storage';
+import { useSubscriptionManager } from '../../../../hooks/useSubscriptionManager';
 
 type FormData = {
     productName: string;
@@ -38,23 +39,17 @@ export type PayloadMetadata = {
 
 const tokens = [
     {
-        value: 'fDAIx',
-        label: 'fDAIx',
-    },
-    {
-        value: 'fUSDCx',
+        value: '0xbe49ac1EadAc65dccf204D4Df81d650B50122aB2',
         label: 'fUSDCx',
-    },
-    {
-        value: 'MATICx',
-        label: 'MATICx',
-    },
+    }
 ];
 
 const SubscriptionForm = () => {
     const [input, setInput] = useState<FormData>(defaultFormData);
     const [image, setImage] = useState<File>()
     const {uploadMetadata} = useWeb3Storage()
+
+    const { createSubscription } = useSubscriptionManager()
 
     const handleInputChange = (event: any) => {
         setInput({
@@ -86,8 +81,9 @@ const SubscriptionForm = () => {
             image: "",
         };
 
-        // upload data
         const cid = await uploadMetadata(payload, image)
+        
+        createSubscription(input.paymentSuperToken, Number(input.paymentFlowRate), "")
 
     };
 
