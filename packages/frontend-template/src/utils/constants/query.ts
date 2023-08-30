@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
-export const DATA_QUERY = gql`
-  graphql query MyQuery {
-    streams(where: {receiver: "YOUR_ADDRESS_HERE"}) {
+export const SUPERFLUID_STREAMS = gql`
+  query Streams ($user: String) {
+    streams(where: {receiver: $user}) {
       currentFlowRate
       token {
         symbol
