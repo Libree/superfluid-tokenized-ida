@@ -21,6 +21,9 @@ type FormData = {
     productImg: any;
     paymentSuperToken: string;
     paymentFlowRate: string;
+    tokenName: string;
+    tokenSymbol: string;
+    initialSupply: string;
 };
 
 const defaultFormData = {
@@ -29,6 +32,9 @@ const defaultFormData = {
     productImg: '',
     paymentSuperToken: '',
     paymentFlowRate: '',
+    tokenName: '',
+    tokenSymbol: '',
+    initialSupply: ''
 };
 
 export type PayloadMetadata = {
@@ -39,7 +45,7 @@ export type PayloadMetadata = {
 
 const tokens = [
     {
-        value: '0xbe49ac1EadAc65dccf204D4Df81d650B50122aB2',
+        value: '0x42bb40bf79730451b11f6de1cba222f17b87afd7',
         label: 'fUSDCx',
     }
 ];
@@ -47,7 +53,7 @@ const tokens = [
 const SubscriptionForm = () => {
     const [input, setInput] = useState<FormData>(defaultFormData);
     const [image, setImage] = useState<File>()
-    const {uploadMetadata} = useWeb3Storage()
+    const { uploadMetadata } = useWeb3Storage()
 
     const { createSubscription } = useSubscriptionManager()
 
@@ -82,8 +88,15 @@ const SubscriptionForm = () => {
         };
 
         const cid = await uploadMetadata(payload, image)
-        
-        createSubscription(input.paymentSuperToken, Number(input.paymentFlowRate), "")
+
+        createSubscription(
+            input.paymentSuperToken,
+             Number(input.paymentFlowRate), 
+             input.tokenName,
+             input.tokenSymbol,
+             Number(input.initialSupply),
+             cid
+        )
 
     };
 
@@ -246,6 +259,88 @@ const SubscriptionForm = () => {
                     />
                 </Grid>
 
+
+                {/* 4 */}
+
+                <Grid
+                    item
+                    xs={12}>
+                    <Divider sx={{ mx: '-24px' }} />
+                    <Typography
+                        variant='h4'
+                        mt={2}>
+                        Tokenize
+                    </Typography>
+                </Grid>
+
+                <Grid
+                    item
+                    xs={12}
+                    sm={3}
+                    display='flex'
+                    alignItems='center'>
+                    <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                        Token Name
+                    </CustomFormLabel>
+                </Grid>
+                <Grid
+                    item
+                    xs={12}
+                    sm={9}>
+                    <CustomTextField
+                        id='fs-fname'
+                        placeholder='Your token name'
+                        fullWidth
+                        name='tokenName'
+                        value={input?.tokenName}
+                        onChange={handleInputChange}
+                    />
+                </Grid>
+                {/* 4 */}
+                <Grid
+                    item
+                    xs={12}
+                    sm={3}
+                    display='flex'
+                    alignItems='center'>
+                    <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                        Token Symbol
+                    </CustomFormLabel>
+                </Grid>
+                <Grid
+                    item
+                    xs={12}
+                    sm={9}>
+                    <CustomTextField
+                        placeholder='Your token symbol'
+                        fullWidth
+                        name='tokenSymbol'
+                        value={input?.tokenSymbol}
+                        onChange={handleInputChange}
+                    />
+                </Grid>
+                <Grid
+                    item
+                    xs={12}
+                    sm={3}
+                    display='flex'
+                    alignItems='center'>
+                    <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                        Token Supply
+                    </CustomFormLabel>
+                </Grid>
+                <Grid
+                    item
+                    xs={12}
+                    sm={9}>
+                    <CustomTextField
+                        placeholder='1000'
+                        fullWidth
+                        name='initialSupply'
+                        value={input?.initialSupply}
+                        onChange={handleInputChange}
+                    />
+                </Grid>
                 <Grid
                     item
                     xs={12}

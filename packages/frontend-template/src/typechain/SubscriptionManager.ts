@@ -31,68 +31,44 @@ export declare namespace SubscriptionManager {
   export type SubscriptionStruct = {
     user: PromiseOrValue<string>;
     subscription: PromiseOrValue<string>;
-    tokenId: PromiseOrValue<BigNumberish>;
-    metadata: PromiseOrValue<BytesLike>;
+    metadata: PromiseOrValue<string>;
+    flowRate: PromiseOrValue<BigNumberish>;
   };
 
-  export type SubscriptionStructOutput = [string, string, BigNumber, string] & {
+  export type SubscriptionStructOutput = [string, string, string, BigNumber] & {
     user: string;
     subscription: string;
-    tokenId: BigNumber;
     metadata: string;
+    flowRate: BigNumber;
   };
 }
 
 export interface SubscriptionManagerInterface extends utils.Interface {
   functions: {
-    "claimDebt(address,uint256)": FunctionFragment;
-    "createSubscription(address,int96,bytes32)": FunctionFragment;
+    "createSubscription(address,int96,string,string,uint256,string)": FunctionFragment;
     "getSubscriptions(address)": FunctionFragment;
-    "setDebtNFTAddress(address)": FunctionFragment;
-    "setFlowNFTAddress(address)": FunctionFragment;
-    "withdrawn(address,uint256)": FunctionFragment;
   };
 
   getFunction(
-    nameOrSignatureOrTopic:
-      | "claimDebt"
-      | "createSubscription"
-      | "getSubscriptions"
-      | "setDebtNFTAddress"
-      | "setFlowNFTAddress"
-      | "withdrawn"
+    nameOrSignatureOrTopic: "createSubscription" | "getSubscriptions"
   ): FunctionFragment;
 
-  encodeFunctionData(
-    functionFragment: "claimDebt",
-    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
-  ): string;
   encodeFunctionData(
     functionFragment: "createSubscription",
     values: [
       PromiseOrValue<string>,
       PromiseOrValue<BigNumberish>,
-      PromiseOrValue<BytesLike>
+      PromiseOrValue<string>,
+      PromiseOrValue<string>,
+      PromiseOrValue<BigNumberish>,
+      PromiseOrValue<string>
     ]
   ): string;
   encodeFunctionData(
     functionFragment: "getSubscriptions",
     values: [PromiseOrValue<string>]
   ): string;
-  encodeFunctionData(
-    functionFragment: "setDebtNFTAddress",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setFlowNFTAddress",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "withdrawn",
-    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
-  ): string;
 
-  decodeFunctionResult(functionFragment: "claimDebt", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "createSubscription",
     data: BytesLike
@@ -101,76 +77,26 @@ export interface SubscriptionManagerInterface extends utils.Interface {
     functionFragment: "getSubscriptions",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "setDebtNFTAddress",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "setFlowNFTAddress",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "withdrawn", data: BytesLike): Result;
 
   events: {
-    "DebtClaimed(uint256,address)": EventFragment;
-    "DebtMinted(uint256,address,uint256)": EventFragment;
-    "SubscriptionCreated(address,address,uint256,bytes32)": EventFragment;
-    "Withdrawn(uint256,address)": EventFragment;
+    "SubscriptionCreated(address,address,string)": EventFragment;
   };
 
-  getEvent(nameOrSignatureOrTopic: "DebtClaimed"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "DebtMinted"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "SubscriptionCreated"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "Withdrawn"): EventFragment;
 }
-
-export interface DebtClaimedEventObject {
-  amount: BigNumber;
-  user: string;
-}
-export type DebtClaimedEvent = TypedEvent<
-  [BigNumber, string],
-  DebtClaimedEventObject
->;
-
-export type DebtClaimedEventFilter = TypedEventFilter<DebtClaimedEvent>;
-
-export interface DebtMintedEventObject {
-  amount: BigNumber;
-  user: string;
-  tokenId: BigNumber;
-}
-export type DebtMintedEvent = TypedEvent<
-  [BigNumber, string, BigNumber],
-  DebtMintedEventObject
->;
-
-export type DebtMintedEventFilter = TypedEventFilter<DebtMintedEvent>;
 
 export interface SubscriptionCreatedEventObject {
   user: string;
   subscription: string;
-  tokenId: BigNumber;
   metadata: string;
 }
 export type SubscriptionCreatedEvent = TypedEvent<
-  [string, string, BigNumber, string],
+  [string, string, string],
   SubscriptionCreatedEventObject
 >;
 
 export type SubscriptionCreatedEventFilter =
   TypedEventFilter<SubscriptionCreatedEvent>;
-
-export interface WithdrawnEventObject {
-  amount: BigNumber;
-  user: string;
-}
-export type WithdrawnEvent = TypedEvent<
-  [BigNumber, string],
-  WithdrawnEventObject
->;
-
-export type WithdrawnEventFilter = TypedEventFilter<WithdrawnEvent>;
 
 export interface SubscriptionManager extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
@@ -199,16 +125,13 @@ export interface SubscriptionManager extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
-    claimDebt(
-      _subscription: PromiseOrValue<string>,
-      _amount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
     createSubscription(
       _paymentToken: PromiseOrValue<string>,
       _flowRate: PromiseOrValue<BigNumberish>,
-      metadata: PromiseOrValue<BytesLike>,
+      _name: PromiseOrValue<string>,
+      _symbol: PromiseOrValue<string>,
+      _initialSupply: PromiseOrValue<BigNumberish>,
+      metadata: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
@@ -216,34 +139,15 @@ export interface SubscriptionManager extends BaseContract {
       _user: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<[SubscriptionManager.SubscriptionStructOutput[]]>;
-
-    setDebtNFTAddress(
-      _debtNFTAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    setFlowNFTAddress(
-      _flowNFTAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    withdrawn(
-      _subscription: PromiseOrValue<string>,
-      _amount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
   };
-
-  claimDebt(
-    _subscription: PromiseOrValue<string>,
-    _amount: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
 
   createSubscription(
     _paymentToken: PromiseOrValue<string>,
     _flowRate: PromiseOrValue<BigNumberish>,
-    metadata: PromiseOrValue<BytesLike>,
+    _name: PromiseOrValue<string>,
+    _symbol: PromiseOrValue<string>,
+    _initialSupply: PromiseOrValue<BigNumberish>,
+    metadata: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -252,33 +156,14 @@ export interface SubscriptionManager extends BaseContract {
     overrides?: CallOverrides
   ): Promise<SubscriptionManager.SubscriptionStructOutput[]>;
 
-  setDebtNFTAddress(
-    _debtNFTAddress: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  setFlowNFTAddress(
-    _flowNFTAddress: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  withdrawn(
-    _subscription: PromiseOrValue<string>,
-    _amount: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
   callStatic: {
-    claimDebt(
-      _subscription: PromiseOrValue<string>,
-      _amount: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     createSubscription(
       _paymentToken: PromiseOrValue<string>,
       _flowRate: PromiseOrValue<BigNumberish>,
-      metadata: PromiseOrValue<BytesLike>,
+      _name: PromiseOrValue<string>,
+      _symbol: PromiseOrValue<string>,
+      _initialSupply: PromiseOrValue<BigNumberish>,
+      metadata: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -286,137 +171,52 @@ export interface SubscriptionManager extends BaseContract {
       _user: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<SubscriptionManager.SubscriptionStructOutput[]>;
-
-    setDebtNFTAddress(
-      _debtNFTAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    setFlowNFTAddress(
-      _flowNFTAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    withdrawn(
-      _subscription: PromiseOrValue<string>,
-      _amount: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
   };
 
   filters: {
-    "DebtClaimed(uint256,address)"(
-      amount?: PromiseOrValue<BigNumberish> | null,
-      user?: PromiseOrValue<string> | null
-    ): DebtClaimedEventFilter;
-    DebtClaimed(
-      amount?: PromiseOrValue<BigNumberish> | null,
-      user?: PromiseOrValue<string> | null
-    ): DebtClaimedEventFilter;
-
-    "DebtMinted(uint256,address,uint256)"(
-      amount?: PromiseOrValue<BigNumberish> | null,
-      user?: PromiseOrValue<string> | null,
-      tokenId?: null
-    ): DebtMintedEventFilter;
-    DebtMinted(
-      amount?: PromiseOrValue<BigNumberish> | null,
-      user?: PromiseOrValue<string> | null,
-      tokenId?: null
-    ): DebtMintedEventFilter;
-
-    "SubscriptionCreated(address,address,uint256,bytes32)"(
+    "SubscriptionCreated(address,address,string)"(
       user?: PromiseOrValue<string> | null,
       subscription?: PromiseOrValue<string> | null,
-      tokenId?: null,
       metadata?: null
     ): SubscriptionCreatedEventFilter;
     SubscriptionCreated(
       user?: PromiseOrValue<string> | null,
       subscription?: PromiseOrValue<string> | null,
-      tokenId?: null,
       metadata?: null
     ): SubscriptionCreatedEventFilter;
-
-    "Withdrawn(uint256,address)"(
-      amount?: PromiseOrValue<BigNumberish> | null,
-      user?: PromiseOrValue<string> | null
-    ): WithdrawnEventFilter;
-    Withdrawn(
-      amount?: PromiseOrValue<BigNumberish> | null,
-      user?: PromiseOrValue<string> | null
-    ): WithdrawnEventFilter;
   };
 
   estimateGas: {
-    claimDebt(
-      _subscription: PromiseOrValue<string>,
-      _amount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
     createSubscription(
       _paymentToken: PromiseOrValue<string>,
       _flowRate: PromiseOrValue<BigNumberish>,
-      metadata: PromiseOrValue<BytesLike>,
+      _name: PromiseOrValue<string>,
+      _symbol: PromiseOrValue<string>,
+      _initialSupply: PromiseOrValue<BigNumberish>,
+      metadata: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     getSubscriptions(
       _user: PromiseOrValue<string>,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    setDebtNFTAddress(
-      _debtNFTAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    setFlowNFTAddress(
-      _flowNFTAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    withdrawn(
-      _subscription: PromiseOrValue<string>,
-      _amount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    claimDebt(
-      _subscription: PromiseOrValue<string>,
-      _amount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
     createSubscription(
       _paymentToken: PromiseOrValue<string>,
       _flowRate: PromiseOrValue<BigNumberish>,
-      metadata: PromiseOrValue<BytesLike>,
+      _name: PromiseOrValue<string>,
+      _symbol: PromiseOrValue<string>,
+      _initialSupply: PromiseOrValue<BigNumberish>,
+      metadata: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     getSubscriptions(
       _user: PromiseOrValue<string>,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    setDebtNFTAddress(
-      _debtNFTAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    setFlowNFTAddress(
-      _flowNFTAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    withdrawn(
-      _subscription: PromiseOrValue<string>,
-      _amount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
   };
 }

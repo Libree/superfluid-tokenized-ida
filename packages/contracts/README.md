@@ -11,3 +11,5 @@ REPORT_GAS=true npx hardhat test
 npx hardhat node
 npx hardhat run scripts/deploy.ts
 ```
+
+Subscription Manager: 0x37856F345eFFbeFc963b9865e13C61D00Aa95F54

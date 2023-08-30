@@ -8,7 +8,7 @@ contract SubscriptionManager {
     struct Subscription {
         address user;
         address subscription;
-        bytes32 metadata;
+        string metadata;
         int96 flowRate;
     }
 
@@ -17,7 +17,7 @@ contract SubscriptionManager {
     event SubscriptionCreated(
         address indexed user,
         address indexed subscription,
-        bytes32 metadata
+        string metadata
     );
 
 
@@ -27,7 +27,7 @@ contract SubscriptionManager {
         string memory _name,
         string memory _symbol,
         uint256 _initialSupply,
-        bytes32 metadata
+        string memory metadata
     ) public {
 
         TokenizedIDA subContract = new TokenizedIDA(

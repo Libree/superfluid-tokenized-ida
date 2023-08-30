@@ -1,7 +1,5 @@
 export const DEPLOYED_CONTRACTS = {
     80001: {
-        manager: '0xfe824e143395534bdB1f4C68B5de10820f79F186',
-        flowNFT: '0xF5c4902C8219f2C5f84123aff3195c08E57257c4',
-        debtNFT: '0x9fcfe857583310e6eC3D2F04D7677cAc7374f14c'
+        manager: '0xCd3cE1133A725B7150CB243238D31160CF6F16a4'
     }
 };
