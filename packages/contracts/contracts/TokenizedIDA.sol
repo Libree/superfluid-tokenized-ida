@@ -20,12 +20,13 @@ contract TokenizedIDA is ERC20 {
         ISuperToken _spreaderToken,
         string memory _name,
         string memory _symbol,
-        uint256 _initialSupply
+        uint256 _initialSupply,
+        address _owner
     ) ERC20(_name, _symbol) {
-        _mint(msg.sender, _initialSupply * 10 ** decimals());
+        _mint(_owner, _initialSupply * 10 ** decimals());
         spreaderToken = _spreaderToken;
         _spreaderToken.createIndex(INDEX_ID);
-        _gainShare(msg.sender, _initialSupply * 10 ** decimals());
+        _gainShare(_owner, _initialSupply * 10 ** decimals());
     }
 
     function decimals() public view virtual override returns (uint8) {
