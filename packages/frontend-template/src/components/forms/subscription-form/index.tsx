@@ -65,7 +65,6 @@ const SubscriptionForm = () => {
     };
 
     const checkInputValues = (inputObject: FormData): boolean => {
-        console.log({inputObject})
         return Object.values(inputObject).every(value => value && value !== '');
     };
 
@@ -89,8 +88,6 @@ const SubscriptionForm = () => {
         };
 
         const cid = await uploadMetadata(payload, image)
-
-        console.log({cid})
 
         createSubscription(
             input.paymentSuperToken,
