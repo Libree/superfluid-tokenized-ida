@@ -12,8 +12,7 @@ import CustomTextField from '../theme-elements/CustomTextField';
 import CustomOutlinedInput from '../theme-elements/CustomOutlinedInput';
 import CustomSelect from '../theme-elements/CustomSelect';
 import { Stack } from '@mui/system';
-import { useUpload } from '../../../../hooks/useUpload';
-import { useFileEncryption } from '../../../../hooks/useFileEncryption';
+import { useSubscriptionManager } from '../../../../hooks/useSubscriptionManager';
 
 type FormData = {
     productName: string;
@@ -33,22 +32,14 @@ const defaultFormData = {
 
 const tokens = [
     {
-        value: 'fDAIx',
-        label: 'fDAIx',
-    },
-    {
-        value: 'fUSDCx',
+        value: '0xbe49ac1EadAc65dccf204D4Df81d650B50122aB2',
         label: 'fUSDCx',
-    },
-    {
-        value: 'MATICx',
-        label: 'MATICx',
-    },
+    }
 ];
 
 const SubscriptionForm = () => {
     const [input, setInput] = useState<FormData>(defaultFormData);
-    const { encryptUploadIPFS } = useFileEncryption();
+    const { createSubscription } = useSubscriptionManager()
 
     const handleInputChange = (event: any) => {
         setInput({
@@ -65,16 +56,7 @@ const SubscriptionForm = () => {
         const isValid = checkInputValues(input);
         if (!isValid) return;
 
-        // upload img to IPFS
-        const uploadedFile = await encryptUploadIPFS(input.productImg);
-
-        //upload json to IPFS
-        const payload = {
-            name: input.productName,
-            description: input.productDescription,
-            image: uploadedFile?.cid,
-        };
-        console.log('payload: ', payload);
+        createSubscription(input.paymentSuperToken, Number(input.paymentFlowRate), "")
 
     };
 
