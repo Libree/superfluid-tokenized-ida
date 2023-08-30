@@ -1,13 +1,11 @@
 import { useAccount, useNetwork, useContractRead, useContractWrite, useWaitForTransaction } from "wagmi";
 import { SubscriptionManager__factory } from "../src/typechain/SubscriptionManager__factory";
 import { DEPLOYED_CONTRACTS } from "../src/utils/constants/contracts";
-import { ethers } from 'ethers';
 
 export function useSubscriptionManager() {
 
     const { address } = useAccount();
     const { chain } = useNetwork()
-
     const {
         data: subscriptions,
         isError: isErrorSubscriptions,
