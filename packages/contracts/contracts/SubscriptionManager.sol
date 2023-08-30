@@ -24,7 +24,7 @@ contract SubscriptionManager {
     function createSubscription(
         ISuperToken _paymentToken,
         int96 _flowRate,
-                string memory _name,
+        string memory _name,
         string memory _symbol,
         uint256 _initialSupply,
         bytes32 metadata
