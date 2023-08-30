@@ -12,8 +12,7 @@ import CustomTextField from '../theme-elements/CustomTextField';
 import CustomOutlinedInput from '../theme-elements/CustomOutlinedInput';
 import CustomSelect from '../theme-elements/CustomSelect';
 import { Stack } from '@mui/system';
-import { useUpload } from '../../../../hooks/useUpload';
-import { useFileEncryption } from '../../../../hooks/useFileEncryption';
+import { useWeb3Storage } from '../../../../hooks/useWeb3Storage';
 
 type FormData = {
     productName: string;
@@ -30,6 +29,12 @@ const defaultFormData = {
     paymentSuperToken: '',
     paymentFlowRate: '',
 };
+
+export type PayloadMetadata = {
+    name: string;
+    description: string;
+    image: string;
+}
 
 const tokens = [
     {
@@ -48,7 +53,8 @@ const tokens = [
 
 const SubscriptionForm = () => {
     const [input, setInput] = useState<FormData>(defaultFormData);
-    const { encryptUploadIPFS } = useFileEncryption();
+    const [image, setImage] = useState<File>()
+    const {uploadMetadata} = useWeb3Storage()
 
     const handleInputChange = (event: any) => {
         setInput({
@@ -61,20 +67,27 @@ const SubscriptionForm = () => {
         return Object.values(inputObject).every(value => value && value !== '');
     };
 
+
+    const handleImageChange = (event: any) => {
+        setImage(event.target.files[0]);
+        setInput({
+            ...input,
+            [event.target.name]: event.target.value,
+        });
+    };
+
     const handleSubmitForm = async () => {
         const isValid = checkInputValues(input);
         if (!isValid) return;
 
-        // upload img to IPFS
-        const uploadedFile = await encryptUploadIPFS(input.productImg);
-
-        //upload json to IPFS
         const payload = {
             name: input.productName,
             description: input.productDescription,
-            image: uploadedFile?.cid,
+            image: "",
         };
-        console.log('payload: ', payload);
+
+        // upload data
+        const cid = await uploadMetadata(payload, image)
 
     };
 
@@ -157,7 +170,7 @@ const SubscriptionForm = () => {
                     <CustomTextField
                         name='productImg'
                         value={input?.productImg}
-                        onChange={handleInputChange}
+                        onChange={handleImageChange}
                         type='file'
                         fullWidth
                     />
