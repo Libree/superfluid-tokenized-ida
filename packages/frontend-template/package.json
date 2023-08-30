@@ -21,6 +21,7 @@
     "@mui/material": "5.11.10",
     "@mui/x-date-pickers": "^5.0.15",
     "@next/font": "latest",
+    "@react-spring/web": "^9.7.3",
     "@reduxjs/toolkit": "^1.9.1",
     "@spheron/browser-upload": "^1.0.5",
     "@spheron/storage": "^1.0.19",

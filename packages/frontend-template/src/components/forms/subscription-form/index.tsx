@@ -14,6 +14,8 @@ import CustomSelect from '../theme-elements/CustomSelect';
 import { Stack } from '@mui/system';
 import { useWeb3Storage } from '../../../../hooks/useWeb3Storage';
 import { useSubscriptionManager } from '../../../../hooks/useSubscriptionManager';
+import { useGlobalModalContext } from '../../../../context/globalModals';
+import HandleTxModal from '../../modals/handle-tx';
 
 type FormData = {
     productName: string;
@@ -48,8 +50,15 @@ const SubscriptionForm = () => {
     const [input, setInput] = useState<FormData>(defaultFormData);
     const [image, setImage] = useState<File>()
     const {uploadMetadata} = useWeb3Storage()
-
     const { createSubscription } = useSubscriptionManager()
+
+    const [txHash, setTxHash] = useState('')
+    const [isHandleTxOpen, setIsHandleTxOpen] = useState(false);
+    const handleOpenHandleTx = (hash: string) => {
+        setTxHash(hash)
+        setIsHandleTxOpen(true)
+    };
+    const handleCloseHandleTx = () => setIsHandleTxOpen(false);
 
     const handleInputChange = (event: any) => {
         setInput({
@@ -85,6 +94,7 @@ const SubscriptionForm = () => {
         
         createSubscription(input.paymentSuperToken, Number(input.paymentFlowRate), "")
 
+        handleOpenHandleTx('');
     };
 
     return (
@@ -272,6 +282,11 @@ const SubscriptionForm = () => {
                     </Stack>
                 </Grid>
             </Grid>
+            <HandleTxModal
+                isOpen={isHandleTxOpen}
+                handleClose={handleCloseHandleTx}
+                txHash={txHash as `0x${string}`}
+            />
         </div>
     );
 };
