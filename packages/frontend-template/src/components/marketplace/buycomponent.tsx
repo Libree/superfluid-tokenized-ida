@@ -2,7 +2,7 @@ import React from 'react';
 import {
  Box,
  IconButton,
- Stack,
+ Button,
  Table,
  TableBody,
  TableCell,
@@ -10,8 +10,9 @@ import {
  TableHead,
  TableRow,
  Typography,
+ Popover,
+ TextField,
 } from '@mui/material';
-import BlogCard from '../apps/blog/BlogCard';
 import ParentCard from '../shared/ParentCard';
 import BlankCard from '../shared/BlankCard';
 import { IconShoppingCart } from '@tabler/icons-react';
@@ -19,6 +20,26 @@ import { OpenOffersType, OpenOffersData } from '../tables/tableData';
 
 const BuyComponent = () => {
  const mockData: OpenOffersType[] = OpenOffersData;
+
+ const [anchorEl, setAnchorEl] = React.useState(null);
+ const [amount, setAmount] = React.useState(0);
+
+ const handleBuyClick = (event: any) => {
+  if (open) handleBuyClose();
+  else setAnchorEl(event.currentTarget);
+ };
+
+ const handleBuyClose = () => {
+  setAnchorEl(null);
+ };
+
+ const handleAmountChange = (event: any) => {
+  const newValue = Math.max(0, parseInt(event.target.value));
+  setAmount(newValue);
+ };
+
+ const open = Boolean(anchorEl);
+ const id = open ? 'buy-modal' : undefined;
 
  return (
   <Box>
@@ -59,7 +80,7 @@ const BuyComponent = () => {
            <Typography variant='body2'>{item.total}</Typography>
           </TableCell>
           <TableCell>
-           <IconButton>
+           <IconButton onClick={(event) => handleBuyClick(event)}>
             <IconShoppingCart />
            </IconButton>
           </TableCell>
@@ -68,6 +89,39 @@ const BuyComponent = () => {
        </TableBody>
       </Table>
      </TableContainer>
+     <Popover
+      id={id}
+      open={open}
+      anchorEl={anchorEl}
+      onClose={handleBuyClose}
+      anchorOrigin={{
+       vertical: 'bottom',
+       horizontal: 'left',
+      }}>
+      <Box
+       p={2}
+       gap={2}
+       display='flex'
+       flexDirection='column'>
+       <Typography
+        variant='h6'
+        mb='1 rem'>
+        Amount
+       </Typography>
+       <TextField
+        size='small'
+        type='number'
+        inputProps={{
+         min: 0,
+         step: 1,
+        }}
+        value={amount}
+        onChange={handleAmountChange}
+        style={{ maxWidth: '100px' }}
+       />
+       <Button>Buy</Button>
+      </Box>
+     </Popover>
     </BlankCard>
    </ParentCard>
   </Box>
