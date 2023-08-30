@@ -12,6 +12,7 @@ import CustomTextField from '../theme-elements/CustomTextField';
 import CustomOutlinedInput from '../theme-elements/CustomOutlinedInput';
 import CustomSelect from '../theme-elements/CustomSelect';
 import { Stack } from '@mui/system';
+import { useWeb3Storage } from '../../../../hooks/useWeb3Storage';
 import { useSubscriptionManager } from '../../../../hooks/useSubscriptionManager';
 
 type FormData = {
@@ -30,6 +31,12 @@ const defaultFormData = {
     paymentFlowRate: '',
 };
 
+export type PayloadMetadata = {
+    name: string;
+    description: string;
+    image: string;
+}
+
 const tokens = [
     {
         value: '0xbe49ac1EadAc65dccf204D4Df81d650B50122aB2',
@@ -39,6 +46,9 @@ const tokens = [
 
 const SubscriptionForm = () => {
     const [input, setInput] = useState<FormData>(defaultFormData);
+    const [image, setImage] = useState<File>()
+    const {uploadMetadata} = useWeb3Storage()
+
     const { createSubscription } = useSubscriptionManager()
 
     const handleInputChange = (event: any) => {
@@ -52,10 +62,27 @@ const SubscriptionForm = () => {
         return Object.values(inputObject).every(value => value && value !== '');
     };
 
+
+    const handleImageChange = (event: any) => {
+        setImage(event.target.files[0]);
+        setInput({
+            ...input,
+            [event.target.name]: event.target.value,
+        });
+    };
+
     const handleSubmitForm = async () => {
         const isValid = checkInputValues(input);
         if (!isValid) return;
 
+        const payload = {
+            name: input.productName,
+            description: input.productDescription,
+            image: "",
+        };
+
+        const cid = await uploadMetadata(payload, image)
+        
         createSubscription(input.paymentSuperToken, Number(input.paymentFlowRate), "")
 
     };
@@ -139,7 +166,7 @@ const SubscriptionForm = () => {
                     <CustomTextField
                         name='productImg'
                         value={input?.productImg}
-                        onChange={handleInputChange}
+                        onChange={handleImageChange}
                         type='file'
                         fullWidth
                     />
