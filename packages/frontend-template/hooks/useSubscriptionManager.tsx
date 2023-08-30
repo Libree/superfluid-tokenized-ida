@@ -1,7 +1,7 @@
 import { useAccount, useNetwork, useContractRead, useContractWrite, useWaitForTransaction } from "wagmi";
 import { SubscriptionManager__factory } from "../src/typechain/SubscriptionManager__factory";
 import { DEPLOYED_CONTRACTS } from "../src/utils/constants/contracts";
-import {ethers} from 'ethers';
+import { ethers } from 'ethers';
 
 export function useSubscriptionManager() {
 
@@ -36,8 +36,35 @@ export function useSubscriptionManager() {
         hash: create?.hash,
     });
 
-    const createSubscription = (paymentToken: string, flowRate: number, metadata: string) => {
-        createSubscriptionTx({ args: [paymentToken, flowRate, ethers.utils.formatBytes32String(metadata)] })
+    const createSubscription = (
+        paymentToken: string,
+        flowRate: number,
+        tokenName: string,
+        tokenSymbol: string,
+        initialSupply: number,
+        metadata: string
+    ) => {
+
+        console.log(
+            {
+                paymentToken,
+                flowRate,
+                tokenName,
+                tokenSymbol,
+                initialSupply,
+                metadata
+            }
+        )
+        createSubscriptionTx({
+            args: [
+                paymentToken,
+                flowRate,
+                tokenName,
+                tokenSymbol,
+                initialSupply,
+                metadata
+            ]
+        })
     }
 
     return {
