@@ -44,17 +44,6 @@ export function useSubscriptionManager() {
         initialSupply: number,
         metadata: string
     ) => {
-
-        console.log(
-            {
-                paymentToken,
-                flowRate,
-                tokenName,
-                tokenSymbol,
-                initialSupply,
-                metadata
-            }
-        )
         createSubscriptionTx({
             args: [
                 paymentToken,
