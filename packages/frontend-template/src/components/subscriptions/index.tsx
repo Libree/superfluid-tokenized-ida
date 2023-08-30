@@ -7,43 +7,41 @@ import SubscriptionCard from './subscriptionCard';
 import { useSubscriptionManager } from '../../../hooks/useSubscriptionManager';
 
 const SubscriptionsComponent = () => {
- const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
- useEffect(() => {
-  dispatch(fetchBlogPosts());
- }, [dispatch]);
+    useEffect(() => {
+        dispatch(fetchBlogPosts());
+    }, [dispatch]);
 
- const blogPosts = useSelector((state) => state.blogReducer.blogposts);
+    const { subscriptions } = useSubscriptionManager()
 
- const {subscriptions} = useSubscriptionManager()
-
- return (
-  <Box>
-   <Link href='/creators/subscriptions/createSubscription'>
-    <Button
-     sx={{
-      height: '3rem',
-      marginBottom: '2rem',
-      borderRadius: 2,
-      fontSize: '1rem',
-     }}>
-     Create new subscription
-    </Button>
-   </Link>
-   <Grid
-    container
-    spacing={3}>
-    {blogPosts?.map((subscription) => {
-     return (
-      <SubscriptionCard
-       post={subscription}
-       key={subscription.id}
-      />
-     );
-    })}
-   </Grid>
-  </Box>
- );
+    return (
+        <Box>
+            <Link href='/creators/subscriptions/createSubscription'>
+                <Button
+                    sx={{
+                        height: '3rem',
+                        marginBottom: '2rem',
+                        borderRadius: 2,
+                        fontSize: '1rem',
+                    }}>
+                    Create new subscription
+                </Button>
+            </Link>
+            <Grid
+                container
+                spacing={3}>
+                {subscriptions?.map((subscription) => {
+                    return (
+                        <SubscriptionCard
+                            sub={subscription}
+                            key={subscription.name}
+                        />
+                    );
+                })}
+            </Grid>
+        </Box>
+    );
 };
 
 export default SubscriptionsComponent;
