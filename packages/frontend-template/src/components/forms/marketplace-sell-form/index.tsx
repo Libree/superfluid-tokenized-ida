@@ -19,6 +19,7 @@ import { useSubscriptionManager } from '../../../../hooks/useSubscriptionManager
 import CustomSlider from '../theme-elements/CustomSlider';
 import CustomSelect from '../theme-elements/CustomSelect';
 import { useTokenizedIDA } from '../../../../hooks/useTokenizedIDA';
+import { useMarketplace } from '../../../../hooks/useMarketplace';
 
 const steps = ['Mint Debt NFT', 'List NFT for sale'];
 
@@ -27,6 +28,7 @@ const MarketplaceSellForm = () => {
   const [skipped, setSkipped] = React.useState(new Set());
 
   const { subscriptions } = useSubscriptionManager()
+  const {sellOrder} = useMarketplace()
 
   type FormData = {
     subscription: string;
@@ -57,14 +59,14 @@ const MarketplaceSellForm = () => {
     const { tokenSymbol, tokenName } = useTokenizedIDA({ address: subscription })
 
     return {
-      key: tokenSymbol,
+      key: subscription,
       value: tokenName
     }
 
   })
 
   const handleSell = () => {
-    console.log(input)
+    sellOrder(input.subscription, input.tokenAmount, input.tokenPrice)
   };
 
   const handleSkip = () => {
@@ -101,7 +103,7 @@ const MarketplaceSellForm = () => {
                 <MenuItem
                 id='subscription'
                   key={sub.key}
-                  value={sub.value}>
+                  value={sub.key}>
                   {sub.value}
                 </MenuItem>
               ))}
