@@ -9,7 +9,7 @@ const modalContentStyle = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 500,
-    minHeight: 100,
+    minHeight: '10rem',
     bgcolor: 'black',
     border: '2px solid #000',
     borderRadius: '1rem',
@@ -62,7 +62,7 @@ export const HandleTxModal = ({
                     <Typography variant="h6" component="h2">
                         Approve transaction in your wallet
                     </Typography>
-                    <Box sx={{ marginY: '1rem' }}>
+                    <Box sx={{ marginTop: '1rem' }}>
                         <CircularProgress />
                     </Box>
                 </>
@@ -89,7 +89,7 @@ export const HandleTxModal = ({
                     <Typography variant="h6" component="h2">
                         {isSuccess ? "Subscription created succesfully!" : "An error occured executing the tx"}
                     </Typography>
-                    <Divider sx={{ marginY: '0.3rem' }} />
+                    <Divider sx={{ marginY: '0.8rem' }} />
                     <Button onClick={redirectToSubs}>
                         Accept
                     </Button>
@@ -115,7 +115,7 @@ export const HandleTxModal = ({
 
     return (
         <>
-            <Modal open={isHandleTxOpen} onClose={handleCloseModal}>
+            <Modal open={true} onClose={handleCloseModal}>
                 <Box sx={modalContentStyle}>
                     {modalContent}
                 </Box>
