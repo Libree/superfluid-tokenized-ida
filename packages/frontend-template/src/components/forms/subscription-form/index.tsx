@@ -6,7 +6,7 @@ import {
     Divider,
     MenuItem,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import CustomFormLabel from '../theme-elements/CustomFormLabel';
 import CustomTextField from '../theme-elements/CustomTextField';
 import CustomOutlinedInput from '../theme-elements/CustomOutlinedInput';
@@ -14,6 +14,8 @@ import CustomSelect from '../theme-elements/CustomSelect';
 import { Stack } from '@mui/system';
 import { useWeb3Storage } from '../../../../hooks/useWeb3Storage';
 import { useSubscriptionManager } from '../../../../hooks/useSubscriptionManager';
+import { useGlobalModalsContext } from '../../../context/globalModals';
+import { HandleTxModal } from '../../modals/handle-tx';
 
 type FormData = {
     productName: string;
@@ -54,8 +56,14 @@ const SubscriptionForm = () => {
     const [input, setInput] = useState<FormData>(defaultFormData);
     const [image, setImage] = useState<File>()
     const { uploadMetadata } = useWeb3Storage()
-
-    const { createSubscription } = useSubscriptionManager()
+    const { open: openTxModal } = useGlobalModalsContext();
+    const {
+        createSubscription,
+        isCreateStarted,
+        isCreateLoading,
+        txCreateError,
+        txCreateSuccess,
+    } = useSubscriptionManager();
 
     const handleInputChange = (event: any) => {
         setInput({
@@ -88,6 +96,8 @@ const SubscriptionForm = () => {
         };
 
         const cid = await uploadMetadata(payload, image)
+        
+        openTxModal();
 
         createSubscription(
             input.paymentSuperToken,
@@ -97,7 +107,7 @@ const SubscriptionForm = () => {
              Number(input.initialSupply),
              cid
         )
-
+        
     };
 
     return (
@@ -367,6 +377,13 @@ const SubscriptionForm = () => {
                     </Stack>
                 </Grid>
             </Grid>
+
+            <HandleTxModal
+                isStarted={isCreateStarted}
+                isLoading={isCreateLoading}
+                isError={!!txCreateError}
+                isSuccess={txCreateSuccess}
+            />
         </div>
     );
 };

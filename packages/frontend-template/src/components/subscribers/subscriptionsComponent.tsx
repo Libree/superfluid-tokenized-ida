@@ -10,7 +10,8 @@ const SubscriptionsComponent = () => {
         <Box>
             <Grid
                 container
-                spacing={3}>
+                spacing={3}
+            >
                 {subscriptions?.map((subscription) => {
                     return (
                         <SubscriptionCard

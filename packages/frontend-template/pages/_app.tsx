@@ -16,6 +16,7 @@ import { AppState } from '../src/store/Store';
 import NextNProgress from 'nextjs-progressbar';
 import BlankLayout from '../src/layouts/blank/BlankLayout';
 import FullLayout from '../src/layouts/full/FullLayout';
+import { GlobalModalsProvider } from '../src/context/globalModals';
 
 import '../src/_mockApis';
 import '../src/utils/i18n';
@@ -35,8 +36,6 @@ import {
     wagmiConfig,
 } from '../config/wallet.config';
 import { Web3Modal } from '@web3modal/react';
-import { GlobalModalsProvider } from '../src/context/globalModals';
-import { HandleTxModal } from '../src/components/modals/handle-tx';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -109,7 +108,6 @@ export default (props: MyAppProps) => (
                 projectId={projectId}
                 ethereumClient={ethereumClient}
             />
-            <HandleTxModal />
         </GlobalModalsProvider>
     </Provider>
 );

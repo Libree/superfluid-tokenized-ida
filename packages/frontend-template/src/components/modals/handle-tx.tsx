@@ -1,4 +1,4 @@
-import { Box, Modal, Typography } from "@mui/material";
+import { Box, CircularProgress, Modal, Typography } from "@mui/material";
 import { useGlobalModalsContext } from "../../context/globalModals";
 
 const modalContentStyle = {
@@ -14,7 +14,19 @@ const modalContentStyle = {
     p: 4,
 }
 
-export const HandleTxModal = () => {
+type HandleTxModalProps = {
+    isLoading: boolean;
+    isStarted?: boolean;
+    isSuccess: boolean;
+    isError: boolean;
+}
+
+export const HandleTxModal = ({
+    isLoading,
+    isStarted,
+    isSuccess,
+    isError,
+}: HandleTxModalProps) => {
     const { isHandleTxOpen, close } = useGlobalModalsContext();
 
     return (
@@ -23,12 +35,35 @@ export const HandleTxModal = () => {
                 open={isHandleTxOpen}
                 onClose={() => close()}
             >
-                <Box
-                    sx={modalContentStyle}
-                >
-                    <Typography variant="h6" component="h2">
-                        Tx should be approved
-                    </Typography>
+                <Box sx={modalContentStyle}>
+                    {!isStarted && (
+                        <Typography variant="h6" component="h2">
+                            Tx should be approved
+                        </Typography>
+                    )}
+                    {isLoading && (
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                width: '100%',
+                                height: '100%',
+                            }}
+                        >
+                            <CircularProgress />
+                        </Box>
+                    )}
+                    {isSuccess && (
+                        <Typography variant="h6" component="h2">
+                            Success tx
+                        </Typography>
+                    )}
+                    {isError && (
+                        <Typography variant="h6" component="h2">
+                            An error occured executing the tx
+                        </Typography>
+                    )}
                 </Box>
             </Modal>
         </>
