@@ -25,7 +25,7 @@ const BuyComponent = () => {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [amount, setAmount] = useState(0);
-    const [order, setOrder] = useState()
+    const [order, setOrder] = useState<any>()
     const {
         buyOrder,
         isbuyLoading,
@@ -101,7 +101,7 @@ const BuyComponent = () => {
                                 </TableHead>
                                 <TableBody>
                                     {subsData.map((item, index) => (
-                                        <TableRow key={item.index}>
+                                        <TableRow key={`${item.address}-${index}`}>
                                             <TableCell>
                                                 <Typography variant='body2'>{item.name}</Typography>
                                             </TableCell>
