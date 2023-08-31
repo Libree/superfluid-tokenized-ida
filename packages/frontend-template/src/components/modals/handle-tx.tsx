@@ -1,7 +1,7 @@
 import { Box, Button, CircularProgress, Divider, Modal, Typography } from "@mui/material";
 import { useGlobalModalsContext } from "../../context/globalModals";
-import Link from "next/link";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
+import { useRouter } from "next/router";
 
 const modalContentStyle = {
     position: 'absolute' as 'absolute',
@@ -9,6 +9,7 @@ const modalContentStyle = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 500,
+    minHeight: 100,
     bgcolor: 'black',
     border: '2px solid #000',
     borderRadius: '1rem',
@@ -33,11 +34,22 @@ export const HandleTxModal = ({
     isSuccess,
     isError,
 }: HandleTxModalProps) => {
+    const router = useRouter();
     const { isHandleTxOpen, close } = useGlobalModalsContext();
 
     const defaultState = useMemo(() => {
         return isLoading || isStarted ? false : true;
     }, [isLoading, isStarted])
+
+    const redirectToSubs = () => {
+        router.push('/creators/subscriptions');
+    };
+
+    const handleCloseModal = () => {
+        if (defaultState || isLoading) return;
+        close();
+        redirectToSubs();
+    };
 
     let modalContent = null;
 
@@ -48,6 +60,13 @@ export const HandleTxModal = ({
                     <Typography variant="h6" component="h2">
                         Tx should be approved
                     </Typography>
+                    <Box
+                        sx={{
+                            marginY: '1rem',
+                        }}
+                    >
+                        <CircularProgress />
+                    </Box>
                 </>
             );
             break;
@@ -73,10 +92,7 @@ export const HandleTxModal = ({
                         {isSuccess ? "Success tx" : "An error occured executing the tx"}
                     </Typography>
                     <Divider sx={{ marginY: '0.3rem' }} />
-                    <Button
-                        component={Link}
-                        href={`/creators/subscriptions}`}
-                    >
+                    <Button onClick={redirectToSubs}>
                         Accept
                     </Button>
                 </>
@@ -101,7 +117,7 @@ export const HandleTxModal = ({
 
     return (
         <>
-            <Modal open={isHandleTxOpen} onClose={() => close()}>
+            <Modal open={isHandleTxOpen} onClose={handleCloseModal}>
                 <Box sx={modalContentStyle}>
                     {modalContent}
                 </Box>
