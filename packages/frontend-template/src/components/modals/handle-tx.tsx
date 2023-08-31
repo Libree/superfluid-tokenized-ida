@@ -58,13 +58,9 @@ export const HandleTxModal = ({
             modalContent = (
                 <>
                     <Typography variant="h6" component="h2">
-                        Tx should be approved
+                        Approve transaction in your wallet
                     </Typography>
-                    <Box
-                        sx={{
-                            marginY: '1rem',
-                        }}
-                    >
+                    <Box sx={{ marginY: '1rem' }}>
                         <CircularProgress />
                     </Box>
                 </>
@@ -89,7 +85,7 @@ export const HandleTxModal = ({
             modalContent = (
                 <>
                     <Typography variant="h6" component="h2">
-                        {isSuccess ? "Success tx" : "An error occured executing the tx"}
+                        {isSuccess ? "Subscription created succesfully!" : "An error occured executing the tx"}
                     </Typography>
                     <Divider sx={{ marginY: '0.3rem' }} />
                     <Button onClick={redirectToSubs}>
