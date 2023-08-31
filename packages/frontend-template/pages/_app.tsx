@@ -35,6 +35,7 @@ import {
  wagmiConfig,
 } from '../config/wallet.config';
 import { Web3Modal } from '@web3modal/react';
+import { GlobalModalsProvider } from '../src/context/globalModals';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -64,35 +65,38 @@ const MyApp = (props: MyAppProps) => {
  return (
   <WagmiConfig config={wagmiConfig}>
    <CacheProvider value={emotionCache}>
-    <Head>
-     <meta
-      name='viewport'
-      content='initial-scale=1, width=device-width'
-     />
-     <title>Libree flow</title>
-    </Head>
-    <NextNProgress color='#5D87FF' />
-    <ThemeProvider theme={theme}>
-     <RTL direction={customizer.activeDir}>
-      <CssBaseline />
-      {loading ? (
-       <Layout>
-        <Component {...pageProps} />
-       </Layout>
-      ) : (
-       <Box
-        sx={{
-         display: 'flex',
-         justifyContent: 'center',
-         alignItems: 'center',
-         width: '100%',
-         height: '100vh',
-        }}>
-        <CircularProgress />
-       </Box>
-      )}
-     </RTL>
-    </ThemeProvider>
+    <GlobalModalsProvider>
+        <Head>
+            <meta
+                name='viewport'
+                content='initial-scale=1, width=device-width'
+            />
+            <title>Libree flow</title>
+        </Head>
+        <NextNProgress color='#5D87FF' />
+        <ThemeProvider theme={theme}>
+            <RTL direction={customizer.activeDir}>
+                <CssBaseline />
+                {loading ? (
+                    <Layout>
+                        <Component {...pageProps} />
+                    </Layout>
+                ) : (
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                        alignItems: 'center',
+                        width: '100%',
+                        height: '100vh',
+                        }}
+                    >
+                        <CircularProgress />
+                    </Box>
+                )}
+            </RTL>
+        </ThemeProvider>
+    </GlobalModalsProvider>
    </CacheProvider>
   </WagmiConfig>
  );
