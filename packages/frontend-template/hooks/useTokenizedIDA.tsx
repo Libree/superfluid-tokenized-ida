@@ -3,8 +3,6 @@ import { TokenizedIDA__factory } from "../src/typechain/TokenizedIDA__factory";
 
 export function useTokenizedIDA({ address }) {
 
-    console.log(address)
-
     const {
         data: tokenSymbol
     } = useContractRead({
