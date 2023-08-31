@@ -20,7 +20,7 @@ export const HandleTxModal = () => {
     return (
         <>
             <Modal
-                open={isHandleTxOpen || false}
+                open={isHandleTxOpen}
                 onClose={() => close()}
             >
                 <Box
