@@ -3,31 +3,33 @@ import { Box, Grid, Button } from '@mui/material';
 import { useSelector, useDispatch } from '../../store/Store';
 import { fetchBlogPosts } from '../../store/apps/blog/BlogSlice';
 import SubscriptionCard from '../subscriptions/subscriptionCard';
+import { useSubscriptionManager } from '../../../hooks/useSubscriptionManager';
 
 const SubscriptionsComponent = () => {
- const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
- useEffect(() => {
-  dispatch(fetchBlogPosts());
- }, [dispatch]);
+    useEffect(() => {
+        dispatch(fetchBlogPosts());
+    }, [dispatch]);
 
- const blogPosts = useSelector((state) => state.blogReducer.blogposts);
- return (
-  <Box>
-   <Grid
-    container
-    spacing={3}>
-    {blogPosts?.map((subscription) => {
-     return (
-      <SubscriptionCard
-       post={subscription}
-       key={subscription.id}
-      />
-     );
-    })}
-   </Grid>
-  </Box>
- );
+    const { subscriptions } = useSubscriptionManager()
+
+    return (
+        <Box>
+            <Grid
+                container
+                spacing={3}>
+                {subscriptions?.map((subscription) => {
+                    return (
+                        <SubscriptionCard
+                            sub={subscription}
+                            key={subscription.name}
+                        />
+                    );
+                })}
+            </Grid>
+        </Box>
+    );
 };
 
 export default SubscriptionsComponent;

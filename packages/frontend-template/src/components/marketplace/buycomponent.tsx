@@ -57,10 +57,10 @@ const BuyComponent = () => {
           <Typography variant='h6'>Name</Typography>
          </TableCell>
          <TableCell>
-          <Typography variant='h6'>Price</Typography>
+          <Typography variant='h6'>Price per Token</Typography>
          </TableCell>
          <TableCell>
-          <Typography variant='h6'>Total</Typography>
+          <Typography variant='h6'>Amount of tokens</Typography>
          </TableCell>
          <TableCell>
           <Typography variant='h6'>Buy</Typography>
