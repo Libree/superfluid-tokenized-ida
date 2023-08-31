@@ -6,7 +6,7 @@ import {
     Divider,
     MenuItem,
 } from '@mui/material';
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import CustomFormLabel from '../theme-elements/CustomFormLabel';
 import CustomTextField from '../theme-elements/CustomTextField';
 import CustomOutlinedInput from '../theme-elements/CustomOutlinedInput';
@@ -89,23 +89,22 @@ const SubscriptionForm = () => {
         const isValid = checkInputValues(input);
         if (!isValid) return;
 
+        openTxModal();
+
         const payload = {
             name: input.productName,
             description: input.productDescription,
             image: "",
         };
-
         const cid = await uploadMetadata(payload, image)
-        
-        openTxModal();
 
         createSubscription(
             input.paymentSuperToken,
-             Number(input.paymentFlowRate), 
-             input.tokenName,
-             input.tokenSymbol,
-             Number(input.initialSupply),
-             cid
+            Number(input.paymentFlowRate), 
+            input.tokenName,
+            input.tokenSymbol,
+            Number(input.initialSupply),
+            cid
         )
         
     };
