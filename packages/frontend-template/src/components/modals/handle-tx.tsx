@@ -115,7 +115,7 @@ export const HandleTxModal = ({
 
     return (
         <>
-            <Modal open={true} onClose={handleCloseModal}>
+            <Modal open={isHandleTxOpen} onClose={handleCloseModal}>
                 <Box sx={modalContentStyle}>
                     {modalContent}
                 </Box>
