@@ -1,6 +1,6 @@
 import { useAccount, useNetwork, useContractRead, useContractWrite, useWaitForTransaction } from "wagmi";
-import { SubscriptionManager__factory } from "../src/typechain/SubscriptionManager__factory";
-import { DEPLOYED_CONTRACTS } from "../src/utils/constants/contracts";
+import { SubscriptionManager__factory } from "../typechain/SubscriptionManager__factory";
+import { DEPLOYED_CONTRACTS } from "../utils/constants/contracts";
 
 export function useSubscriptionManager() {
 

@@ -12,8 +12,9 @@ import CustomTextField from '../theme-elements/CustomTextField';
 import CustomOutlinedInput from '../theme-elements/CustomOutlinedInput';
 import CustomSelect from '../theme-elements/CustomSelect';
 import { Stack } from '@mui/system';
-import { useWeb3Storage } from '../../../../hooks/useWeb3Storage';
-import { useSubscriptionManager } from '../../../../hooks/useSubscriptionManager';
+import { useWeb3Storage } from '../../../hooks/useWeb3Storage';
+import { useSubscriptionManager } from '../../../hooks/useSubscriptionManager';
+import { useGlobalModalContext } from '../../../context/globalModals';
 
 type FormData = {
     productName: string;
@@ -55,6 +56,7 @@ const SubscriptionForm = () => {
     const [image, setImage] = useState<File>()
     const { uploadMetadata } = useWeb3Storage()
 
+    const { open } = useGlobalModalContext();
     const { createSubscription } = useSubscriptionManager()
 
     const handleInputChange = (event: any) => {
@@ -97,6 +99,8 @@ const SubscriptionForm = () => {
              Number(input.initialSupply),
              cid
         )
+
+        open();
 
     };
 

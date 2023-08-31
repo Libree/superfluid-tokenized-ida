@@ -1,7 +1,7 @@
 import { ApolloClient, NormalizedCacheObject, InMemoryCache } from '@apollo/client';
 import { useAccount } from "wagmi";
-import { SUPERFLUID_STREAMS } from '../src/utils/constants/query';
-import { SUBGRAPH_SUPERFLUID_API_URL } from '../src/utils/constants/api';
+import { SUPERFLUID_STREAMS } from '../utils/constants/query';
+import { SUBGRAPH_SUPERFLUID_API_URL } from '../utils/constants/api';
 import { useEffect, useState } from 'react';
 
 export async function useSuperfluidData() {

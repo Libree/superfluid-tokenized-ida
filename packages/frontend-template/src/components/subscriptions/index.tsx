@@ -4,7 +4,7 @@ import { Box, Grid, Button } from '@mui/material';
 import { useSelector, useDispatch } from '../../store/Store';
 import { fetchBlogPosts } from '../../store/apps/blog/BlogSlice';
 import SubscriptionCard from './subscriptionCard';
-import { useSubscriptionManager } from '../../../hooks/useSubscriptionManager';
+import { useSubscriptionManager } from '../../hooks/useSubscriptionManager';
 
 const SubscriptionsComponent = () => {
     const dispatch = useDispatch();

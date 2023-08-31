@@ -69,6 +69,9 @@ const FullLayout: React.FC<Props> = ({ children }) => {
           <Box sx={{ minHeight: "calc(100vh - 170px)" }}>
             {/* <Outlet /> */}
             {children}
+
+            {/* Modals */}
+
             {/* <Index /> */}
           </Box>
 

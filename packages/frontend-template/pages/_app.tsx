@@ -33,7 +33,7 @@ import {
  ethereumClient,
  projectId,
  wagmiConfig,
-} from '../config/wallet.config';
+} from '../src/config/wallet.config';
 import { Web3Modal } from '@web3modal/react';
 
 // Client-side cache, shared for the whole session of the user in the browser.

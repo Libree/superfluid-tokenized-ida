@@ -1,5 +1,5 @@
-import { PayloadMetadata } from "../src/components/forms/subscription-form";
-import { WEB3STORAGE_TOKEN } from "../src/utils/constants/api";
+import { PayloadMetadata } from "../components/forms/subscription-form";
+import { WEB3STORAGE_TOKEN } from "../utils/constants/api";
 import { Web3Storage } from 'web3.storage'
 
 export function useWeb3Storage() {
