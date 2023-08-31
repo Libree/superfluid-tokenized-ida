@@ -19,7 +19,7 @@ export function useMarketplace() {
     let subsSelling = []
 
     if (subscriptions) {
-        subsSelling = subscriptions?.filter(
+        subsSelling = subscriptions.filter(
             (item, index) => subscriptions.indexOf(item) === index)
             .map(sub => {
                 const {
@@ -31,9 +31,7 @@ export function useMarketplace() {
                     args: [sub]
                 })
 
-                const ordersData = openOrders?.map(order => ({ ...order, address: sub }))
-
-                return ordersData
+                return openOrders ? openOrders.map(order => ({ ...order, address: sub })) : []
             })
     }
 
