@@ -11,12 +11,14 @@ import {
     Box,
 } from '@mui/material';
 import { fetchBlogPost } from '../../store/apps/blog/BlogSlice';
+import { IconPoint } from '@tabler/icons-react';
 import BlankCard from '../shared/BlankCard';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useWeb3Storage } from '../../../hooks/useWeb3Storage';
 import { readFileAsImage, readFileAsJSON } from '../../../utils';
 import USDCIcon from "../../../public/images/currencies/usdc-icon.png";
+import { useTokenizedIDA } from '../../../hooks/useTokenizedIDA';
 
 
 const SubscriptionCard = ({ sub }: any) => {
@@ -25,6 +27,7 @@ const SubscriptionCard = ({ sub }: any) => {
     const { flowRate, subscription }: any = sub;
     const [jsonMetadata, setJsonMetatada] = useState()
     const [image, setImage] = useState()
+    const { tokenSymbol } = useTokenizedIDA({address: subscription})
 
     useEffect(() => {
         async function getMetadata() {
@@ -66,10 +69,6 @@ const SubscriptionCard = ({ sub }: any) => {
                         />
                     </Typography>
                     <CardContent>
-                        <Chip
-                            label={'category'}
-                            size='small'
-                            sx={{ marginTop: 2 }}></Chip>
                         <Box my={3}>
                             <Typography
                                 gutterBottom
@@ -98,6 +97,13 @@ const SubscriptionCard = ({ sub }: any) => {
                                     style={{ borderRadius: '100%' }}
                                 />{' '}
                                 {flowRate.toString()}
+                            </Stack>
+                            <Stack
+                                direction='row'
+                                ml='auto'
+                                alignItems='center'>
+                                <IconPoint size='16' />
+                                <small>{tokenSymbol}</small>
                             </Stack>
                         </Stack>
                     </CardContent>

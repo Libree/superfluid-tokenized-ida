@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { Box, Grid, Button } from '@mui/material';
-import { useSelector, useDispatch } from '../../store/Store';
+import { useDispatch } from '../../store/Store';
 import { fetchBlogPosts } from '../../store/apps/blog/BlogSlice';
 import SubscriptionCard from './subscriptionCard';
 import { useSubscriptionManager } from '../../../hooks/useSubscriptionManager';
