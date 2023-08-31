@@ -14,6 +14,8 @@ import CustomSelect from '../theme-elements/CustomSelect';
 import { Stack } from '@mui/system';
 import { useWeb3Storage } from '../../../../hooks/useWeb3Storage';
 import { useSubscriptionManager } from '../../../../hooks/useSubscriptionManager';
+import { useGlobalModalsContext } from '../../../context/globalModals';
+import { HandleTxModal } from '../../modals/handle-tx';
 
 type FormData = {
     productName: string;
@@ -54,8 +56,14 @@ const SubscriptionForm = () => {
     const [input, setInput] = useState<FormData>(defaultFormData);
     const [image, setImage] = useState<File>()
     const { uploadMetadata } = useWeb3Storage()
-
-    const { createSubscription } = useSubscriptionManager()
+    const { open: openTxModal } = useGlobalModalsContext();
+    const {
+        createSubscription,
+        isCreateStarted,
+        isCreateLoading,
+        txCreateError,
+        txCreateSuccess,
+    } = useSubscriptionManager();
 
     const handleInputChange = (event: any) => {
         setInput({
@@ -81,23 +89,24 @@ const SubscriptionForm = () => {
         const isValid = checkInputValues(input);
         if (!isValid) return;
 
+        openTxModal();
+
         const payload = {
             name: input.productName,
             description: input.productDescription,
             image: "",
         };
-
         const cid = await uploadMetadata(payload, image)
 
         createSubscription(
             input.paymentSuperToken,
-             Number(input.paymentFlowRate), 
-             input.tokenName,
-             input.tokenSymbol,
-             Number(input.initialSupply),
-             cid
+            Number(input.paymentFlowRate), 
+            input.tokenName,
+            input.tokenSymbol,
+            Number(input.initialSupply),
+            cid
         )
-
+        
     };
 
     return (
@@ -367,6 +376,14 @@ const SubscriptionForm = () => {
                     </Stack>
                 </Grid>
             </Grid>
+
+            <HandleTxModal
+                isStarted={isCreateStarted}
+                isLoading={isCreateLoading}
+                isError={!!txCreateError}
+                isSuccess={txCreateSuccess}
+                redirectPath='/creators/subscriptions'
+            />
         </div>
     );
 };
