@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import {
   Box,
-  Stepper,
-  Step,
-  StepLabel,
   Button,
-  Typography,
   Alert,
   MenuItem,
 } from '@mui/material';
@@ -14,9 +10,7 @@ import PageContainer from '../../../../src/components/container/PageContainer';
 import CustomTextField from '../../../../src/components/forms/theme-elements/CustomTextField';
 import CustomFormLabel from '../../../../src/components/forms/theme-elements/CustomFormLabel';
 import ParentCard from '../../../../src/components/shared/ParentCard';
-import SubscriptionSelectAutocomplete from './subscriptionSelectAutocomplete';
 import { useSubscriptionManager } from '../../../../hooks/useSubscriptionManager';
-import CustomSlider from '../theme-elements/CustomSlider';
 import CustomSelect from '../theme-elements/CustomSelect';
 import { useTokenizedIDA } from '../../../../hooks/useTokenizedIDA';
 import { useMarketplace } from '../../../../hooks/useMarketplace';
