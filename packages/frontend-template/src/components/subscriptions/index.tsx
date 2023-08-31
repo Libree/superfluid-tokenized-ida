@@ -35,7 +35,7 @@ const SubscriptionsComponent = () => {
                     return (
                         <SubscriptionCard
                             sub={subscription}
-                            key={subscription.name}
+                            key={subscription.subscription}
                         />
                     );
                 })}
