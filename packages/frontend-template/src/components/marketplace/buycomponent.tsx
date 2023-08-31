@@ -45,17 +45,22 @@ const BuyComponent = () => {
 
     const { subsSelling } = useMarketplace()
 
-    const subsData = subsSelling?.map(sub => {
-        const { tokenSymbol, tokenName } = useTokenizedIDA({ address: sub?.address })
-        const { pricePerToken, amount } = sub
+    let subsData = []
 
-        return {
-            name: tokenName,
-            pricePerToken: Number(pricePerToken),
-            amount: Number(amount),
-        }
+    if (subsSelling) {
+        subsData = subsSelling.map(sub => {
+            const { tokenSymbol, tokenName } = useTokenizedIDA({ address: sub?.address })
+            const { pricePerToken, amount } = sub
 
-    })
+            return {
+                name: tokenName,
+                pricePerToken: Number(pricePerToken),
+                amount: Number(amount),
+            }
+        })
+    }
+
+
 
 
     return (
