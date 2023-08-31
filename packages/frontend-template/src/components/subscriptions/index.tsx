@@ -1,18 +1,10 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { Box, Grid, Button } from '@mui/material';
-import { useDispatch } from '../../store/Store';
-import { fetchBlogPosts } from '../../store/apps/blog/BlogSlice';
 import SubscriptionCard from './subscriptionCard';
 import { useSubscriptionManager } from '../../../hooks/useSubscriptionManager';
 
 const SubscriptionsComponent = () => {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(fetchBlogPosts());
-    }, [dispatch]);
-
     const { subscriptions } = useSubscriptionManager()
 
     return (
@@ -35,7 +27,7 @@ const SubscriptionsComponent = () => {
                     return (
                         <SubscriptionCard
                             sub={subscription}
-                            key={subscription.name}
+                            key={subscription.subscription}
                         />
                     );
                 })}

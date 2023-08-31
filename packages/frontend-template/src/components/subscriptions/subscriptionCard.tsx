@@ -6,7 +6,6 @@ import {
     Stack,
     Typography,
     CardMedia,
-    Chip,
     Grid,
     Box,
 } from '@mui/material';
@@ -20,6 +19,7 @@ import { readFileAsImage, readFileAsJSON } from '../../../utils';
 import USDCIcon from "../../../public/images/currencies/usdc-icon.png";
 import { useTokenizedIDA } from '../../../hooks/useTokenizedIDA';
 
+import SuperfluidCheckout from '../superfluid-checkout';
 
 const SubscriptionCard = ({ sub }: any) => {
     const dispatch = useDispatch();
@@ -60,12 +60,12 @@ const SubscriptionCard = ({ sub }: any) => {
                     <Typography
                         component={NextLink}
                         href={`/apps/blog/detail/${linkTo}`}
-                        onClick={() => dispatch(fetchBlogPost(linkTo))}>
+                    >
                         <CardMedia
                             component='img'
                             height='240'
                             image={image.src}
-                            alt='green iguana'
+                            alt=''
                         />
                     </Typography>
                     <CardContent>
@@ -106,6 +106,16 @@ const SubscriptionCard = ({ sub }: any) => {
                                 <small>{tokenSymbol}</small>
                             </Stack>
                         </Stack>
+                        <div
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'end',
+                                paddingTop: '0.5rem',
+                            }}
+                        >
+                            <SuperfluidCheckout />
+                        </div>
                     </CardContent>
                 </>
             </BlankCard>
