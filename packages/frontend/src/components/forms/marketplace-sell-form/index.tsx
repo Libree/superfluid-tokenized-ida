@@ -20,6 +20,8 @@ import CustomSlider from '../theme-elements/CustomSlider';
 import CustomSelect from '../theme-elements/CustomSelect';
 import { useTokenizedIDA } from '../../../../hooks/useTokenizedIDA';
 import { useMarketplace } from '../../../../hooks/useMarketplace';
+import { useGlobalModalsContext } from '../../../context/globalModals';
+import { HandleTxModal } from '../../modals/handle-tx';
 
 const steps = ['Mint Debt NFT', 'List NFT for sale'];
 
@@ -28,7 +30,13 @@ const MarketplaceSellForm = () => {
   const [skipped, setSkipped] = React.useState(new Set());
 
   const { subscriptions } = useSubscriptionManager()
-  const {sellOrder} = useMarketplace()
+  const {
+    sellOrder,
+    issellLoading,
+    txsellCreateSuccess,
+    txsellCreateError,
+  } = useMarketplace();
+  const { open: openTxModal } = useGlobalModalsContext();
 
   type FormData = {
     subscription: string;
@@ -66,6 +74,7 @@ const MarketplaceSellForm = () => {
   })
 
   const handleSell = () => {
+    openTxModal();
     sellOrder(input.subscription, input.tokenAmount, input.tokenPrice)
   };
 
@@ -99,7 +108,7 @@ const MarketplaceSellForm = () => {
               onChange={handleInputChange}
               fullWidth
               variant='outlined'>
-              {subscriptionData.map((sub) => (
+              {subscriptionData?.map((sub) => (
                 <MenuItem
                 id='subscription'
                   key={sub.key}
@@ -200,6 +209,13 @@ const MarketplaceSellForm = () => {
           )}
         </Box>
       </ParentCard>
+
+      <HandleTxModal
+        isLoading={issellLoading}
+        isSuccess={txsellCreateSuccess}
+        isError={!!txsellCreateError}
+        redirectPath='/marketplace'
+      />
     </PageContainer>
   );
 };

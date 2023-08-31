@@ -18,13 +18,21 @@ import BlankCard from '../shared/BlankCard';
 import { IconShoppingCart } from '@tabler/icons-react';
 import { useMarketplace } from '../../../hooks/useMarketplace';
 import { useTokenizedIDA } from '../../../hooks/useTokenizedIDA';
+import { useGlobalModalsContext } from '../../context/globalModals';
+import { HandleTxModal } from '../modals/handle-tx';
 
 const BuyComponent = () => {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [amount, setAmount] = useState(0);
     const [order, setOrder] = useState()
-    const { buyOrder } = useMarketplace()
+    const {
+        buyOrder,
+        isbuyLoading,
+        txbuyCreateSuccess,
+        txbuyCreateError,
+    } = useMarketplace();
+    const { open: openTxModal } = useGlobalModalsContext();
 
     const handleBuyClick = (event: any, orderEvent: any) => {
         setOrder(orderEvent)
@@ -37,6 +45,7 @@ const BuyComponent = () => {
     };
 
     const handleBuy = () => {
+        openTxModal();
         buyOrder(order.address, order?.pricePerToken, order?.amount)
     };
 
@@ -146,6 +155,13 @@ const BuyComponent = () => {
                     </Popover>
                 </BlankCard>
             </ParentCard>
+
+            <HandleTxModal
+                isLoading={isbuyLoading}
+                isError={!!txbuyCreateError}
+                isSuccess={txbuyCreateSuccess}
+                redirectPath='/marketplace'
+            />
         </Box>
     );
 };
