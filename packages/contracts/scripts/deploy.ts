@@ -3,12 +3,20 @@ import { ethers } from "hardhat";
 
 async function main() {
 
-    const SubscriptionManager = await ethers.getContractFactory("SubscriptionManager");
-    const subscriptionManager = await SubscriptionManager.deploy();
+    const Marketplace = await ethers.getContractFactory("Marketplace");
+    const marketplace = await Marketplace.deploy();
 
-    await subscriptionManager.deployed();
+    await marketplace.deployed();
 
-    console.log("SubscriptionManager deployed to:", subscriptionManager.address);
+    console.log("marketplace deployed to:", marketplace.address);
+
+    
+    // const SubscriptionManager = await ethers.getContractFactory("SubscriptionManager");
+    // const subscriptionManager = await SubscriptionManager.deploy();
+
+    // await subscriptionManager.deployed();
+
+    // console.log("SubscriptionManager deployed to:", subscriptionManager.address);
 }
 
 main().catch((error) => {
