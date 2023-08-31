@@ -73,88 +73,90 @@ const BuyComponent = () => {
 
 
     return (
-        <Box>
-            <ParentCard title='Open offers'>
-                <BlankCard>
-                    <TableContainer>
-                        <Table
-                            aria-label='offers table'
-                            sx={{
-                                whiteSpace: 'nowrap',
-                            }}>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>
-                                        <Typography variant='h6'>Name</Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography variant='h6'>Price per Token</Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography variant='h6'>Amount of tokens</Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography variant='h6'>Buy</Typography>
-                                    </TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {subsData.map((item, index) => (
-                                    <TableRow key={item.index}>
+        <>
+            <Box>
+                <ParentCard title='Open offers'>
+                    <BlankCard>
+                        <TableContainer>
+                            <Table
+                                aria-label='offers table'
+                                sx={{
+                                    whiteSpace: 'nowrap',
+                                }}>
+                                <TableHead>
+                                    <TableRow>
                                         <TableCell>
-                                            <Typography variant='body2'>{item.name}</Typography>
+                                            <Typography variant='h6'>Name</Typography>
                                         </TableCell>
                                         <TableCell>
-                                            <Typography variant='body2'>{item.pricePerToken}</Typography>
+                                            <Typography variant='h6'>Price per Token</Typography>
                                         </TableCell>
                                         <TableCell>
-                                            <Typography variant='body2'>{item.amount}</Typography>
+                                            <Typography variant='h6'>Amount of tokens</Typography>
                                         </TableCell>
                                         <TableCell>
-                                            <IconButton onClick={(event) => handleBuyClick(event, subsData[index])}>
-                                                <IconShoppingCart />
-                                            </IconButton>
+                                            <Typography variant='h6'>Buy</Typography>
                                         </TableCell>
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                    <Popover
-                        id={id}
-                        open={open}
-                        anchorEl={anchorEl}
-                        onClose={handleBuyClose}
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'left',
-                        }}>
-                        <Box
-                            p={2}
-                            gap={2}
-                            display='flex'
-                            flexDirection='column'>
-                            <Typography
-                                variant='h6'
-                                mb='1 rem'>
-                                Amount
-                            </Typography>
-                            <TextField
-                                size='small'
-                                type='number'
-                                inputProps={{
-                                    min: 0,
-                                    step: 1,
-                                }}
-                                value={amount}
-                                onChange={handleAmountChange}
-                                style={{ maxWidth: '100px' }}
-                            />
-                            <Button onClick={(event) => handleBuy()}>Buy</Button>
-                        </Box>
-                    </Popover>
-                </BlankCard>
-            </ParentCard>
+                                </TableHead>
+                                <TableBody>
+                                    {subsData.map((item, index) => (
+                                        <TableRow key={item.index}>
+                                            <TableCell>
+                                                <Typography variant='body2'>{item.name}</Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography variant='body2'>{item.pricePerToken}</Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography variant='body2'>{item.amount}</Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <IconButton onClick={(event) => handleBuyClick(event, subsData[index])}>
+                                                    <IconShoppingCart />
+                                                </IconButton>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                        <Popover
+                            id={id}
+                            open={open}
+                            anchorEl={anchorEl}
+                            onClose={handleBuyClose}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}>
+                            <Box
+                                p={2}
+                                gap={2}
+                                display='flex'
+                                flexDirection='column'>
+                                <Typography
+                                    variant='h6'
+                                    mb='1 rem'>
+                                    Amount
+                                </Typography>
+                                <TextField
+                                    size='small'
+                                    type='number'
+                                    inputProps={{
+                                        min: 0,
+                                        step: 1,
+                                    }}
+                                    value={amount}
+                                    onChange={handleAmountChange}
+                                    style={{ maxWidth: '100px' }}
+                                />
+                                <Button onClick={(event) => handleBuy()}>Buy</Button>
+                            </Box>
+                        </Popover>
+                    </BlankCard>
+                </ParentCard>
+            </Box>
 
             <HandleTxModal
                 isLoading={isbuyLoading}
@@ -162,7 +164,7 @@ const BuyComponent = () => {
                 isSuccess={txbuyCreateSuccess}
                 redirectPath='/marketplace'
             />
-        </Box>
+        </>
     );
 };
 

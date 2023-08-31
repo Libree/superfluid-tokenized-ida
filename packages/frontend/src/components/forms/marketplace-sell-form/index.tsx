@@ -104,7 +104,7 @@ const MarketplaceSellForm = () => {
               variant='outlined'>
               {subscriptionData?.map((sub) => (
                 <MenuItem
-                id='subscription'
+                  id='subscription'
                   key={sub.key}
                   value={sub.key}>
                   {sub.value}
@@ -153,56 +153,58 @@ const MarketplaceSellForm = () => {
     setActiveStep(0);
   };
   return (
-    <PageContainer>
-      <ParentCard title='Sell Form'>
-        <Box width='100%'>
-          {activeStep === steps.length ? (
-            <>
-              <Stack
-                spacing={2}
-                mt={3}>
-                <Alert severity='success'>
-                  All steps completed - you&apos;re finished!
-                </Alert>
+    <>
+      <PageContainer>
+        <ParentCard title='Sell Form'>
+          <Box width='100%'>
+            {activeStep === steps.length ? (
+              <>
+                <Stack
+                  spacing={2}
+                  mt={3}>
+                  <Alert severity='success'>
+                    All steps completed - you&apos;re finished!
+                  </Alert>
 
-                <Box textAlign='right'>
+                  <Box textAlign='right'>
+                    <Button
+                      onClick={handleReset}
+                      variant='contained'
+                      color='error'>
+                      Reset
+                    </Button>
+                  </Box>
+                </Stack>
+              </>
+            ) : (
+              <>
+                <Box>{handleSteps(activeStep)}</Box>
+                <Box
+                  display='flex'
+                  flexDirection='row'
+                  mt={3}>
+                  <Box flex='1 1 auto' />
+                  {isStepOptional(activeStep) && (
+                    <Button
+                      color='inherit'
+                      onClick={handleSkip}
+                      sx={{ mr: 1 }}>
+                      Skip
+                    </Button>
+                  )}
+
                   <Button
-                    onClick={handleReset}
+                    onClick={handleSell}
                     variant='contained'
-                    color='error'>
-                    Reset
+                    color={activeStep === steps.length - 1 ? 'success' : 'secondary'}>
+                    {'Sell'}
                   </Button>
                 </Box>
-              </Stack>
-            </>
-          ) : (
-            <>
-              <Box>{handleSteps(activeStep)}</Box>
-              <Box
-                display='flex'
-                flexDirection='row'
-                mt={3}>
-                <Box flex='1 1 auto' />
-                {isStepOptional(activeStep) && (
-                  <Button
-                    color='inherit'
-                    onClick={handleSkip}
-                    sx={{ mr: 1 }}>
-                    Skip
-                  </Button>
-                )}
-
-                <Button
-                  onClick={handleSell}
-                  variant='contained'
-                  color={activeStep === steps.length - 1 ? 'success' : 'secondary'}>
-                  {'Sell'}
-                </Button>
-              </Box>
-            </>
-          )}
-        </Box>
-      </ParentCard>
+              </>
+            )}
+          </Box>
+        </ParentCard>
+      </PageContainer>
 
       <HandleTxModal
         isLoading={issellLoading}
@@ -210,7 +212,7 @@ const MarketplaceSellForm = () => {
         isError={!!txsellCreateError}
         redirectPath='/marketplace'
       />
-    </PageContainer>
+    </>
   );
 };
 
