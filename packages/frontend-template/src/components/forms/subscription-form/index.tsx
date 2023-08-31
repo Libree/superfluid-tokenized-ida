@@ -382,6 +382,7 @@ const SubscriptionForm = () => {
                 isLoading={isCreateLoading}
                 isError={!!txCreateError}
                 isSuccess={txCreateSuccess}
+                redirectPath='/creators/subscriptions'
             />
         </div>
     );

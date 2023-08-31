@@ -26,6 +26,7 @@ type HandleTxModalProps = {
     isStarted?: boolean;
     isSuccess: boolean;
     isError: boolean;
+    redirectPath?: string;
 }
 
 export const HandleTxModal = ({
@@ -33,6 +34,7 @@ export const HandleTxModal = ({
     isStarted,
     isSuccess,
     isError,
+    redirectPath = '/',
 }: HandleTxModalProps) => {
     const router = useRouter();
     const { isHandleTxOpen, close } = useGlobalModalsContext();
@@ -42,7 +44,7 @@ export const HandleTxModal = ({
     }, [isLoading, isStarted])
 
     const redirectToSubs = () => {
-        router.push('/creators/subscriptions');
+        router.push(redirectPath);
     };
 
     const handleCloseModal = () => {
