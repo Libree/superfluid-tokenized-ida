@@ -58,13 +58,6 @@ const ActiveSubscriptionsTable = () => {
           direction='row'
           alignItems={'center'}
           spacing={2}>
-          <Image
-           src={basic.assetImg}
-           width={30}
-           height={30}
-           alt={`${basic.assetImg}`}
-           style={{ borderRadius: '100%' }}
-          />
           <Box>
            <Typography
             variant='h6'

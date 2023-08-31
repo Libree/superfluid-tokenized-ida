@@ -365,21 +365,21 @@ const EnhancedTableData: EnTableType[] = [
 const ActiveSubscriptionsData: ActiveSubscriptionType[] = [
  {
   id: '1',
-  asset: 'Bitcoin',
+  asset: 'Business Finance in Web3',
   assetImg: BTCIcon,
   balance: '+1.25/mo',
-  netFlow: 10,
-  flowRate: 6.5,
-  subscriptors: 50,
+  netFlow: 3000,
+  flowRate: 1000,
+  subscriptors: 3,
  },
  {
   id: '2',
-  asset: 'USDT',
+  asset: 'VIP Gaming Tricks',
   assetImg: TetherIcon,
   balance: '-0.75/mo',
-  netFlow: 4.52,
-  flowRate: 7,
-  subscriptors: 225,
+  netFlow: 6000,
+  flowRate: 1500,
+  subscriptors: 4,
  },
 ];
 
