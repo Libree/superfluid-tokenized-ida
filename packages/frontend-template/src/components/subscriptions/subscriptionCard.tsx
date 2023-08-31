@@ -114,7 +114,7 @@ const SubscriptionCard = ({ sub }: any) => {
                                 paddingTop: '0.5rem',
                             }}
                         >
-                            <SuperfluidCheckout />
+                            <SuperfluidCheckout amount={flowRate} receiverAddress={subscription}/>
                         </div>
                     </CardContent>
                 </>
