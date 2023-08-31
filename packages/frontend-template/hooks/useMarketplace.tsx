@@ -16,23 +16,26 @@ export function useMarketplace() {
         functionName: 'getSubSelling',
     })
 
+    let subsSelling = []
 
-    const subsSelling = subscriptions?.filter(
-        (item, index) => subscriptions.indexOf(item) === index)
-        .map(sub => {
-            const {
-                data: openOrders,
-            } = useContractRead({
-                address: DEPLOYED_CONTRACTS[chain?.id].marketplace,
-                abi: Marketplace__factory.abi,
-                functionName: 'getOpenOrders',
-                args: [sub]
+    if (subscriptions) {
+        subsSelling = subscriptions?.filter(
+            (item, index) => subscriptions.indexOf(item) === index)
+            .map(sub => {
+                const {
+                    data: openOrders,
+                } = useContractRead({
+                    address: DEPLOYED_CONTRACTS[chain?.id].marketplace,
+                    abi: Marketplace__factory.abi,
+                    functionName: 'getOpenOrders',
+                    args: [sub]
+                })
+
+                const ordersData = openOrders?.map(order => ({ ...order, address: sub }))
+
+                return ordersData
             })
-
-            const ordersData = openOrders?.map(order => ({ ...order, address: sub }))
-
-            return ordersData
-        })
+    }
 
 
     const {
