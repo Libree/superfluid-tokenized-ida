@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Box,
     IconButton,
@@ -16,23 +16,28 @@ import {
 import ParentCard from '../shared/ParentCard';
 import BlankCard from '../shared/BlankCard';
 import { IconShoppingCart } from '@tabler/icons-react';
-import { OpenOffersType, OpenOffersData } from '../tables/tableData';
 import { useMarketplace } from '../../../hooks/useMarketplace';
 import { useTokenizedIDA } from '../../../hooks/useTokenizedIDA';
 
 const BuyComponent = () => {
-    const mockData: OpenOffersType[] = OpenOffersData;
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [amount, setAmount] = React.useState(0);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [amount, setAmount] = useState(0);
+    const [order, setOrder] = useState()
+    const { buyOrder } = useMarketplace()
 
-    const handleBuyClick = (event: any) => {
+    const handleBuyClick = (event: any, orderEvent: any) => {
+        setOrder(orderEvent)
         if (open) handleBuyClose();
         else setAnchorEl(event.currentTarget);
     };
 
     const handleBuyClose = () => {
         setAnchorEl(null);
+    };
+
+    const handleBuy = () => {
+        buyOrder(order.address, order?.pricePerToken, order?.amount)
     };
 
     const handleAmountChange = (event: any) => {
@@ -50,11 +55,11 @@ const BuyComponent = () => {
         const { pricePerToken, amount } = sub
 
         return {
+            address: sub.address,
             name: tokenName,
             pricePerToken: Number(pricePerToken),
             amount: Number(amount),
         }
-
     })
 
 
@@ -85,8 +90,8 @@ const BuyComponent = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {subsData.map((item) => (
-                                    <TableRow key={item.id}>
+                                {subsData.map((item, index) => (
+                                    <TableRow key={item.index}>
                                         <TableCell>
                                             <Typography variant='body2'>{item.name}</Typography>
                                         </TableCell>
@@ -97,7 +102,7 @@ const BuyComponent = () => {
                                             <Typography variant='body2'>{item.amount}</Typography>
                                         </TableCell>
                                         <TableCell>
-                                            <IconButton onClick={(event) => handleBuyClick(event)}>
+                                            <IconButton onClick={(event) => handleBuyClick(event, subsData[index])}>
                                                 <IconShoppingCart />
                                             </IconButton>
                                         </TableCell>
@@ -136,7 +141,7 @@ const BuyComponent = () => {
                                 onChange={handleAmountChange}
                                 style={{ maxWidth: '100px' }}
                             />
-                            <Button>Buy</Button>
+                            <Button onClick={(event) => handleBuy()}>Buy</Button>
                         </Box>
                     </Popover>
                 </BlankCard>
