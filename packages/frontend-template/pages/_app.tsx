@@ -30,84 +30,86 @@ import 'slick-carousel/slick/slick-theme.css';
 // Wallet Connect
 import { WagmiConfig } from 'wagmi';
 import {
- ethereumClient,
- projectId,
- wagmiConfig,
+    ethereumClient,
+    projectId,
+    wagmiConfig,
 } from '../config/wallet.config';
 import { Web3Modal } from '@web3modal/react';
 import { GlobalModalsProvider } from '../src/context/globalModals';
+import { HandleTxModal } from '../src/components/modals/handle-tx';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
 interface MyAppProps extends AppProps {
- emotionCache?: EmotionCache;
+    emotionCache?: EmotionCache;
 }
 
 const layouts: any = {
- Blank: BlankLayout,
+    Blank: BlankLayout,
 };
 
 const MyApp = (props: MyAppProps) => {
- const {
-  Component,
-  emotionCache = clientSideEmotionCache,
-  pageProps,
- }: any = props;
- const theme = ThemeSettings();
- const customizer = useSelector((state: AppState) => state.customizer);
- const Layout = layouts[Component.layout] || FullLayout;
- const [loading, setLoading] = React.useState(false);
+    const {
+        Component,
+        emotionCache = clientSideEmotionCache,
+        pageProps,
+    }: any = props;
+    const theme = ThemeSettings();
+    const customizer = useSelector((state: AppState) => state.customizer);
+    const Layout = layouts[Component.layout] || FullLayout;
+    const [loading, setLoading] = React.useState(false);
 
- React.useEffect(() => {
-  setTimeout(() => setLoading(true), 1000);
- }, []);
- return (
-  <WagmiConfig config={wagmiConfig}>
-   <CacheProvider value={emotionCache}>
-    <GlobalModalsProvider>
-        <Head>
-            <meta
-                name='viewport'
-                content='initial-scale=1, width=device-width'
-            />
-            <title>Libree flow</title>
-        </Head>
-        <NextNProgress color='#5D87FF' />
-        <ThemeProvider theme={theme}>
-            <RTL direction={customizer.activeDir}>
-                <CssBaseline />
-                {loading ? (
-                    <Layout>
-                        <Component {...pageProps} />
-                    </Layout>
-                ) : (
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                        alignItems: 'center',
-                        width: '100%',
-                        height: '100vh',
-                        }}
-                    >
-                        <CircularProgress />
-                    </Box>
-                )}
-            </RTL>
-        </ThemeProvider>
-    </GlobalModalsProvider>
-   </CacheProvider>
-  </WagmiConfig>
- );
+    React.useEffect(() => {
+        setTimeout(() => setLoading(true), 1000);
+    }, []);
+    return (
+        <WagmiConfig config={wagmiConfig}>
+            <CacheProvider value={emotionCache}>
+                <Head>
+                    <meta
+                        name='viewport'
+                        content='initial-scale=1, width=device-width'
+                    />
+                    <title>Libree flow</title>
+                </Head>
+                <NextNProgress color='#5D87FF' />
+                <ThemeProvider theme={theme}>
+                    <RTL direction={customizer.activeDir}>
+                        <CssBaseline />
+                        {loading ? (
+                            <Layout>
+                                <Component {...pageProps} />
+                            </Layout>
+                        ) : (
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    width: '100%',
+                                    height: '100vh',
+                                }}
+                            >
+                                <CircularProgress />
+                            </Box>
+                        )}
+                    </RTL>
+                </ThemeProvider>
+            </CacheProvider>
+        </WagmiConfig>
+    );
 };
 
 export default (props: MyAppProps) => (
- <Provider store={Store}>
-  <MyApp {...props} />
-  <Web3Modal
-   projectId={projectId}
-   ethereumClient={ethereumClient}
-  />
- </Provider>
+    <Provider store={Store}>
+        <GlobalModalsProvider>
+            <MyApp {...props} />
+            <Web3Modal
+                projectId={projectId}
+                ethereumClient={ethereumClient}
+            />
+            <HandleTxModal />
+        </GlobalModalsProvider>
+    </Provider>
 );
